@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <Resource name="jdbc/auctionPull"
+             auth="Container"
+             type="javax.sql.DataSource"
+             username="root"
+             password="root"
+             driverClassName="com.mysql.jdbc.Driver"
+             url="jdbc:mysql://localhost:3306/auction?autoReconnect=true&amp;useSSL=false"
+             validationQuery="select 1"
+             maxActive="10"
+             maxIdle="4"/>
+ 
+</Context>
