@@ -3,9 +3,9 @@ package by.bsu.auction.dao.user_operation;
 import java.util.ArrayList;
 
 import by.bsu.auction.dao.exception.DAOException;
-import by.bsu.auction.entity.Auction;
-import by.bsu.auction.entity.Lot;
-import by.bsu.auction.entity.User;
+import by.tc.auction.entity.Auction;
+import by.tc.auction.entity.Lot;
+import by.tc.auction.entity.User;
 
 public interface ProfileDAO {
 	User getUserInfo(String login) throws DAOException;

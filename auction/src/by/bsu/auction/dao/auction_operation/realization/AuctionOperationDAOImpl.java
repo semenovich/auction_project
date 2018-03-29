@@ -11,8 +11,8 @@ import by.bsu.auction.dao.auction_operation.realization.util.AuctionProcessor;
 import by.bsu.auction.dao.connection_pool.ConnectionPool;
 import by.bsu.auction.dao.exception.DAOException;
 import by.bsu.auction.dao.exception.DBConnectionException;
-import by.bsu.auction.entity.Auction;
-import by.bsu.auction.entity.Lot;
+import by.tc.auction.entity.Auction;
+import by.tc.auction.entity.Lot;
 
 public class AuctionOperationDAOImpl implements AuctionOperationDAO {
 

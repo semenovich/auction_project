@@ -11,7 +11,7 @@ import by.bsu.auction.dao.exception.DAOException;
 import by.bsu.auction.dao.exception.DBConnectionException;
 import by.bsu.auction.dao.server_operation.ServerOperationDAO;
 import by.bsu.auction.dao.server_operation.realization.util.ServerProcessor;
-import by.bsu.auction.entity.Auction;
+import by.tc.auction.entity.Auction;
 
 public class ServerOperationDAOImpl implements ServerOperationDAO {
 

@@ -6,25 +6,25 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import by.bsu.auction.entity.Auction;
-import by.bsu.auction.entity.AuctionStatus;
-import by.bsu.auction.entity.AuctionType;
-import by.bsu.auction.entity.Bet;
-import by.bsu.auction.entity.Lot;
-import by.bsu.auction.entity.LotStatus;
-import by.bsu.auction.entity.LotType;
+import by.tc.auction.entity.Auction;
+import by.tc.auction.entity.AuctionStatus;
+import by.tc.auction.entity.AuctionType;
+import by.tc.auction.entity.Bet;
+import by.tc.auction.entity.Lot;
+import by.tc.auction.entity.LotStatus;
+import by.tc.auction.entity.LotType;
 
 public class AuctionProcessor {
 	
-	private static final String CREATE_AUCTION_SQL_STATEMENT = "INSERT INTO `auction`.`auctions` (`l_id`, `a_start_time`, `a_end_time`, `a_minimum_price`, `auctions_type_at_id`) VALUES (?, ?, ?, ?, (SELECT at_id FROM auction.auctions_type WHERE at_type_name=?))";
-	private static final String CHECK_IS_LOT_USED_SQL_STATEMENT = "SELECT * FROM `auction`.`auctions` WHERE l_id=?";
-	private static final String CHECK_LOT_EXISTENCE_SQL_STATEMENT = "SELECT * FROM `auction`.`lots` WHERE `l_id`=?";
-	private static final String SET_LOT_STATUS_SQL_STATEMENT = "UPDATE `auction`.`lots` SET `l_status`=? WHERE `l_id`=?";
-	private static final String CREATE_LOT_SQL_STATEMENT = "INSERT INTO `auction`.`lots` (`l_name`, `l_description`, `l_quantity`, `l_picture`, `su_owner_login`, `l_date_added`, `l_status`, `l_type`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-	private static final String GET_AUCTIONS_LIST_SQL_STATEMENT = "SELECT l.l_id AS lotId, l.l_name AS lotName, l.l_description AS lotDescription, l.l_quantity AS lotQuantity, l.l_picture AS lotPicture, l.l_date_added AS lotDateAdded, l.l_type AS lotType, l.l_status AS lotStatus, l.su_owner_login AS lotOwner, a.a_id AS auctionId, a.a_last_bet_time AS auctionLastBetTime, a.a_start_time AS auctionStartTime, a.a_end_time AS auctionEndTime, a.a_status AS auctionStatus, l.l_type AS lotType, l.l_status AS lotStatus, a.a_minimum_price AS auctionMinimumPrice, a.a_current_price AS auctionCurrentPrice, au_t.at_type_name AS auctionType, a.su_login_last_bet AS auctionLastBetLogin FROM auctions AS a INNER JOIN lots AS l ON l.l_id = a.l_id INNER JOIN auctions_type AS au_t ON au_t.at_id = a.auctions_type_at_id ORDER BY a.a_start_time DESC";
-	private static final String GET_AUCTIONS_LIST_BY_SEARCHING_SQL_STATEMENT = "SELECT l.l_id AS lotId, l.l_name AS lotName, l.l_description AS lotDescription, l.l_quantity AS lotQuantity, l.l_picture AS lotPicture, l.l_date_added AS lotDateAdded, l_type AS lotType, l_status AS lotStatus, l.su_owner_login AS lotOwner, a.a_id AS auctionId, a.a_last_bet_time AS auctionLastBetTime, a.a_start_time AS auctionStartTime, a.a_end_time AS auctionEndTime, a.a_status AS auctionStatus, l.l_type AS lotType, l.l_status AS lotStatus, a.a_minimum_price AS auctionMinimumPrice, a.a_current_price AS auctionCurrentPrice, au_t.at_type_name AS auctionType, a.su_login_last_bet AS auctionLastBetLogin FROM auctions AS a INNER JOIN lots AS l ON l.l_id = a.l_id INNER JOIN auctions_type AS au_t ON au_t.at_id = a.auctions_type_at_id WHERE UPPER(l.l_name) LIKE UPPER(?) ORDER BY a.a_start_time DESC";
-	private static final String GET_AUCTION_INFO_SQL_STATEMENT = "SELECT l.l_id AS lotId, l.l_name AS lotName, l.l_description AS lotDescription, l.l_quantity AS lotQuantity, l.l_picture AS lotPicture, l.l_date_added AS lotDateAdded, l_type AS lotType, l_status AS lotStatus, l.su_owner_login AS lotOwner, a.a_id AS auctionId, a.a_last_bet_time AS auctionLastBetTime, a.a_start_time AS auctionStartTime, a.a_end_time AS auctionEndTime, a.a_status AS auctionStatus, l.l_type AS lotType, l.l_status AS lotStatus, a.a_minimum_price AS auctionMinimumPrice, a.a_current_price AS auctionCurrentPrice, au_t.at_type_name AS auctionType, a.su_login_last_bet AS auctionLastBetLogin FROM auctions AS a INNER JOIN lots AS l ON l.l_id = a.l_id INNER JOIN auctions_type AS au_t ON au_t.at_id = a.auctions_type_at_id WHERE a.a_id=?";
-	private static final String CHECK_AUCTION_EXISTENCE_SQL_STATEMENT = "SELECT * FROM `auction`.`auctions` WHERE a_id=?";
+	private static final String CREATE_AUCTION_SQL_STATEMENT = "INSERT INTO auction.auctions (l_id, a_start_time, a_end_time, a_minimum_price, auctions_type_at_id) VALUES (?, ?, ?, ?, (SELECT at_id FROM auction.auctions_type WHERE at_type_name=?))";
+	private static final String CHECK_IS_LOT_USED_SQL_STATEMENT = "SELECT * FROM auction.auctions WHERE l_id=?";
+	private static final String CHECK_LOT_EXISTENCE_SQL_STATEMENT = "SELECT * FROM auction.lots WHERE l_id=?";
+	private static final String SET_LOT_STATUS_SQL_STATEMENT = "UPDATE auction.lots SET l_status=? WHERE l_id=?";
+	private static final String CREATE_LOT_SQL_STATEMENT = "INSERT INTO auction.lots (l_name, l_description, l_quantity, l_picture, su_owner_login, l_date_added, l_status, l_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String GET_AUCTIONS_LIST_SQL_STATEMENT = "SELECT l.l_id AS lotId, l.l_name AS lotName, l.l_description AS lotDescription, l.l_quantity AS lotQuantity, l.l_picture AS lotPicture, l.l_date_added AS lotDateAdded, l.l_type AS lotType, l.l_status AS lotStatus, l.su_owner_login AS lotOwner, a.a_id AS auctionId, a.a_last_bet_time AS auctionLastBetTime, a.a_start_time AS auctionStartTime, a.a_end_time AS auctionEndTime, a.a_status AS auctionStatus, l.l_type AS lotType, l.l_status AS lotStatus, a.a_minimum_price AS auctionMinimumPrice, a.a_current_price AS auctionCurrentPrice, au_t.at_type_name AS auctionType, a.su_login_last_bet AS auctionLastBetLogin FROM auction.auctions AS a INNER JOIN auction.lots AS l ON l.l_id = a.l_id INNER JOIN auction.auctions_type AS au_t ON au_t.at_id = a.auctions_type_at_id ORDER BY a.a_start_time DESC";
+	private static final String GET_AUCTIONS_LIST_BY_SEARCHING_SQL_STATEMENT = "SELECT l.l_id AS lotId, l.l_name AS lotName, l.l_description AS lotDescription, l.l_quantity AS lotQuantity, l.l_picture AS lotPicture, l.l_date_added AS lotDateAdded, l_type AS lotType, l_status AS lotStatus, l.su_owner_login AS lotOwner, a.a_id AS auctionId, a.a_last_bet_time AS auctionLastBetTime, a.a_start_time AS auctionStartTime, a.a_end_time AS auctionEndTime, a.a_status AS auctionStatus, l.l_type AS lotType, l.l_status AS lotStatus, a.a_minimum_price AS auctionMinimumPrice, a.a_current_price AS auctionCurrentPrice, au_t.at_type_name AS auctionType, a.su_login_last_bet AS auctionLastBetLogin FROM auction.auctions AS a INNER JOIN auction.lots AS l ON l.l_id = a.l_id INNER JOIN auction.auctions_type AS au_t ON au_t.at_id = a.auctions_type_at_id WHERE UPPER(l.l_name) LIKE UPPER(?) ORDER BY a.a_start_time DESC";
+	private static final String GET_AUCTION_INFO_SQL_STATEMENT = "SELECT l.l_id AS lotId, l.l_name AS lotName, l.l_description AS lotDescription, l.l_quantity AS lotQuantity, l.l_picture AS lotPicture, l.l_date_added AS lotDateAdded, l_type AS lotType, l_status AS lotStatus, l.su_owner_login AS lotOwner, a.a_id AS auctionId, a.a_last_bet_time AS auctionLastBetTime, a.a_start_time AS auctionStartTime, a.a_end_time AS auctionEndTime, a.a_status AS auctionStatus, l.l_type AS lotType, l.l_status AS lotStatus, a.a_minimum_price AS auctionMinimumPrice, a.a_current_price AS auctionCurrentPrice, au_t.at_type_name AS auctionType, a.su_login_last_bet AS auctionLastBetLogin FROM auction.auctions AS a INNER JOIN auction.lots AS l ON l.l_id = a.l_id INNER JOIN auction.auctions_type AS au_t ON au_t.at_id = a.auctions_type_at_id WHERE a.a_id=?";
+	private static final String CHECK_AUCTION_EXISTENCE_SQL_STATEMENT = "SELECT * FROM auction.auctions WHERE a_id=?";
 	
 	private static final String AUCTION_ID = "auctionId";
 	private static final String AUCTION_TYPE = "auctionType";

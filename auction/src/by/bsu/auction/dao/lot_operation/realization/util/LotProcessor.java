@@ -6,20 +6,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import by.bsu.auction.entity.Lot;
-import by.bsu.auction.entity.LotStatus;
-import by.bsu.auction.entity.LotType;
+import by.tc.auction.entity.Lot;
+import by.tc.auction.entity.LotStatus;
+import by.tc.auction.entity.LotType;
 
 public class LotProcessor {
 
-	private static final String CREATE_LOT_SQL_STATEMENT = "INSERT INTO `auction`.`lots` (`l_name`, `l_description`, `l_quantity`, `l_picture`, `su_owner_login`, `l_date_added`, `l_status`, `l_type`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-	private static final String CHECK_LOT_EXISTENCE_SQL_STATEMENT = "SELECT * FROM `auction`.`lots` WHERE `l_id`=?";
-	private static final String GET_LOT_INFO_SQL_STATEMENT = "SELECT l_id AS lotId, l_name AS lotName, l_description AS lotDescription, l_quantity AS lotQuantity, l_picture AS lotPicture, l_date_added AS lotDateAdded, l_type AS lotType, l_status AS lotStatus, su_owner_login AS lotOwner FROM lots WHERE l_id=?";
-	private static final String DELETE_LOT_SQL_STATEMENT = "DELETE FROM `auction`.`lots` WHERE `l_id`=?";
-	private static final String CHECK_IS_LOT_CONFIRMING_SQL_STATEMENT = "SELECT l_id AS lotId FROM `auction`.`lots` WHERE l_id=? AND l_status='CONFIRMING'";
-	private static final String EDIT_LOT_INFO_SQL_STATEMENT = "UPDATE `auction`.`lots` SET `l_name`=?, `l_description`=?, `l_quantity`=?, `l_picture`=? WHERE `l_id`=?"; 
-	private static final String GET_LOTS_LIST_SQL_STATEMENT = "SELECT l_id AS lotId, l_name AS lotName, l_description AS lotDescription, l_quantity AS lotQuantity, l_picture AS lotPicture, l_date_added AS lotDateAdded, l_type AS lotType, l_status AS lotStatus, su_owner_login AS lotOwner FROM lots ORDER BY l_date_added DESC";
-	private static final String GET_LOTS_BY_SEARCHING_SQL_STATEMENT = "SELECT l_id AS lotId, l_name AS lotName, l_description AS lotDescription, l_quantity AS lotQuantity, l_picture AS lotPicture, l_date_added AS lotDateAdded, l_type AS lotType, l_status AS lotStatus, su_owner_login AS lotOwner FROM lots WHERE UPPER(l_name) LIKE UPPER(?) ORDER BY l_date_added DESC";
+	private static final String CREATE_LOT_SQL_STATEMENT = "INSERT INTO auction.lots (l_name, l_description, l_quantity, l_picture, su_owner_login, l_date_added, l_status, l_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String CHECK_LOT_EXISTENCE_SQL_STATEMENT = "SELECT * FROM auction.lots WHERE l_id=?";
+	private static final String GET_LOT_INFO_SQL_STATEMENT = "SELECT l_id AS lotId, l_name AS lotName, l_description AS lotDescription, l_quantity AS lotQuantity, l_picture AS lotPicture, l_date_added AS lotDateAdded, l_type AS lotType, l_status AS lotStatus, su_owner_login AS lotOwner FROM auction.lots WHERE l_id=?";
+	private static final String DELETE_LOT_SQL_STATEMENT = "DELETE FROM auction.lots WHERE l_id=?";
+	private static final String CHECK_IS_LOT_CONFIRMING_SQL_STATEMENT = "SELECT l_id AS lotId FROM auction.lots WHERE l_id=? AND l_status='CONFIRMING'";
+	private static final String EDIT_LOT_INFO_SQL_STATEMENT = "UPDATE auction.lots SET l_name=?, l_description=?, l_quantity=?, l_picture=? WHERE l_id=?"; 
+	private static final String GET_LOTS_LIST_SQL_STATEMENT = "SELECT l_id AS lotId, l_name AS lotName, l_description AS lotDescription, l_quantity AS lotQuantity, l_picture AS lotPicture, l_date_added AS lotDateAdded, l_type AS lotType, l_status AS lotStatus, su_owner_login AS lotOwner FROM auction.lots ORDER BY l_date_added DESC";
+	private static final String GET_LOTS_BY_SEARCHING_SQL_STATEMENT = "SELECT l_id AS lotId, l_name AS lotName, l_description AS lotDescription, l_quantity AS lotQuantity, l_picture AS lotPicture, l_date_added AS lotDateAdded, l_type AS lotType, l_status AS lotStatus, su_owner_login AS lotOwner FROM auction.lots WHERE UPPER(l_name) LIKE UPPER(?) ORDER BY l_date_added DESC";
 	
 	private static final String LOT_ID = "lotId";
 	private static final String LOT_NAME = "lotName";

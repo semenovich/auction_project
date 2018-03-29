@@ -11,7 +11,7 @@ import by.bsu.auction.dao.exception.DAOException;
 import by.bsu.auction.dao.exception.DBConnectionException;
 import by.bsu.auction.dao.user_operation.UsersDAO;
 import by.bsu.auction.dao.user_operation.realization.util.UserProcessor;
-import by.bsu.auction.entity.User;
+import by.tc.auction.entity.User;
 
 public class UsersDAOImpl implements UsersDAO {
 

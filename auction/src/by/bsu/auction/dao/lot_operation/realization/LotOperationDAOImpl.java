@@ -12,7 +12,7 @@ import by.bsu.auction.dao.exception.DAOException;
 import by.bsu.auction.dao.exception.DBConnectionException;
 import by.bsu.auction.dao.lot_operation.LotOperationDAO;
 import by.bsu.auction.dao.lot_operation.realization.util.LotProcessor;
-import by.bsu.auction.entity.Lot;
+import by.tc.auction.entity.Lot;
 
 public class LotOperationDAOImpl implements LotOperationDAO {
 

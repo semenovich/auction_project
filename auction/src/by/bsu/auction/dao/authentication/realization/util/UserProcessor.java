@@ -5,15 +5,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import by.bsu.auction.entity.User;
-import by.bsu.auction.entity.UserRole;
+import by.tc.auction.entity.User;
+import by.tc.auction.entity.UserRole;
 
 public final class UserProcessor {
 	
-	private static final String GET_USER_SQL_STATEMENT = "SELECT u.su_login AS userLogin, u.su_surname AS userSurname, u.su_Name AS userName, u.su_password AS userPassword, u.su_email AS userEmail, u.su_phone AS userPhone, u.su_passport_id AS userPassportId, u.su_passport_issued_by AS userPassportIssuedBy, c.uc_name AS userCountry, u.su_blocked AS isBlocked, r.sur_role_name AS userRole, u.su_picture AS userPicture   FROM site_users u  INNER JOIN site_users_role r ON u.sur_id = r.sur_id  INNER JOIN users_countries c ON u.uc_id = c.uc_id  WHERE u.su_login=?";
-	private static final String CHECK_USER_LOGIN_AND_PASSWORD_SQL_STATEMENT = "SELECT u.su_login AS userLogin, u.su_surname AS userSurname, u.su_Name AS userName, u.su_password AS userPassword, u.su_email AS userEmail, u.su_phone AS userPhone, u.su_passport_id AS userPassportId, u.su_passport_issued_by AS userPassportIssuedBy, c.uc_name AS userCountry, u.su_blocked AS isBlocked, r.sur_role_name AS userRole, u.su_picture AS userPicture FROM site_users u INNER JOIN site_users_role r ON u.sur_id = r.sur_id INNER JOIN users_countries c ON u.uc_id = c.uc_id WHERE u.su_login=? AND u.su_password=MD5(?)";
-	private static final String CHECK_USER_LOGIN_SQL_STATEMENT = "SELECT su_login AS userLogin FROM site_users WHERE su_login=?";
-	private static final String REGISTER_USER_SQL_STATEMENT = "INSERT INTO `auction`.`site_users` (`su_login`, `su_surname`, `su_name`, `su_password`, `su_email`, `su_phone`, `su_passport_id`, `su_passport_issued_by`, `uc_id`, `su_picture`) VALUES (?, ?, ?, MD5(?), ?, ?, ?, ?, (SELECT uc_id FROM users_countries WHERE uc_name=?), ?)";
+	private static final String GET_USER_SQL_STATEMENT = "SELECT u.su_login AS userLogin, u.su_surname AS userSurname, u.su_Name AS userName, u.su_password AS userPassword, u.su_email AS userEmail, u.su_phone AS userPhone, u.su_passport_id AS userPassportId, u.su_passport_issued_by AS userPassportIssuedBy, c.uc_name AS userCountry, u.su_blocked AS isBlocked, r.sur_role_name AS userRole, u.su_picture AS userPicture   FROM auction.site_users u  INNER JOIN auction.site_users_role r ON u.sur_id = r.sur_id  INNER JOIN auction.users_countries c ON u.uc_id = c.uc_id  WHERE u.su_login=?";
+	private static final String CHECK_USER_LOGIN_AND_PASSWORD_SQL_STATEMENT = "SELECT u.su_login AS userLogin, u.su_surname AS userSurname, u.su_Name AS userName, u.su_password AS userPassword, u.su_email AS userEmail, u.su_phone AS userPhone, u.su_passport_id AS userPassportId, u.su_passport_issued_by AS userPassportIssuedBy, c.uc_name AS userCountry, u.su_blocked AS isBlocked, r.sur_role_name AS userRole, u.su_picture AS userPicture FROM auction.site_users u INNER JOIN auction.site_users_role r ON u.sur_id = r.sur_id INNER JOIN auction.users_countries c ON u.uc_id = c.uc_id WHERE u.su_login=? AND u.su_password=MD5(?)";
+	private static final String CHECK_USER_LOGIN_SQL_STATEMENT = "SELECT su_login AS userLogin FROM auction.site_users WHERE su_login=?";
+	private static final String REGISTER_USER_SQL_STATEMENT = "INSERT INTO auction.site_users (su_login, su_surname, su_name, su_password, su_email, su_phone, su_passport_id, su_passport_issued_by, uc_id, su_picture) VALUES (?, ?, ?, MD5(?), ?, ?, ?, ?, (SELECT uc_id FROM auction.users_countries WHERE uc_name=?), ?)";
 	
 	private static final String USER_LOGIN = "userLogin";
 	private static final String USER_PASSWORD = "userPassword";

@@ -13,15 +13,15 @@ import by.bsu.auction.dao.exception.DAOException;
 import by.bsu.auction.dao.exception.DBConnectionException;
 import by.bsu.auction.dao.user_operation.UserOperationDAO;
 import by.bsu.auction.dao.user_operation.realization.util.PaymentProcessor;
-import by.bsu.auction.entity.Auction;
-import by.bsu.auction.entity.Bet;
+import by.tc.auction.entity.Auction;
+import by.tc.auction.entity.Bet;
 
 public class UserOperationDAOImpl implements UserOperationDAO {
 
 	private PaymentProcessor paymentProcessor = new PaymentProcessor();
 	private static final Logger logger = Logger.getLogger(UserOperationDAOImpl.class);
 
-	private static final String GET_AUCTION_CURRENT_BET = "SELECT a_current_price AS auctionCurrentBet FROM auction.auctions WHERE a_id=?";
+	private static final String GET_AUCTION_CURRENT_BET_SQL_STATEMENT = "SELECT a_current_price AS auctionCurrentBet FROM auction.auctions WHERE a_id=?";
 	private static final String AUCTION_CURRENT_BET = "auctionCurrentBet";
 	
 	@Override
@@ -59,7 +59,7 @@ public class UserOperationDAOImpl implements UserOperationDAO {
 	@Override
 	public Double getAuctionCurrentBet(Auction auction) throws DAOException {
 		try(Connection connection = ConnectionPool.getInstance().getConnection()){
-			PreparedStatement preparedStatement = connection.prepareStatement(GET_AUCTION_CURRENT_BET);
+			PreparedStatement preparedStatement = connection.prepareStatement(GET_AUCTION_CURRENT_BET_SQL_STATEMENT);
 			preparedStatement.setInt(1, auction.getId());
 			ResultSet result = preparedStatement.executeQuery();
 			if (result.next()) {

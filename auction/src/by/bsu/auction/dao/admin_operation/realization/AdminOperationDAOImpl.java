@@ -17,9 +17,7 @@ public class AdminOperationDAOImpl implements AdminOperationDAO {
 	private AdminProcessor adminProcessor = new AdminProcessor();
 	private static final Logger logger = Logger.getLogger(AuthDAOImpl.class);
 	
-	public AdminOperationDAOImpl() {
-		// TODO Auto-generated constructor stub
-	}
+	public AdminOperationDAOImpl() {}
 
 	@Override
 	public boolean blockUser(String userLogin) throws DAOException {

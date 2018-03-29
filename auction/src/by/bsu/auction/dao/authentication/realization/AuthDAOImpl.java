@@ -10,7 +10,7 @@ import by.bsu.auction.dao.authentication.realization.util.UserProcessor;
 import by.bsu.auction.dao.connection_pool.ConnectionPool;
 import by.bsu.auction.dao.exception.DAOException;
 import by.bsu.auction.dao.exception.DBConnectionException;
-import by.bsu.auction.entity.User;
+import by.tc.auction.entity.User;
 
 public class AuthDAOImpl implements AuthDAO {
 	

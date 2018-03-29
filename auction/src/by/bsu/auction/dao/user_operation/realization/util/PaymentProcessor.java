@@ -6,18 +6,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import by.bsu.auction.entity.Auction;
-import by.bsu.auction.entity.Bet;
+import by.tc.auction.entity.Auction;
+import by.tc.auction.entity.Bet;
 
 public class PaymentProcessor {
 
-	private static final String PLACE_BET_SQL_STATEMENT = "UPDATE `auction`.`auctions` SET `a_current_price`=?, `su_login_last_bet`=?, `a_last_bet_time`=? WHERE `a_id`=?";
-	private static final String CHECK_IS_AUCTION_EXIST_SQL_STATEMENT = "SELECT * FROM `auction`.`auctions` WHERE a_id=?";
-	private static final String CREATE_PARTICIPATION_SQL_STATEMENT = "INSERT INTO `auction`.`user_participation_in_bidding` (`su_login`, `a_id`, `upib_status`) VALUES (?, ?, 'ACTIVE')";
+	private static final String PLACE_BET_SQL_STATEMENT = "UPDATE auction.auctions SET a_current_price=?, su_login_last_bet=?, a_last_bet_time=? WHERE a_id=?";
+	private static final String CHECK_IS_AUCTION_EXIST_SQL_STATEMENT = "SELECT * FROM auction.auctions WHERE a_id=?";
+	private static final String CREATE_PARTICIPATION_SQL_STATEMENT = "INSERT INTO auction.user_participation_in_bidding (su_login, a_id, upib_status) VALUES (?, ?, 'ACTIVE')";
 	private static final String CHECK_IS_PARTICIPATION_EXIST_SQL_STATEMENT = "SELECT * FROM auction.user_participation_in_bidding WHERE su_login=? AND a_id=?";
-	private static final String SET_AUCTION_STATUS_COMPLETED_SQL_STATEMENT = "UPDATE `auction`.`auctions` SET `a_status`='COMPLETED' WHERE `a_id`=?";
-	private static final String SET_LOT_STATUS_SOLED_SQL_STATEMENT = "UPDATE `auction`.`lots` SET `l_status`='SOLED' WHERE `l_id`=?";
-	private static final String CHECK_IS_AUCTION_ACTIVE_SQL_STATEMENT = "SELECT * FROM `auction`.`auctions` WHERE a_id=? AND a_status='ACTIVE'";
+	private static final String SET_AUCTION_STATUS_COMPLETED_SQL_STATEMENT = "UPDATE auction.auctions SET a_status='COMPLETED' WHERE a_id=?";
+	private static final String SET_LOT_STATUS_SOLED_SQL_STATEMENT = "UPDATE auction.lots SET l_status='SOLED' WHERE l_id=?";
+	private static final String CHECK_IS_AUCTION_ACTIVE_SQL_STATEMENT = "SELECT * FROM auction.auctions WHERE a_id=? AND a_status='ACTIVE'";
 	
 	public boolean placeBet(Connection connection, Auction auction, String userLogin, Bet bet, Date betTime) throws SQLException {
 		if (isAuctionExist(connection, auction.getId()) && isAuctionActive(connection, auction.getId())) {

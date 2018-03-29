@@ -5,14 +5,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import by.bsu.auction.entity.LotStatus;
+import by.tc.auction.entity.LotStatus;
 
 public class AdminProcessor {
 	
-	private static final String CHECK_LOT_EXISTENCE_SQL_STATEMENT = "SELECT * FROM `auction`.`lots` WHERE `l_id`=?";
-	private static final String CHECK_USER_LOGIN_SQL_STATEMENT = "SELECT su_login AS userLogin FROM site_users WHERE su_login=?";
-	private static final String BLOCK_LOT_SQL_STATEMENT = "UPDATE `auction`.`lots` SET `l_status`=? WHERE `l_id`=?";
-	private static final String BLOCK_USER_SQL_STATEMENT = "UPDATE `auction`.`site_users` SET `su_blocked`=? WHERE `su_login`=?";
+	private static final String CHECK_LOT_EXISTENCE_SQL_STATEMENT = "SELECT * FROM auction.lots WHERE l_id=?";
+	private static final String CHECK_USER_LOGIN_SQL_STATEMENT = "SELECT su_login AS userLogin FROM auction.site_users WHERE su_login=?";
+	private static final String BLOCK_LOT_SQL_STATEMENT = "UPDATE auction.lots SET l_status=? WHERE l_id=?";
+	private static final String BLOCK_USER_SQL_STATEMENT = "UPDATE auction.site_users SET su_blocked=? WHERE su_login=?";
 	
 	
 	public AdminProcessor() {}

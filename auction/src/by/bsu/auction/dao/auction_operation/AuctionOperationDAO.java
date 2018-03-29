@@ -3,8 +3,8 @@ package by.bsu.auction.dao.auction_operation;
 import java.util.ArrayList;
 
 import by.bsu.auction.dao.exception.DAOException;
-import by.bsu.auction.entity.Auction;
-import by.bsu.auction.entity.Lot;
+import by.tc.auction.entity.Auction;
+import by.tc.auction.entity.Lot;
 
 public interface AuctionOperationDAO {
 	boolean createAuctionWithLot(Auction auction, Lot lot) throws DAOException;

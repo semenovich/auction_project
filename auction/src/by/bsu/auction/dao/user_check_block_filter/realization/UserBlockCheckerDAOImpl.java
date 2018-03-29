@@ -14,7 +14,7 @@ import by.bsu.auction.dao.user_check_block_filter.UserBlockCheckerDAO;
 
 public class UserBlockCheckerDAOImpl implements UserBlockCheckerDAO {
 
-	private final String CHECK_IS_USER_BLOCKED_SQL_STATEMENT = "SELECT su_blocked AS isBlocked FROM site_users WHERE su_login=?";
+	private final String CHECK_IS_USER_BLOCKED_SQL_STATEMENT = "SELECT su_blocked AS isBlocked FROM auction.site_users WHERE su_login=?";
 	private static final Logger logger = Logger.getLogger(UserBlockCheckerDAOImpl.class);
 	
 	private static final String USER_IS_BLOCKED = "isBlocked";
