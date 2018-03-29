@@ -27,7 +27,7 @@ CREATE TABLE `auctions` (
   `l_id` int(11) NOT NULL,
   `a_start_time` datetime NOT NULL,
   `a_end_time` datetime DEFAULT NULL,
-  `a_status` enum('PENDING_PAYMENT','COMPLETED','ACTIVE','WITHDRAW') NOT NULL DEFAULT 'ACTIVE',
+  `a_status` enum('PENDING_PAYMENT','COMPLETED','ACTIVE') NOT NULL DEFAULT 'ACTIVE',
   `a_minimum_price` decimal(19,2) NOT NULL,
   `a_current_price` decimal(19,2) NOT NULL DEFAULT '0.00',
   `su_login_last_bet` varchar(45) DEFAULT NULL,
@@ -77,7 +77,7 @@ CREATE TABLE `auctions_type` (
 
 LOCK TABLES `auctions_type` WRITE;
 /*!40000 ALTER TABLE `auctions_type` DISABLE KEYS */;
-INSERT INTO `auctions_type` VALUES (1,'ONLINE'),(2,'ENGLISH'),(3,'BLITZ');
+INSERT INTO `auctions_type` VALUES (1,'ONLINE'),(2,'ENGLISH');
 /*!40000 ALTER TABLE `auctions_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -244,4 +244,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-30  1:40:54
+-- Dump completed on 2018-03-30  1:50:07
