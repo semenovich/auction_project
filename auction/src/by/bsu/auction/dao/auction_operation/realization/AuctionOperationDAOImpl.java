@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import org.apache.log4j.Logger;
 
 import by.bsu.auction.dao.auction_operation.AuctionOperationDAO;
+import by.bsu.auction.dao.auction_operation.realization.util.AuctionChecker;
 import by.bsu.auction.dao.auction_operation.realization.util.AuctionProcessor;
 import by.bsu.auction.dao.connection_pool.ConnectionPool;
 import by.bsu.auction.dao.exception.DAOException;
@@ -17,6 +18,7 @@ import by.tc.auction.entity.Lot;
 public class AuctionOperationDAOImpl implements AuctionOperationDAO {
 
 	AuctionProcessor auctionProcessor = new AuctionProcessor();
+	AuctionChecker auctionChecker = new AuctionChecker();
 	
 	private static final Logger logger = Logger.getLogger(AuctionOperationDAOImpl.class);
 
@@ -33,7 +35,7 @@ public class AuctionOperationDAOImpl implements AuctionOperationDAO {
 	@Override
 	public boolean createAuctionFromExistingLot(Auction auction, Integer lotId) throws DAOException {
 		try(Connection connection = ConnectionPool.getInstance().getConnection()){
-			if (auctionProcessor.isLotExist(connection, lotId) && !auctionProcessor.isLotUsed(connection, lotId)) {
+			if (auctionChecker.isLotExist(connection, lotId) && !auctionChecker.isLotUsed(connection, lotId)) {
 				auctionProcessor.createAuctionFromExistingLot(connection, auction, lotId);
 				return true;
 			}
@@ -47,7 +49,7 @@ public class AuctionOperationDAOImpl implements AuctionOperationDAO {
 	@Override
 	public Auction getAuctionInfo(Integer auctionId) throws DAOException {
 		try(Connection connection = ConnectionPool.getInstance().getConnection()){
-			if (auctionProcessor.isAuctionExist(connection, auctionId)) {
+			if (auctionChecker.isAuctionExist(connection, auctionId)) {
 				return auctionProcessor.getAuctionInfo(connection, auctionId);
 			}
 			return null;

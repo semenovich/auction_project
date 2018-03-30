@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 
 import by.bsu.auction.dao.admin_operation.AdminOperationDAO;
 import by.bsu.auction.dao.admin_operation.realization.util.AdminProcessor;
+import by.bsu.auction.dao.admin_operation.realization.util.Checker;
 import by.bsu.auction.dao.authentication.realization.AuthDAOImpl;
 import by.bsu.auction.dao.connection_pool.ConnectionPool;
 import by.bsu.auction.dao.exception.DAOException;
@@ -15,6 +16,7 @@ import by.bsu.auction.dao.exception.DBConnectionException;
 public class AdminOperationDAOImpl implements AdminOperationDAO {
 
 	private AdminProcessor adminProcessor = new AdminProcessor();
+	private Checker checker = new Checker();
 	private static final Logger logger = Logger.getLogger(AuthDAOImpl.class);
 	
 	public AdminOperationDAOImpl() {}
@@ -22,7 +24,7 @@ public class AdminOperationDAOImpl implements AdminOperationDAO {
 	@Override
 	public boolean blockUser(String userLogin) throws DAOException {
 		try(Connection connection = ConnectionPool.getInstance().getConnection()){
-			if (adminProcessor.isUserExist(connection, userLogin)) {
+			if (checker.isUserExist(connection, userLogin)) {
 				return adminProcessor.blockUser(connection, userLogin);
 			}
 			return false;
@@ -35,7 +37,7 @@ public class AdminOperationDAOImpl implements AdminOperationDAO {
 	@Override
 	public boolean unblockUser(String userLogin) throws DAOException {
 		try(Connection connection = ConnectionPool.getInstance().getConnection()){
-			if (adminProcessor.isUserExist(connection, userLogin)) {
+			if (checker.isUserExist(connection, userLogin)) {
 				return adminProcessor.unblockUser(connection, userLogin);
 			}
 			return false;
@@ -48,7 +50,7 @@ public class AdminOperationDAOImpl implements AdminOperationDAO {
 	@Override
 	public boolean blockLot(Integer lotId) throws DAOException {
 		try(Connection connection = ConnectionPool.getInstance().getConnection()){
-			if (adminProcessor.isLotExist(connection, lotId)) {
+			if (checker.isLotExist(connection, lotId)) {
 				return adminProcessor.blockLot(connection, lotId);
 			}
 			return false;
@@ -61,7 +63,7 @@ public class AdminOperationDAOImpl implements AdminOperationDAO {
 	@Override
 	public boolean unblockLot(Integer lotId) throws DAOException {
 		try(Connection connection = ConnectionPool.getInstance().getConnection()){
-			if (adminProcessor.isLotExist(connection, lotId)) {
+			if (checker.isLotExist(connection, lotId)) {
 				return adminProcessor.unblockLot(connection, lotId);
 			}
 			return false;

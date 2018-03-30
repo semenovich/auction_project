@@ -11,12 +11,14 @@ import by.bsu.auction.dao.connection_pool.ConnectionPool;
 import by.bsu.auction.dao.exception.DAOException;
 import by.bsu.auction.dao.exception.DBConnectionException;
 import by.bsu.auction.dao.lot_operation.LotOperationDAO;
+import by.bsu.auction.dao.lot_operation.realization.util.LotChecker;
 import by.bsu.auction.dao.lot_operation.realization.util.LotProcessor;
 import by.tc.auction.entity.Lot;
 
 public class LotOperationDAOImpl implements LotOperationDAO {
 
 	private LotProcessor lotProcessor = new LotProcessor();
+	private LotChecker lotCheker = new LotChecker();
 	private static final Logger logger = Logger.getLogger(AuthDAOImpl.class);
 	
 	@Override
@@ -32,7 +34,7 @@ public class LotOperationDAOImpl implements LotOperationDAO {
 	@Override
 	public Lot getLotInfo(Integer lotId) throws DAOException {
 		try(Connection connection = ConnectionPool.getInstance().getConnection()){
-			if (lotProcessor.isLotExist(connection, lotId)) {
+			if (lotCheker.isLotExist(connection, lotId)) {
 				return lotProcessor.getLotInfo(connection, lotId);
 			}
 			return null;
@@ -45,7 +47,7 @@ public class LotOperationDAOImpl implements LotOperationDAO {
 	@Override
 	public boolean deleteConfirmingLot(Integer lotId) throws DAOException {
 		try(Connection connection = ConnectionPool.getInstance().getConnection()){
-			if (lotProcessor.checkIsLotConfirming(connection, lotId)) {
+			if (lotCheker.checkIsLotConfirming(connection, lotId)) {
 				return lotProcessor.deleteLot(connection, lotId);
 			}
 			return false;
@@ -58,7 +60,7 @@ public class LotOperationDAOImpl implements LotOperationDAO {
 	@Override
 	public boolean editConfirmingLot(Lot lot) throws DAOException {
 		try(Connection connection = ConnectionPool.getInstance().getConnection()){
-			if (lotProcessor.checkIsLotConfirming(connection, lot.getId())) {
+			if (lotCheker.checkIsLotConfirming(connection, lot.getId())) {
 				return lotProcessor.editLot(connection, lot);
 			}
 			return false;

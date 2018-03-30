@@ -12,6 +12,7 @@ import by.bsu.auction.dao.connection_pool.ConnectionPool;
 import by.bsu.auction.dao.exception.DAOException;
 import by.bsu.auction.dao.exception.DBConnectionException;
 import by.bsu.auction.dao.user_operation.UserOperationDAO;
+import by.bsu.auction.dao.user_operation.realization.util.PaymentChecker;
 import by.bsu.auction.dao.user_operation.realization.util.PaymentProcessor;
 import by.tc.auction.entity.Auction;
 import by.tc.auction.entity.Bet;
@@ -19,6 +20,7 @@ import by.tc.auction.entity.Bet;
 public class UserOperationDAOImpl implements UserOperationDAO {
 
 	private PaymentProcessor paymentProcessor = new PaymentProcessor();
+	private PaymentChecker paymentChecker = new PaymentChecker();
 	private static final Logger logger = Logger.getLogger(UserOperationDAOImpl.class);
 
 	private static final String GET_AUCTION_CURRENT_BET_SQL_STATEMENT = "SELECT a_current_price AS auctionCurrentBet FROM auction.auctions WHERE a_id=?";
@@ -29,7 +31,7 @@ public class UserOperationDAOImpl implements UserOperationDAO {
 		try(Connection connection = ConnectionPool.getInstance().getConnection()){
 			connection.setAutoCommit(false);
 			if (paymentProcessor.placeBet(connection, auction, userLogin, bet, betTime)) {
-				if (!paymentProcessor.isParictipationExist(connection, auction, userLogin)) {
+				if (!paymentChecker.isParictipationExist(connection, auction, userLogin)) {
 					paymentProcessor.createParticipation(connection, auction, userLogin);
 				}
 				connection.commit();

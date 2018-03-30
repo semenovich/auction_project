@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import org.apache.log4j.Logger;
 
 import by.bsu.auction.dao.authentication.AuthDAO;
+import by.bsu.auction.dao.authentication.realization.util.UserChecker;
 import by.bsu.auction.dao.authentication.realization.util.UserProcessor;
 import by.bsu.auction.dao.connection_pool.ConnectionPool;
 import by.bsu.auction.dao.exception.DAOException;
@@ -15,12 +16,13 @@ import by.tc.auction.entity.User;
 public class AuthDAOImpl implements AuthDAO {
 	
 	private UserProcessor userProcessor = new UserProcessor();
+	private UserChecker userChecker = new UserChecker();
 	private static final Logger logger = Logger.getLogger(AuthDAOImpl.class);
 	
 	@Override
 	public boolean register(User user) throws DAOException {
 		try(Connection connection = ConnectionPool.getInstance().getConnection()){
-			if (!userProcessor.isUserExist(connection, user.getLogin())) {
+			if (!userChecker.isUserExist(connection, user.getLogin())) {
 				userProcessor.registerUser(connection, user);
 				return true;
 			}
@@ -35,7 +37,7 @@ public class AuthDAOImpl implements AuthDAO {
 	public User login(String login, String password) throws DAOException {
 		User user = null;
 		try(Connection connection = ConnectionPool.getInstance().getConnection()){
-			if (userProcessor.isUserExist(connection, login, password)) {
+			if (userChecker.isUserExist(connection, login, password)) {
 				user = userProcessor.getPersonalUserInfo(connection, login);
 			}
 			return user;
