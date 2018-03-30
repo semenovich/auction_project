@@ -11,6 +11,7 @@ import by.bsu.auction.dao.exception.DAOException;
 import by.bsu.auction.dao.exception.DBConnectionException;
 import by.bsu.auction.dao.user_operation.ProfileDAO;
 import by.bsu.auction.dao.user_operation.realization.util.UserChecker;
+import by.bsu.auction.dao.user_operation.realization.util.UserInfoGetter;
 import by.bsu.auction.dao.user_operation.realization.util.UserProcessor;
 import by.tc.auction.entity.Auction;
 import by.tc.auction.entity.Lot;
@@ -18,6 +19,7 @@ import by.tc.auction.entity.User;
 
 public class ProfileDAOImpl implements ProfileDAO {
 
+	private UserInfoGetter userInfoGetter = new UserInfoGetter();
 	private UserProcessor userProcessor = new UserProcessor();
 	private UserChecker userChecker = new UserChecker();
 	private static final Logger logger = Logger.getLogger(ProfileDAOImpl.class);
@@ -27,7 +29,7 @@ public class ProfileDAOImpl implements ProfileDAO {
 		try(Connection connection = ConnectionPool.getInstance().getConnection()){
 			User user = null;
 			if (userChecker.isUserExist(connection, login)) {
-				user = userProcessor.getPersonalUserInfo(connection, login);
+				user = userInfoGetter.getPersonalUserInfo(connection, login);
 			}
 			return user;
 		} catch (SQLException | DBConnectionException e) {
@@ -41,7 +43,7 @@ public class ProfileDAOImpl implements ProfileDAO {
 		try(Connection connection = ConnectionPool.getInstance().getConnection()){
 			ArrayList<Lot> lots = null;
 			if (userChecker.isUserExist(connection, login)) {
-				lots = userProcessor.getUserLots(connection, login);
+				lots = userInfoGetter.getUserLots(connection, login);
 			}
 			return lots;
 		} catch (SQLException | DBConnectionException e) {
@@ -55,7 +57,7 @@ public class ProfileDAOImpl implements ProfileDAO {
 		try(Connection connection = ConnectionPool.getInstance().getConnection()){
 			ArrayList<Lot> lots = null;
 			if (userChecker.isUserExist(connection, login)) {
-				lots = userProcessor.getUserWinLots(connection, login);
+				lots = userInfoGetter.getUserWinLots(connection, login);
 			}
 			return lots;
 		} catch (SQLException | DBConnectionException e) {
@@ -69,7 +71,7 @@ public class ProfileDAOImpl implements ProfileDAO {
 		try(Connection connection = ConnectionPool.getInstance().getConnection()){
 			ArrayList<Auction> auctions = null;
 			if (userChecker.isUserExist(connection, login)) {
-				auctions = userProcessor.getUserParticipations(connection, login);
+				auctions = userInfoGetter.getUserParticipations(connection, login);
 			}
 			return auctions;
 		} catch (SQLException | DBConnectionException e) {

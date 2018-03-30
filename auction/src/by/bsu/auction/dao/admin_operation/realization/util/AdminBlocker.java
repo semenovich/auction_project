@@ -6,12 +6,12 @@ import java.sql.SQLException;
 
 import by.tc.auction.entity.LotStatus;
 
-public class AdminProcessor {
+public class AdminBlocker {
 	
 	private static final String BLOCK_LOT_SQL_STATEMENT = "UPDATE auction.lots SET l_status=? WHERE l_id=?";
 	private static final String BLOCK_USER_SQL_STATEMENT = "UPDATE auction.site_users SET su_blocked=? WHERE su_login=?";
 	
-	public AdminProcessor() {}
+	public AdminBlocker() {}
 	
 	public boolean blockUser(Connection connection, String userLogin) throws SQLException {
 		try(PreparedStatement preparedStatement = connection.prepareStatement(BLOCK_USER_SQL_STATEMENT)) {

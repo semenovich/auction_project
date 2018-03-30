@@ -10,12 +10,12 @@ import by.bsu.auction.dao.connection_pool.ConnectionPool;
 import by.bsu.auction.dao.exception.DAOException;
 import by.bsu.auction.dao.exception.DBConnectionException;
 import by.bsu.auction.dao.user_operation.UsersDAO;
-import by.bsu.auction.dao.user_operation.realization.util.UserProcessor;
+import by.bsu.auction.dao.user_operation.realization.util.UserInfoGetter;
 import by.tc.auction.entity.User;
 
 public class UsersDAOImpl implements UsersDAO {
 
-	private UserProcessor userProcessor = new UserProcessor();
+	private UserInfoGetter userInfoGetter = new UserInfoGetter();
 	private static final Logger logger = Logger.getLogger(UsersDAOImpl.class);
 
 	public UsersDAOImpl() {}
@@ -23,7 +23,7 @@ public class UsersDAOImpl implements UsersDAO {
 	@Override
 	public ArrayList<User> getUsers() throws DAOException {
 		try(Connection connection = ConnectionPool.getInstance().getConnection()){
-			return userProcessor.getUsers(connection);
+			return userInfoGetter.getUsers(connection);
 		} catch (SQLException | DBConnectionException e) {
 			logger.error("Error in UsersDAOImpl", e);
 			throw new DAOException(e.getMessage(), e.getCause());
@@ -33,7 +33,7 @@ public class UsersDAOImpl implements UsersDAO {
 	@Override
 	public ArrayList<User> getUsersByNameSearching(String searchLine) throws DAOException {
 		try(Connection connection = ConnectionPool.getInstance().getConnection()){
-			return userProcessor.getUsersBySearching(connection, searchLine);
+			return userInfoGetter.getUsersBySearching(connection, searchLine);
 		} catch (SQLException | DBConnectionException e) {
 			logger.error("Error in UsersDAOImpl", e);
 			throw new DAOException(e.getMessage(), e.getCause());

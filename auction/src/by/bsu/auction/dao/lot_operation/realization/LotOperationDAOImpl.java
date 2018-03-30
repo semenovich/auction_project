@@ -12,12 +12,14 @@ import by.bsu.auction.dao.exception.DAOException;
 import by.bsu.auction.dao.exception.DBConnectionException;
 import by.bsu.auction.dao.lot_operation.LotOperationDAO;
 import by.bsu.auction.dao.lot_operation.realization.util.LotChecker;
+import by.bsu.auction.dao.lot_operation.realization.util.LotInfoGetter;
 import by.bsu.auction.dao.lot_operation.realization.util.LotProcessor;
 import by.tc.auction.entity.Lot;
 
 public class LotOperationDAOImpl implements LotOperationDAO {
 
 	private LotProcessor lotProcessor = new LotProcessor();
+	private LotInfoGetter lotInfoGetter = new LotInfoGetter();
 	private LotChecker lotCheker = new LotChecker();
 	private static final Logger logger = Logger.getLogger(AuthDAOImpl.class);
 	
@@ -35,7 +37,7 @@ public class LotOperationDAOImpl implements LotOperationDAO {
 	public Lot getLotInfo(Integer lotId) throws DAOException {
 		try(Connection connection = ConnectionPool.getInstance().getConnection()){
 			if (lotCheker.isLotExist(connection, lotId)) {
-				return lotProcessor.getLotInfo(connection, lotId);
+				return lotInfoGetter.getLotInfo(connection, lotId);
 			}
 			return null;
 		} catch (SQLException | DBConnectionException e) {
@@ -73,7 +75,7 @@ public class LotOperationDAOImpl implements LotOperationDAO {
 	@Override
 	public ArrayList<Lot> getLotsList() throws DAOException {
 		try(Connection connection = ConnectionPool.getInstance().getConnection()){
-			return lotProcessor.getLotsList(connection);
+			return lotInfoGetter.getLotsList(connection);
 		} catch (SQLException | DBConnectionException e) {
 			logger.error("Error in LotOperationDAOImpl", e);
 			throw new DAOException(e.getMessage(), e.getCause());
@@ -83,7 +85,7 @@ public class LotOperationDAOImpl implements LotOperationDAO {
 	@Override
 	public ArrayList<Lot> getLotsBySearching(String searchLine) throws DAOException {
 		try(Connection connection = ConnectionPool.getInstance().getConnection()){
-			return lotProcessor.getLotsBySearching(connection, searchLine);
+			return lotInfoGetter.getLotsBySearching(connection, searchLine);
 		} catch (SQLException | DBConnectionException e) {
 			logger.error("Error in LotOperationDAOImpl", e);
 			throw new DAOException(e.getMessage(), e.getCause());

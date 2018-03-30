@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 
 import by.bsu.auction.dao.auction_operation.AuctionOperationDAO;
 import by.bsu.auction.dao.auction_operation.realization.util.AuctionChecker;
+import by.bsu.auction.dao.auction_operation.realization.util.AuctionInfoGetter;
 import by.bsu.auction.dao.auction_operation.realization.util.AuctionProcessor;
 import by.bsu.auction.dao.connection_pool.ConnectionPool;
 import by.bsu.auction.dao.exception.DAOException;
@@ -19,6 +20,7 @@ public class AuctionOperationDAOImpl implements AuctionOperationDAO {
 
 	AuctionProcessor auctionProcessor = new AuctionProcessor();
 	AuctionChecker auctionChecker = new AuctionChecker();
+	AuctionInfoGetter auctionInfoGetter = new AuctionInfoGetter();
 	
 	private static final Logger logger = Logger.getLogger(AuctionOperationDAOImpl.class);
 
@@ -50,7 +52,7 @@ public class AuctionOperationDAOImpl implements AuctionOperationDAO {
 	public Auction getAuctionInfo(Integer auctionId) throws DAOException {
 		try(Connection connection = ConnectionPool.getInstance().getConnection()){
 			if (auctionChecker.isAuctionExist(connection, auctionId)) {
-				return auctionProcessor.getAuctionInfo(connection, auctionId);
+				return auctionInfoGetter.getAuctionInfo(connection, auctionId);
 			}
 			return null;
 		} catch (SQLException | DBConnectionException e) {
@@ -62,7 +64,7 @@ public class AuctionOperationDAOImpl implements AuctionOperationDAO {
 	@Override
 	public ArrayList<Auction> getAuctions() throws DAOException {
 		try(Connection connection = ConnectionPool.getInstance().getConnection()){
-			return auctionProcessor.getAuctions(connection);
+			return auctionInfoGetter.getAuctions(connection);
 		} catch (SQLException | DBConnectionException e) {
 			logger.error("Error in AuctionOperationDAOImpl", e);
 			throw new DAOException(e.getMessage(), e.getCause());
@@ -72,7 +74,7 @@ public class AuctionOperationDAOImpl implements AuctionOperationDAO {
 	@Override
 	public ArrayList<Auction> getAuctionsBySearching(String searchLine) throws DAOException {
 		try(Connection connection = ConnectionPool.getInstance().getConnection()){
-			return auctionProcessor.getAuctionsBySearching(connection, searchLine);
+			return auctionInfoGetter.getAuctionsBySearching(connection, searchLine);
 		} catch (SQLException | DBConnectionException e) {
 			logger.error("Error in AuctionOperationDAOImpl", e);
 			throw new DAOException(e.getMessage(), e.getCause());
