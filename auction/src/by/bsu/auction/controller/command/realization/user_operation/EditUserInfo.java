@@ -10,11 +10,11 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 
 import by.bsu.auction.controller.command.ServletCommand;
-import by.bsu.auction.entity.User;
 import by.bsu.auction.service.ServiceFactory;
 import by.bsu.auction.service.exception.ServiceException;
 import by.bsu.auction.service.exception.UserInfoException;
 import by.bsu.auction.service.user_operation.ProfileService;
+import by.tc.auction.entity.User;
 
 public class EditUserInfo implements ServletCommand{
 

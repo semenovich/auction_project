@@ -11,12 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import by.bsu.auction.controller.command.ServletCommand;
-import by.bsu.auction.entity.Auction;
-import by.bsu.auction.entity.Bet;
 import by.bsu.auction.service.ServiceFactory;
 import by.bsu.auction.service.exception.BetException;
 import by.bsu.auction.service.exception.ServiceException;
 import by.bsu.auction.service.user_operation.UserOperationService;
+import by.tc.auction.entity.Auction;
+import by.tc.auction.entity.Bet;
 
 public class PlaceBet implements ServletCommand {
 
@@ -53,7 +53,7 @@ public class PlaceBet implements ServletCommand {
 		} catch (ServiceException e) {
 			logger.error("Error in PlaceBet", e);
 			response.sendRedirect(ERROR_PAGE);
-		} catch (BetException e) {
+		} catch (BetException | NumberFormatException e) {
 			response.sendRedirect(BET_ERROR_PAGE);
 		}
 	}

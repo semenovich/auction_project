@@ -10,6 +10,7 @@ import by.bsu.auction.controller.command.realization.admin_operation.UnblockUser
 import by.bsu.auction.controller.command.realization.auction_operation.CreateAuctionFromExistingLot;
 import by.bsu.auction.controller.command.realization.auction_operation.CreateAuctionWithLot;
 import by.bsu.auction.controller.command.realization.auction_operation.GetAuctionInfo;
+import by.bsu.auction.controller.command.realization.auction_operation.GetAuctionsByLotType;
 import by.bsu.auction.controller.command.realization.auction_operation.GetAuctionsBySearching;
 import by.bsu.auction.controller.command.realization.auction_operation.GetAuctionsList;
 import by.bsu.auction.controller.command.realization.authentication.Login;
@@ -20,6 +21,7 @@ import by.bsu.auction.controller.command.realization.lot_operation.DeleteConfirm
 import by.bsu.auction.controller.command.realization.lot_operation.EditConfirmingLot;
 import by.bsu.auction.controller.command.realization.lot_operation.GetLotInfo;
 import by.bsu.auction.controller.command.realization.lot_operation.GetLotsBySearching;
+import by.bsu.auction.controller.command.realization.lot_operation.GetLotsByType;
 import by.bsu.auction.controller.command.realization.lot_operation.GetLotsList;
 import by.bsu.auction.controller.command.realization.lot_operation.OfferLot;
 import by.bsu.auction.controller.command.realization.user_operation.EditUserInfo;
@@ -50,6 +52,7 @@ public final class ServletDirector {
 		commands.put(ServletList.GET_LOT_INFO, new GetLotInfo());
 		commands.put(ServletList.GET_LOTS_LIST, new GetLotsList());
 		commands.put(ServletList.GET_LOTS_BY_SEARCHING, new GetLotsBySearching());
+		commands.put(ServletList.GET_LOTS_BY_TYPE, new GetLotsByType());
 		commands.put(ServletList.DELETE_CONFIRMING_LOT, new DeleteConfirmingLot());
 		commands.put(ServletList.EDIT_CONFIRMING_LOT, new EditConfirmingLot());
 		commands.put(ServletList.GET_USERS_LIST, new GetUsersList());
@@ -58,6 +61,7 @@ public final class ServletDirector {
 		commands.put(ServletList.CREATE_AUCTION_WITH_LOT, new CreateAuctionWithLot());
 		commands.put(ServletList.GET_AUCTION_INFO, new GetAuctionInfo());
 		commands.put(ServletList.GET_AUCTIONS_BY_SEARCHING, new GetAuctionsBySearching());
+		commands.put(ServletList.GET_AUCTIONS_BY_LOT_TYPE, new GetAuctionsByLotType());
 		commands.put(ServletList.GET_AUCTIONS_LIST, new GetAuctionsList());
 		commands.put(ServletList.BLOCK_USER, new BlockUser());
 		commands.put(ServletList.UNBLOCK_USER, new UnblockUser());

@@ -9,16 +9,18 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import by.bsu.auction.controller.command.ServletCommand;
-import by.bsu.auction.entity.LotsInfo;
 import by.bsu.auction.service.ServiceFactory;
 import by.bsu.auction.service.exception.ServiceException;
 import by.bsu.auction.service.lot_operation.LotOperationService;
+import by.tc.auction.entity.LotsInfo;
 
 public class GetLotsBySearching implements ServletCommand {
 
 	private static final Logger logger = Logger.getLogger(GetLotsBySearching.class);
 	
 	private static final String SEARCH_LINE = "searchLine";
+	private static final String LIST_TYPE = "listType";
+	private static final String SEARCHING_BY_SEARCH_LINE = "searchingBySearchLine";
 	private static final String CHOOSEN_LOTS_PAGE_NUMBER = "lotsPageNumber";
 	private static final String LOTS_INFO = "lotsInfo";
 	private static final String ERROR_PAGE = "error.jsp";
@@ -37,11 +39,12 @@ public class GetLotsBySearching implements ServletCommand {
 			int page = Integer.valueOf((String)request.getParameter(CHOOSEN_LOTS_PAGE_NUMBER));
 			LotsInfo lotsInfo = service.getLotsBySearching(request.getParameter(SEARCH_LINE), page);
 			request.setAttribute(LOTS_INFO, lotsInfo);
+			request.setAttribute(LIST_TYPE, SEARCHING_BY_SEARCH_LINE);
+			request.setAttribute(SEARCH_LINE, request.getParameter(SEARCH_LINE));
 			request.getRequestDispatcher(CURRENT_PAGE).forward(request, response);
 		} catch (ServiceException e) {
 			logger.error("Error in GetLotsBySearching", e);
 			response.sendRedirect(ERROR_PAGE);
 		}
 	}
-
 }

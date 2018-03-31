@@ -5,12 +5,12 @@ import java.sql.Date;
 import by.bsu.auction.dao.DAOFactory;
 import by.bsu.auction.dao.exception.DAOException;
 import by.bsu.auction.dao.user_operation.UserOperationDAO;
-import by.bsu.auction.entity.Auction;
-import by.bsu.auction.entity.Bet;
 import by.bsu.auction.service.exception.BetException;
 import by.bsu.auction.service.exception.ServiceException;
 import by.bsu.auction.service.user_operation.UserOperationService;
 import by.bsu.auction.service.user_operation.realization.validation.Validator;
+import by.tc.auction.entity.Auction;
+import by.tc.auction.entity.Bet;
 
 public class UserOperationServiceImpl implements UserOperationService {
 

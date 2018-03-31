@@ -5,20 +5,22 @@ import java.util.ArrayList;
 import by.bsu.auction.dao.DAOFactory;
 import by.bsu.auction.dao.auction_operation.AuctionOperationDAO;
 import by.bsu.auction.dao.exception.DAOException;
-import by.bsu.auction.entity.Auction;
-import by.bsu.auction.entity.AuctionsInfo;
-import by.bsu.auction.entity.Lot;
 import by.bsu.auction.service.auction_operation.AuctionOperationService;
+import by.bsu.auction.service.auction_operation.realization.util.AuctionPortionGetter;
 import by.bsu.auction.service.auction_operation.realization.validation.Validator;
 import by.bsu.auction.service.exception.LotInfoException;
 import by.bsu.auction.service.exception.ServiceException;
+import by.tc.auction.entity.Auction;
+import by.tc.auction.entity.AuctionsInfo;
+import by.tc.auction.entity.Lot;
+import by.tc.auction.entity.LotType;
 
 public class AuctionOperationServiceImpl implements AuctionOperationService {
 
-	private static final int AUCTION_PORTION_QUANTITY = 10;
 	private static final String ERROR_MESSAGE = "Invalid lot info";
 	
 	private AuctionOperationDAO auctionOperationDAO;
+	private AuctionPortionGetter auctionPortionGetter = AuctionPortionGetter.getInstance();
 	
 	public AuctionOperationServiceImpl() {
 		DAOFactory factory = DAOFactory.getInstance();
@@ -59,7 +61,7 @@ public class AuctionOperationServiceImpl implements AuctionOperationService {
 	public AuctionsInfo getAuctions(int page) throws ServiceException {
 		try {
 			ArrayList<Auction> auctions = auctionOperationDAO.getAuctions();
-			return getAuctionPortion(auctions, page);
+			return auctionPortionGetter.getAuctionPortion(auctions, page);
 		} catch (DAOException e) {
 			throw new ServiceException(e.getMessage(), e.getCause());
 		}
@@ -69,24 +71,19 @@ public class AuctionOperationServiceImpl implements AuctionOperationService {
 	public AuctionsInfo getAuctionsBySearching(String searchLine, int page) throws ServiceException {
 		try {
 			ArrayList<Auction> auctions = auctionOperationDAO.getAuctionsBySearching(searchLine);
-			return getAuctionPortion(auctions, page);
+			return auctionPortionGetter.getAuctionPortion(auctions, page);
 		} catch (DAOException e) {
 			throw new ServiceException(e.getMessage(), e.getCause());
 		}
 	}
-
-	private AuctionsInfo getAuctionPortion(ArrayList<Auction> auctions, int page){
-		if (auctions == null) {
-			return null;
+	
+	@Override
+	public AuctionsInfo getAuctionsByLotType(LotType lotType, int page) throws ServiceException {
+		try {
+			ArrayList<Auction> auctions = auctionOperationDAO.getAuctionsByLotType(lotType);
+			return auctionPortionGetter.getAuctionPortion(auctions, page);
+		} catch (DAOException e) {
+			throw new ServiceException(e.getMessage(), e.getCause());
 		}
-		ArrayList<Auction> returnAuctions = new ArrayList<>();
-		AuctionsInfo auctionsInfo = new AuctionsInfo();
-		for (int i = (page - 1) * AUCTION_PORTION_QUANTITY; i < page * AUCTION_PORTION_QUANTITY && i < auctions.size() ; i++) {
-			returnAuctions.add(auctions.get(i));
-		}
-		auctionsInfo.setAuctions(returnAuctions);
-		auctionsInfo.setCurrentPage(page);
-		auctionsInfo.setPages((int) Math.ceil(((double) auctions.size()) / AUCTION_PORTION_QUANTITY));
-		return auctionsInfo;
 	}
 }

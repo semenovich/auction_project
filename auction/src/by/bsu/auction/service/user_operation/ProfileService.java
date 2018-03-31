@@ -1,10 +1,10 @@
 package by.bsu.auction.service.user_operation;
 
-import by.bsu.auction.entity.AuctionsInfo;
-import by.bsu.auction.entity.LotsInfo;
-import by.bsu.auction.entity.User;
 import by.bsu.auction.service.exception.ServiceException;
 import by.bsu.auction.service.exception.UserInfoException;
+import by.tc.auction.entity.AuctionsInfo;
+import by.tc.auction.entity.LotsInfo;
+import by.tc.auction.entity.User;
 
 public interface ProfileService {
 	User getUserInfo(String login) throws ServiceException;

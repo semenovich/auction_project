@@ -9,16 +9,18 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import by.bsu.auction.controller.command.ServletCommand;
-import by.bsu.auction.entity.AuctionsInfo;
 import by.bsu.auction.service.ServiceFactory;
 import by.bsu.auction.service.auction_operation.AuctionOperationService;
 import by.bsu.auction.service.exception.ServiceException;
+import by.tc.auction.entity.AuctionsInfo;
 
 public class GetAuctionsBySearching implements ServletCommand {
 
 	private static final Logger logger = Logger.getLogger(GetAuctionsBySearching.class);
 	
 	private static final String SEARCH_LINE = "searchLine";
+	private static final String LIST_TYPE = "listType";
+	private static final String SEARCHING_BY_SEARCH_LINE = "searchingBySearchLine";
 	private static final String CHOOSEN_AUCTIONS_PAGE_NUMBER = "auctionsPageNumber";
 	private static final String AUCTIONS_INFO = "auctionsInfo";
 	private static final String ERROR_PAGE = "error.jsp";
@@ -37,11 +39,12 @@ public class GetAuctionsBySearching implements ServletCommand {
 			int page = Integer.valueOf((String)request.getParameter(CHOOSEN_AUCTIONS_PAGE_NUMBER));
 			AuctionsInfo auctionsInfo = service.getAuctionsBySearching(request.getParameter(SEARCH_LINE), page);
 			request.setAttribute(AUCTIONS_INFO, auctionsInfo);
+			request.setAttribute(LIST_TYPE, SEARCHING_BY_SEARCH_LINE);
+			request.setAttribute(SEARCH_LINE, request.getParameter(SEARCH_LINE));
 			request.getRequestDispatcher(CURRENT_PAGE).forward(request, response);
 		} catch (ServiceException e) {
 			logger.error("Error in GetAuctionsBySearching", e);
 			response.sendRedirect(ERROR_PAGE);
 		}	
 	}
-
 }

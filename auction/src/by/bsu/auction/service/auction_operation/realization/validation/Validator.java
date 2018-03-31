@@ -1,6 +1,6 @@
 package by.bsu.auction.service.auction_operation.realization.validation;
 
-import by.bsu.auction.entity.Lot;
+import by.tc.auction.entity.Lot;
 
 public class Validator {
 

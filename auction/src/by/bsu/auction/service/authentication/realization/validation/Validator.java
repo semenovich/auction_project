@@ -1,6 +1,6 @@
 package by.bsu.auction.service.authentication.realization.validation;
 
-import by.bsu.auction.entity.User;
+import by.tc.auction.entity.User;
 
 public final class Validator {
 	

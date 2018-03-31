@@ -14,12 +14,15 @@ import by.bsu.auction.dao.lot_operation.LotOperationDAO;
 import by.bsu.auction.dao.lot_operation.realization.util.LotChecker;
 import by.bsu.auction.dao.lot_operation.realization.util.LotInfoGetter;
 import by.bsu.auction.dao.lot_operation.realization.util.LotProcessor;
+import by.bsu.auction.dao.lot_operation.realization.util.LotsSearcher;
 import by.tc.auction.entity.Lot;
+import by.tc.auction.entity.LotType;
 
 public class LotOperationDAOImpl implements LotOperationDAO {
 
 	private LotProcessor lotProcessor = new LotProcessor();
 	private LotInfoGetter lotInfoGetter = new LotInfoGetter();
+	private LotsSearcher lotSearcher = new LotsSearcher();
 	private LotChecker lotCheker = new LotChecker();
 	private static final Logger logger = Logger.getLogger(AuthDAOImpl.class);
 	
@@ -85,7 +88,17 @@ public class LotOperationDAOImpl implements LotOperationDAO {
 	@Override
 	public ArrayList<Lot> getLotsBySearching(String searchLine) throws DAOException {
 		try(Connection connection = ConnectionPool.getInstance().getConnection()){
-			return lotInfoGetter.getLotsBySearching(connection, searchLine);
+			return lotSearcher.getLotsBySearching(connection, searchLine);
+		} catch (SQLException | DBConnectionException e) {
+			logger.error("Error in LotOperationDAOImpl", e);
+			throw new DAOException(e.getMessage(), e.getCause());
+		}
+	}
+
+	@Override
+	public ArrayList<Lot> getLotsByType(LotType lotType) throws DAOException {
+		try(Connection connection = ConnectionPool.getInstance().getConnection()){
+			return lotSearcher.getLotsByType(connection, lotType);
 		} catch (SQLException | DBConnectionException e) {
 			logger.error("Error in LotOperationDAOImpl", e);
 			throw new DAOException(e.getMessage(), e.getCause());

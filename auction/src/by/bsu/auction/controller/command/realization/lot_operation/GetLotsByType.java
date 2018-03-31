@@ -12,22 +12,24 @@ import by.bsu.auction.controller.command.ServletCommand;
 import by.bsu.auction.service.ServiceFactory;
 import by.bsu.auction.service.exception.ServiceException;
 import by.bsu.auction.service.lot_operation.LotOperationService;
+import by.tc.auction.entity.LotType;
 import by.tc.auction.entity.LotsInfo;
 
-public class GetLotsList implements ServletCommand {
+public class GetLotsByType implements ServletCommand {
 
-	private static final Logger logger = Logger.getLogger(GetLotsList.class);
+	private static final Logger logger = Logger.getLogger(GetLotsByType.class);
 	
-	private static final String CHOOSEN_LOTS_PAGE_NUMBER = "lotsPageNumber";
+	private static final String LOT_TYPE = "lotType";
 	private static final String LIST_TYPE = "listType";
-	private static final String LIST = "list";
+	private static final String SEARCHING_BY_TYPE = "searchingByType";
+	private static final String CHOOSEN_LOTS_PAGE_NUMBER = "lotsPageNumber";
 	private static final String LOTS_INFO = "lotsInfo";
 	private static final String ERROR_PAGE = "error.jsp";
 	private static final String CURRENT_PAGE = "lot-list.jsp";
 	
 	private LotOperationService service;
 	
-	public GetLotsList() {
+	public GetLotsByType() {
 		ServiceFactory factory = ServiceFactory.getInstance();
 		service = factory.getLotOpeationService();
 	}
@@ -36,14 +38,15 @@ public class GetLotsList implements ServletCommand {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			int page = Integer.valueOf((String)request.getParameter(CHOOSEN_LOTS_PAGE_NUMBER));
-			LotsInfo lotsInfo = service.getLotsList(page);
+			LotType lotType = LotType.valueOf(request.getParameter(LOT_TYPE));
+			LotsInfo lotsInfo = service.getLotsByType(lotType, page);
 			request.setAttribute(LOTS_INFO, lotsInfo);
-			request.setAttribute(LIST_TYPE, LIST);
+			request.setAttribute(LIST_TYPE, SEARCHING_BY_TYPE);
+			request.setAttribute(LOT_TYPE, lotType);
 			request.getRequestDispatcher(CURRENT_PAGE).forward(request, response);
 		} catch (ServiceException e) {
-			logger.error("Error in GetLotsList", e);
+			logger.error("Error in GetLotsByType", e);
 			response.sendRedirect(ERROR_PAGE);
-		}	
+		}
 	}
-
 }

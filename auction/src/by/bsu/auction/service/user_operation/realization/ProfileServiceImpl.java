@@ -5,24 +5,22 @@ import java.util.ArrayList;
 import by.bsu.auction.dao.DAOFactory;
 import by.bsu.auction.dao.exception.DAOException;
 import by.bsu.auction.dao.user_operation.ProfileDAO;
-import by.bsu.auction.entity.Auction;
-import by.bsu.auction.entity.AuctionsInfo;
-import by.bsu.auction.entity.Lot;
-import by.bsu.auction.entity.LotsInfo;
-import by.bsu.auction.entity.User;
 import by.bsu.auction.service.exception.ServiceException;
 import by.bsu.auction.service.exception.UserInfoException;
 import by.bsu.auction.service.user_operation.ProfileService;
 import by.bsu.auction.service.user_operation.realization.validation.Validator;
+import by.tc.auction.entity.Auction;
+import by.tc.auction.entity.AuctionsInfo;
+import by.tc.auction.entity.Lot;
+import by.tc.auction.entity.LotsInfo;
+import by.tc.auction.entity.User;
 
 public class ProfileServiceImpl implements ProfileService {
 
-	private ProfileDAO profileDAO;
-	
-	private static final int LOT_PORTION_QUANTITY = 10;
-	private static final int AUCTION_PORTION_QUANTITY = 10;
-
 	private static final String ERROR_MESSAGE = "Invalid editing user data";
+	
+	private ProfileDAO profileDAO;
+	private PortionGetter portionGetter = PortionGetter.getInstance();
 	
 	public ProfileServiceImpl() {
 		DAOFactory factory = DAOFactory.getInstance();
@@ -42,7 +40,7 @@ public class ProfileServiceImpl implements ProfileService {
 	public LotsInfo getUserLots(String login, int page) throws ServiceException {
 		try {
 			ArrayList<Lot> userLots = profileDAO.getUserLots(login);
-			return getLotsPortion(userLots, page);
+			return portionGetter.getLotsPortion(userLots, page);
 		} catch (DAOException e) {
 			throw new ServiceException(e.getMessage(), e.getCause());
 		}
@@ -52,7 +50,7 @@ public class ProfileServiceImpl implements ProfileService {
 	public LotsInfo getUserWinLots(String login, int page) throws ServiceException {
 		try {
 			ArrayList<Lot> userLots = profileDAO.getUserWinLots(login);
-			return getLotsPortion(userLots, page);
+			return portionGetter.getLotsPortion(userLots, page);
 		} catch (DAOException e) {
 			throw new ServiceException(e.getMessage(), e.getCause());
 		}
@@ -62,7 +60,7 @@ public class ProfileServiceImpl implements ProfileService {
 	public AuctionsInfo getUserAuctionParticipations(String login, int page) throws ServiceException {
 		try {
 			ArrayList<Auction> userAuctionParticipations = profileDAO.getUserAuctionParticipation(login);
-			return getAuctionParcticipationsPortion(userAuctionParticipations, page);
+			return portionGetter.getAuctionParcticipationsPortion(userAuctionParticipations, page);
 		} catch (DAOException e) {
 			throw new ServiceException(e.getMessage(), e.getCause());
 		}
@@ -78,35 +76,5 @@ public class ProfileServiceImpl implements ProfileService {
 		} catch (DAOException e) {
 			throw new ServiceException(e.getMessage(), e.getCause());
 		}
-	}
-	
-	private LotsInfo getLotsPortion(ArrayList<Lot> userLots, int page){
-		if (userLots == null) {
-			return null;
-		}
-		ArrayList<Lot> returnLots = new ArrayList<>();
-		LotsInfo lotsInfo = new LotsInfo();
-		for (int i = (page - 1) * LOT_PORTION_QUANTITY; i < userLots.size() && i < page * LOT_PORTION_QUANTITY; i++) {
-			returnLots.add(userLots.get(i));
-		}
-		lotsInfo.setLots(returnLots);
-		lotsInfo.setCurrentPage(page);
-		lotsInfo.setPages((int) Math.ceil(((double) userLots.size()) / LOT_PORTION_QUANTITY));
-		return lotsInfo;
-	}
-	
-	private AuctionsInfo getAuctionParcticipationsPortion(ArrayList<Auction> userAuctionParticipations, int page){
-		if (userAuctionParticipations == null) {
-			return null;
-		}
-		ArrayList<Auction> returnAuctionParticipations = new ArrayList<>();
-		AuctionsInfo auctionInfo = new AuctionsInfo();
-		for (int i = (page - 1) * AUCTION_PORTION_QUANTITY; i < page * AUCTION_PORTION_QUANTITY && i < userAuctionParticipations.size() ; i++) {
-			returnAuctionParticipations.add(userAuctionParticipations.get(i));
-		}
-		auctionInfo.setAuctions(returnAuctionParticipations);
-		auctionInfo.setCurrentPage(page);
-		auctionInfo.setPages((int) Math.ceil(((double) userAuctionParticipations.size()) / AUCTION_PORTION_QUANTITY));
-		return auctionInfo;
 	}
 }

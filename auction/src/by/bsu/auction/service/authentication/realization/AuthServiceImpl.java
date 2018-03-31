@@ -3,11 +3,11 @@ package by.bsu.auction.service.authentication.realization;
 import by.bsu.auction.dao.DAOFactory;
 import by.bsu.auction.dao.authentication.AuthDAO;
 import by.bsu.auction.dao.exception.DAOException;
-import by.bsu.auction.entity.User;
 import by.bsu.auction.service.authentication.AuthService;
 import by.bsu.auction.service.authentication.realization.validation.Validator;
 import by.bsu.auction.service.exception.ServiceException;
 import by.bsu.auction.service.exception.UserInfoException;
+import by.tc.auction.entity.User;
 
 public class AuthServiceImpl implements AuthService{
 

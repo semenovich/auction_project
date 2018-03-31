@@ -12,8 +12,8 @@ import org.quartz.JobExecutionException;
 import by.bsu.auction.dao.DAOFactory;
 import by.bsu.auction.dao.exception.DAOException;
 import by.bsu.auction.dao.server_operation.ServerOperationDAO;
-import by.bsu.auction.entity.Auction;
-import by.bsu.auction.entity.AuctionType;
+import by.tc.auction.entity.Auction;
+import by.tc.auction.entity.AuctionType;
 
 public class ServerOperationJobService implements Job {
 

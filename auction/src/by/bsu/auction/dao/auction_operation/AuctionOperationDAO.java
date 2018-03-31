@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import by.bsu.auction.dao.exception.DAOException;
 import by.tc.auction.entity.Auction;
 import by.tc.auction.entity.Lot;
+import by.tc.auction.entity.LotType;
 
 public interface AuctionOperationDAO {
 	boolean createAuctionWithLot(Auction auction, Lot lot) throws DAOException;
@@ -12,4 +13,5 @@ public interface AuctionOperationDAO {
 	Auction getAuctionInfo(Integer auctionId) throws DAOException;
 	ArrayList<Auction> getAuctions() throws DAOException;
 	ArrayList<Auction> getAuctionsBySearching(String searchLine) throws DAOException;
+	ArrayList<Auction> getAuctionsByLotType(LotType lotType) throws DAOException;
 }

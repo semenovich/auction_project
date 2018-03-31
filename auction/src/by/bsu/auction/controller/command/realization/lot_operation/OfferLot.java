@@ -12,13 +12,13 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 
 import by.bsu.auction.controller.command.ServletCommand;
-import by.bsu.auction.entity.Lot;
-import by.bsu.auction.entity.LotStatus;
-import by.bsu.auction.entity.LotType;
 import by.bsu.auction.service.ServiceFactory;
 import by.bsu.auction.service.exception.LotInfoException;
 import by.bsu.auction.service.exception.ServiceException;
 import by.bsu.auction.service.lot_operation.LotOperationService;
+import by.tc.auction.entity.Lot;
+import by.tc.auction.entity.LotStatus;
+import by.tc.auction.entity.LotType;
 
 public class OfferLot implements ServletCommand {
 

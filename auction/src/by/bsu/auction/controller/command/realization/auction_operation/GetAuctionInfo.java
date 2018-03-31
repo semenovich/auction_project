@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import by.bsu.auction.controller.command.ServletCommand;
-import by.bsu.auction.entity.Auction;
 import by.bsu.auction.service.ServiceFactory;
 import by.bsu.auction.service.auction_operation.AuctionOperationService;
 import by.bsu.auction.service.exception.ServiceException;
+import by.tc.auction.entity.Auction;
 
 public class GetAuctionInfo implements ServletCommand {
 	
