@@ -1,6 +1,7 @@
 package by.bsu.auction.controller.command;
 
 public enum ServletList {
+	CHANGE_LOCALE,
 	LOGIN,
 	LOGOUT,
 	REGISTER,

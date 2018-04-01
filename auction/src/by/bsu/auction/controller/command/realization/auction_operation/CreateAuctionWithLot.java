@@ -11,16 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import by.bsu.auction.controller.command.ServletCommand;
-import by.bsu.auction.service.ServiceFactory;
-import by.bsu.auction.service.auction_operation.AuctionOperationService;
-import by.bsu.auction.service.exception.LotInfoException;
-import by.bsu.auction.service.exception.ServiceException;
 import by.tc.auction.entity.Auction;
 import by.tc.auction.entity.AuctionType;
 import by.tc.auction.entity.Bet;
 import by.tc.auction.entity.Lot;
 import by.tc.auction.entity.LotStatus;
 import by.tc.auction.entity.LotType;
+import by.tc.auction.service.ServiceFactory;
+import by.tc.auction.service.auction_operation.AuctionOperationService;
+import by.tc.auction.service.exception.LotInfoException;
+import by.tc.auction.service.exception.ServiceException;
 
 public class CreateAuctionWithLot implements ServletCommand {
 

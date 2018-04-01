@@ -10,11 +10,11 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 
 import by.bsu.auction.controller.command.ServletCommand;
-import by.bsu.auction.service.ServiceFactory;
-import by.bsu.auction.service.authentication.AuthService;
-import by.bsu.auction.service.exception.ServiceException;
-import by.bsu.auction.service.exception.UserInfoException;
 import by.tc.auction.entity.User;
+import by.tc.auction.service.ServiceFactory;
+import by.tc.auction.service.authentication.AuthService;
+import by.tc.auction.service.exception.ServiceException;
+import by.tc.auction.service.exception.UserInfoException;
 
 public class Register implements ServletCommand{
 

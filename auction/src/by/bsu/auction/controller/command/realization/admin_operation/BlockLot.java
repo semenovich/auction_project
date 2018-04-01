@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import by.bsu.auction.controller.command.ServletCommand;
-import by.bsu.auction.service.ServiceFactory;
-import by.bsu.auction.service.admin_operation.AdminOperationService;
-import by.bsu.auction.service.exception.ServiceException;
+import by.tc.auction.service.ServiceFactory;
+import by.tc.auction.service.admin_operation.AdminOperationService;
+import by.tc.auction.service.exception.ServiceException;
 
 public class BlockLot implements ServletCommand {
 	

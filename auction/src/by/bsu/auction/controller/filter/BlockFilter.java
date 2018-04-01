@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import by.bsu.auction.service.exception.ServiceException;
-import by.bsu.auction.service.user_check_block_filter.UserBlockCheckerService;
-import by.bsu.auction.service.user_check_block_filter.realization.UserBlockCheckerServiceImpl;
+import by.tc.auction.service.exception.ServiceException;
+import by.tc.auction.service.user_check_block_filter.UserBlockCheckerService;
+import by.tc.auction.service.user_check_block_filter.realization.UserBlockCheckerServiceImpl;
 
 public class BlockFilter implements Filter {
 

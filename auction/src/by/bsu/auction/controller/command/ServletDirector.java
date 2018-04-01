@@ -16,6 +16,7 @@ import by.bsu.auction.controller.command.realization.auction_operation.GetAuctio
 import by.bsu.auction.controller.command.realization.authentication.Login;
 import by.bsu.auction.controller.command.realization.authentication.Logout;
 import by.bsu.auction.controller.command.realization.authentication.Register;
+import by.bsu.auction.controller.command.realization.change_locale.ChangeLocale;
 import by.bsu.auction.controller.command.realization.lot_operation.CreateLot;
 import by.bsu.auction.controller.command.realization.lot_operation.DeleteConfirmingLot;
 import by.bsu.auction.controller.command.realization.lot_operation.EditConfirmingLot;
@@ -40,6 +41,7 @@ public final class ServletDirector {
 	private Map <ServletList,ServletCommand> commands = new HashMap<>(); 
 	
 	private ServletDirector() {
+		commands.put(ServletList.CHANGE_LOCALE, new ChangeLocale());
 		commands.put(ServletList.LOGIN, new Login());
 		commands.put(ServletList.LOGOUT, new Logout());
 		commands.put(ServletList.REGISTER, new Register());

@@ -15,7 +15,7 @@ import org.quartz.Trigger;
 import org.quartz.ee.servlet.QuartzInitializerListener;
 import org.quartz.impl.StdSchedulerFactory;
 
-import by.bsu.auction.service.server_operation.realization.ServerOperationJobService;
+import by.tc.auction.service.server_operation.realization.ServerOperationJobService;
 
 public class QuartzJobListener implements ServletContextListener {
 
