@@ -9,9 +9,21 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+   <filter>
+    <filter-name>CharacterEncodingFilter</filter-name>
+  	<filter-class>by.tc.auction.controller.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>CharacterEncodingFilter</filter-name>
+    <servlet-name>FrontController</servlet-name>
+  </filter-mapping>
   <filter>
     <filter-name>AuthFilter</filter-name>
-    <filter-class>by.bsu.auction.controller.filter.AuthFilter</filter-class>
+    <filter-class>by.tc.auction.controller.filter.AuthFilter</filter-class>
   </filter>
   <filter-mapping>
     <filter-name>AuthFilter</filter-name>
@@ -52,7 +64,7 @@
   <filter>
     <display-name>LoginFilter</display-name>
     <filter-name>LoginFilter</filter-name>
-    <filter-class>by.bsu.auction.controller.filter.LoginFilter</filter-class>
+    <filter-class>by.tc.auction.controller.filter.LoginFilter</filter-class>
   </filter>
   <filter-mapping>
     <filter-name>LoginFilter</filter-name>
@@ -66,7 +78,7 @@
     <description></description>
     <display-name>FrontController</display-name>
     <servlet-name>FrontController</servlet-name>
-    <servlet-class>by.bsu.auction.controller.FrontController</servlet-class>
+    <servlet-class>by.tc.auction.controller.FrontController</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
@@ -171,16 +183,15 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>404</servlet-name>
-    <jsp-file>/jsp/404.jsp</jsp-file>
+    <jsp-file>/jsp/errors/404.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>404</servlet-name>
     <url-pattern>/404.jsp</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>BetError</servlet-name>
-    <jsp-file>/jsp/bet-error.jsp</jsp-file>
+    <jsp-file>/jsp/errors/bet-error.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>BetError</servlet-name>
@@ -188,7 +199,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>Error</servlet-name>
-    <jsp-file>/jsp/error.jsp</jsp-file>
+    <jsp-file>/jsp/errors/error.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>Error</servlet-name>
@@ -196,7 +207,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>Blocked</servlet-name>
-    <jsp-file>/jsp/blocked.jsp</jsp-file>
+    <jsp-file>/jsp/errors/blocked.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>Blocked</servlet-name>
@@ -204,16 +215,16 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>AccessDenied</servlet-name>
-    <jsp-file>/jsp/access_denied.jsp</jsp-file>
+    <jsp-file>/jsp/errors/access-denied.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>AccessDenied</servlet-name>
-    <url-pattern>/access_denied.jsp</url-pattern>
+    <url-pattern>/access-denied.jsp</url-pattern>
   </servlet-mapping>
   <filter>
     <display-name>BlockFilter</display-name>
     <filter-name>BlockFilter</filter-name>
-    <filter-class>by.bsu.auction.controller.filter.BlockFilter</filter-class>
+    <filter-class>by.tc.auction.controller.filter.BlockFilter</filter-class>
   </filter>
   <filter-mapping>
     <filter-name>BlockFilter</filter-name>
@@ -222,7 +233,7 @@
   <filter>
     <display-name>AdminFilter</display-name>
     <filter-name>AdminFilter</filter-name>
-    <filter-class>by.bsu.auction.controller.filter.AdminFilter</filter-class>
+    <filter-class>by.tc.auction.controller.filter.AdminFilter</filter-class>
   </filter>
   <filter-mapping>
     <filter-name>AdminFilter</filter-name>
@@ -242,9 +253,8 @@
   </filter-mapping>
   <context-param>
     <param-name>log4j-config-location</param-name>
-    <param-value>WEB-INF/log4j.properties</param-value>
+    <param-value>WEB-INF/quartz.properties</param-value>
   </context-param>
-  
   <context-param>
     <param-name>quartz:config-file</param-name>
     <param-value>quartz.properties</param-value>
@@ -267,15 +277,18 @@
     </listener-class>
   </listener>
   <listener>
-    <listener-class>by.bsu.auction.controller.listener.QuartzJobListener</listener-class>
+    <listener-class>by.tc.auction.controller.listener.quartz.QuartzJobListener</listener-class>
   </listener>
   <servlet>
-	<servlet-name>QuartzInitializer</servlet-name>
-	<servlet-class>org.quartz.ee.servlet.QuartzInitializerServlet</servlet-class>
-	<init-param>
-	  <param-name>shutdown-on-unload</param-name>
-	  <param-value>true</param-value>
-	</init-param>
-	<load-on-startup>2</load-on-startup>
+    <servlet-name>QuartzInitializer</servlet-name>
+    <servlet-class>org.quartz.ee.servlet.QuartzInitializerServlet</servlet-class>
+    <init-param>
+      <param-name>shutdown-on-unload</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <load-on-startup>2</load-on-startup>
   </servlet>
+  <listener>
+    <listener-class>by.tc.auction.controller.listener.connection_pool.InitializeConnectionPoolListener</listener-class>
+  </listener>
 </web-app>

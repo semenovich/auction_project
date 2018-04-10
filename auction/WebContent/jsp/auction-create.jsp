@@ -53,7 +53,6 @@
 			<input type='text' name='auctionMinimumPrice'/>
 	  	</div>
 		<select name="auctionEndTime">
-		  	<option value=""></option>
 		  	<option value="HOUR">Hour</option>
 		  	<option value="DAY">Day</option>
 		  	<option value="WEEK">Week</option>

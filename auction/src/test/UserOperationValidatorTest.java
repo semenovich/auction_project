@@ -3,10 +3,10 @@ package test;
 import org.junit.Assert;
 import org.junit.Test;
 
-import by.bsu.auction.entity.Auction;
-import by.bsu.auction.entity.Bet;
-import by.bsu.auction.entity.User;
-import by.bsu.auction.service.user_operation.realization.validation.Validator;
+import by.tc.auction.entity.Auction;
+import by.tc.auction.entity.Bet;
+import by.tc.auction.entity.User;
+import by.tc.auction.service.user_operation.realization.validation.Validator;
 
 public class UserOperationValidatorTest {
 
@@ -37,6 +37,7 @@ public class UserOperationValidatorTest {
 
 	@Test
 	public void testValidateUserBet() {
+		double betDifference = 1;
 		Bet bet = new Bet();
 		Bet minBet = new Bet();
 		Bet currentBet = new Bet();
@@ -47,13 +48,13 @@ public class UserOperationValidatorTest {
 		auction.setCurrentBet(currentBet);
 		auction.setMinBet(minBet);
 		
-		Assert.assertEquals(true, Validator.validateUserBet(auction, bet));
+		Assert.assertEquals(true, Validator.validateUserBet(auction, bet, betDifference));
 
 		Bet newCurrentBet = new Bet();
 		newCurrentBet.setValue(15D);
 		auction.setCurrentBet(newCurrentBet);
 		
-		Assert.assertEquals(false, Validator.validateUserBet(auction, bet));
+		Assert.assertEquals(false, Validator.validateUserBet(auction, bet, betDifference));
 	}
 
 }

@@ -3,8 +3,8 @@ package test;
 import org.junit.Assert;
 import org.junit.Test;
 
-import by.bsu.auction.entity.User;
-import by.bsu.auction.service.authentication.realization.validation.Validator;
+import by.tc.auction.entity.User;
+import by.tc.auction.service.authentication.realization.validation.Validator;
 
 public class AuthenticationValidatorTest {
 

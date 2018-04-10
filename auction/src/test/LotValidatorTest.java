@@ -1,13 +1,13 @@
 package test;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import by.bsu.auction.entity.Lot;
-import by.bsu.auction.entity.LotType;
-import by.bsu.auction.service.lot_operation.realization.validation.Validator;
+import by.tc.auction.entity.Lot;
+import by.tc.auction.entity.LotType;
+import by.tc.auction.service.lot_operation.realization.validation.Validator;
 
 
 public class LotValidatorTest {
@@ -17,7 +17,7 @@ public class LotValidatorTest {
 		Lot lot = new Lot();
 		lot.setName("name");
 		lot.setDescription("description");
-		lot.setAdded(new Date(0L));
+		lot.setAdded(new Timestamp(0L));
 		lot.setOwner("owner");
 		lot.setQuantity(5);
 		lot.setType(LotType.ART);

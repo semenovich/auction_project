@@ -1,35 +1,66 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Login</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<fmt:setLocale value="${sessionScope.locale}"/>
+	<c:if test="${sessionScope.locale == null}">
+		<fmt:setLocale value="en"/>
+	</c:if>
+	<fmt:setBundle basename="resources/locales/locale" var="current_locale" scope="session"/>
+	<title><fmt:message bundle="${current_locale}" key="locale.login"/></title>
 </head>
 <body>
-	<c:if test="${requestScope.isUserNotExist}">
-		<p>User doesn't exist</p>
-	</c:if>
-	<c:if test="${requestScope.isUserDataInvalid}">
-		<p>Incorrect input</p>
-	</c:if>
-	<form action="FrontController" method="POST">
-		<input type="hidden" name="command" value="LOGIN"/>
-		<div class='form-row'>
-			<label for='form_userLogin'>Login: </label>
-    		<input type='text' id='form_userLogin' name='userLogin'>
-  		</div>
-
-  		<div class='form-row'>
-    		<label for='form_userPassword'>Password: </label>
-    		<input type='password' id='form_userPassword' name='userPassword'>
+	<div class="container">
+		<c:if test="${requestScope.isUserNotExist}">
+			<div id="login_user_existance_text">
+				<p><fmt:message bundle="${current_locale}" key="locale.login.user.not.exist"/></p>
+			</div>
+		</c:if>
+		<c:if test="${requestScope.isUserDataInvalid}">
+			<div id="login_data_invalid_text">
+				<p><fmt:message bundle="${current_locale}" key="locale.login.data.invalid"/></p>
+			</div>
+		</c:if>
+		<c:if test="${!requestScope.isUserDataInvalid}">
+			<div id="login_data_invalid_text" style="visibility: hidden; display:inline;">
+				<p><fmt:message bundle="${current_locale}" key="locale.login.data.invalid"/></p>
+			</div>
+		</c:if>
+		<div class="register_language col-md-2 col-md-offset-5">
+			<form action="FrontController">
+		        <input type="hidden" name="command" value="CHANGE_LOCALE"/>
+				<select id="language" class="form-control" name="locale" onchange="submit()">
+			        <option value="en"  ${locale == 'en' ? 'selected' : ''}><fmt:message bundle="${current_locale}" key="locale.change.locale.name.en"/></option>
+			    	<option value="ru" ${locale == 'ru' ? 'selected' : ''}><fmt:message bundle="${current_locale}" key="locale.change.locale.name.ru"/></option>
+				</select>
+			</form>
 		</div>
-
-		<div>
-			<input type="submit" value='Go'>
-		</div>
-	</form>
-	<a href="register.jsp"><i>Registration</i></a>
+		<div class="col-md-4 col-md-offset-4">
+	      	<form class="signin_form" action="FrontController" method="POST" onsubmit="validate(); return false">
+				<input type="hidden" name="command" value="LOGIN"/>
+		        <h2 class="signin_form_heading"><fmt:message bundle="${current_locale}" key="locale.login.text"/></h2>
+		        <label for="userLogin" class="sr-only"><fmt:message bundle="${current_locale}" key="locale.login.login"/></label>
+		        <input type="text" id="userLogin" class="form-control" name='userLogin' placeholder=<fmt:message bundle="${current_locale}" key="locale.login.login"/> required autofocus>
+		        <label for="userPassword" class="sr-only"><fmt:message bundle="${current_locale}" key="locale.login.password"/></label>
+		        <input type="password" id="userPassword" class="form-control" name='userPassword' placeholder=<fmt:message bundle="${current_locale}" key="locale.login.password"/> required>
+				<div class="row">
+					<div class="col-md-6 col-md-offset-3">
+			        	<button class="btn btn-lg btn-primary btn-block" type="submit"><fmt:message bundle="${current_locale}" key="locale.login.login.button"/></button>
+		        	</div>
+		        </div>
+	        	<div class="signin_form_register col-md-12 text-center">  
+					<a href="register.jsp"><u><fmt:message bundle="${current_locale}" key="locale.register.registration"/></u></a>
+    			</div>
+    		</form>
+    	</div>
+	</div>
+	<script src="js/validateLogin.js"></script>
 </body>
 </html>

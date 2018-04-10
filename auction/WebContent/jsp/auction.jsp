@@ -8,7 +8,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
 	<c:set var="auction" value="${requestScope.auction}"/>	
 	<c:if test="${auction != null}">
 		<p>${auction.toString()}</p>
