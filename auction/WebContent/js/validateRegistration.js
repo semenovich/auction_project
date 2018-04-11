@@ -33,7 +33,7 @@ function validate(){
 function invalidInput(){
     event.preventDefault();
     if (document.getElementById(USER_DOESNT_EXIST_MESSAGE_ID) != null) {
-        document.getElementById(USER_DOESNT_EXIST_MESSAGE_ID).style.visibility = 'invisible';
+        document.getElementById(USER_DOESNT_EXIST_MESSAGE_ID).style.visibility = 'hidden';
     }
     document.getElementById(MESSAGE_BLOCK_ID).style.visibility = 'visible';
     return;

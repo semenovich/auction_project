@@ -11,6 +11,8 @@ public class LotChecker {
 
 	private static final String CHECK_LOT_EXISTENCE_SQL_STATEMENT = "SELECT * FROM auction.lots WHERE l_id=?";
 	private static final String CHECK_IS_LOT_CONFIRMING_SQL_STATEMENT = "SELECT l_id AS lotId FROM auction.lots WHERE l_id=? AND l_status='CONFIRMING'";
+	private static final String CHECK_IS_LOT_READY_SQL_STATEMENT = "SELECT l_id AS lotId FROM auction.lots WHERE l_id=? AND l_status='READY'";
+	
 	
 	private static final Logger logger = Logger.getLogger(LotChecker.class);
 
@@ -25,11 +27,20 @@ public class LotChecker {
 		}
 	}
 	
-	public boolean checkIsLotConfirming(Connection connection, Integer lotId) throws SQLException {
-		try(PreparedStatement preparedStatement = connection.prepareStatement(CHECK_IS_LOT_CONFIRMING_SQL_STATEMENT)) {
-			preparedStatement.setInt(1, lotId);
-			ResultSet result = preparedStatement.executeQuery();
-			return result.next();
+	public boolean checkIsLotWaiting(Connection connection, Integer lotId) throws SQLException {
+		try {
+			try(PreparedStatement preparedStatement = connection.prepareStatement(CHECK_IS_LOT_CONFIRMING_SQL_STATEMENT)) {
+				preparedStatement.setInt(1, lotId);
+				ResultSet result = preparedStatement.executeQuery();
+				if (result.next()) {
+					return true;
+				}
+			}
+			try(PreparedStatement preparedStatement = connection.prepareStatement(CHECK_IS_LOT_READY_SQL_STATEMENT)) {
+				preparedStatement.setInt(1, lotId);
+				ResultSet result = preparedStatement.executeQuery();
+				return result.next();
+			}
 		} catch (SQLException e){
 			logger.error("Error in LotChecker", e);
 			throw e;

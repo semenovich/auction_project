@@ -49,21 +49,21 @@ public class LotOperationServiceImpl implements LotOperationService {
 	}
 
 	@Override
-	public boolean deleteConfirmingLot(Integer lotId) throws ServiceException {
+	public boolean deleteWaitingLot(Integer lotId) throws ServiceException {
 		try {
-			return lotOperationDAO.deleteConfirmingLot(lotId);
+			return lotOperationDAO.deleteWaitingLot(lotId);
 		} catch (DAOException e) {
 			throw new ServiceException(e.getMessage(), e.getCause());
 		}
 	}
 
 	@Override
-	public boolean editConfirmingLot(Lot lot) throws ServiceException, LotInfoException {
+	public boolean editWaitingLot(Lot lot) throws ServiceException, LotInfoException {
 		if (!Validator.validateLotInfo(lot)) {
 			throw new LotInfoException(ERROR_MESSAGE);
 		}
 		try {
-			return lotOperationDAO.editConfirmingLot(lot);
+			return lotOperationDAO.editWaitingLot(lot);
 		} catch (DAOException e) {
 			throw new ServiceException(e.getMessage(), e.getCause());
 		}

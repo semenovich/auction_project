@@ -10,8 +10,8 @@ import by.tc.auction.service.exception.ServiceException;
 public interface LotOperationService {
 	boolean offerLot(Lot lot) throws ServiceException, LotInfoException;
 	Lot getLotInfo(Integer lotId) throws ServiceException;
-	boolean deleteConfirmingLot(Integer lotId) throws ServiceException;
-	boolean editConfirmingLot(Lot lot) throws ServiceException, LotInfoException;
+	boolean deleteWaitingLot(Integer lotId) throws ServiceException;
+	boolean editWaitingLot(Lot lot) throws ServiceException, LotInfoException;
 	LotsInfo getLotsList(Locale locale, int page) throws ServiceException;
 	LotsInfo getLotsBySearching(String searchLine, Locale locale, int page) throws ServiceException;
 	LotsInfo getLotsByType(LotType lotType, Locale locale, int page) throws ServiceException;

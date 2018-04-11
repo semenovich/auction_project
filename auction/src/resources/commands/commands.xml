@@ -65,12 +65,12 @@
         <class>by.tc.auction.controller.command.realization.admin_operation.BlockLot</class>
     </command>
     <command>
-        <name>DELETE_CONFIRMING_LOT</name>
-        <class>by.tc.auction.controller.command.realization.lot_operation.DeleteConfirmingLot</class>
+        <name>DELETE_WAITING_LOT</name>
+        <class>by.tc.auction.controller.command.realization.lot_operation.DeleteWaitingLot</class>
     </command>
     <command>
-        <name>EDIT_CONFIRMING_LOT</name>
-        <class>by.tc.auction.controller.command.realization.lot_operation.EditConfirmingLot</class>
+        <name>EDIT_WAITING_LOT</name>
+        <class>by.tc.auction.controller.command.realization.lot_operation.EditWaitingLot</class>
     </command>
     <command>
         <name>GET_USERS_LIST</name>

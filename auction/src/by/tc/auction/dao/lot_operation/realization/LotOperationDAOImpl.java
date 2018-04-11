@@ -51,9 +51,9 @@ public class LotOperationDAOImpl implements LotOperationDAO {
 	}
 
 	@Override
-	public boolean deleteConfirmingLot(Integer lotId) throws DAOException {
+	public boolean deleteWaitingLot(Integer lotId) throws DAOException {
 		try(Connection connection = ConnectionPool.getInstance().getConnection()){
-			if (lotCheker.checkIsLotConfirming(connection, lotId)) {
+			if (lotCheker.checkIsLotWaiting(connection, lotId)) {
 				return lotProcessor.deleteLot(connection, lotId);
 			}
 			return false;
@@ -64,9 +64,9 @@ public class LotOperationDAOImpl implements LotOperationDAO {
 	}
 
 	@Override
-	public boolean editConfirmingLot(Lot lot) throws DAOException {
+	public boolean editWaitingLot(Lot lot) throws DAOException {
 		try(Connection connection = ConnectionPool.getInstance().getConnection()){
-			if (lotCheker.checkIsLotConfirming(connection, lot.getId())) {
+			if (lotCheker.checkIsLotWaiting(connection, lot.getId())) {
 				return lotProcessor.editLot(connection, lot);
 			}
 			return false;

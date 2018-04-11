@@ -10,8 +10,8 @@ import by.tc.auction.entity.LotType;
 public interface LotOperationDAO {
 	boolean offerLot(Lot lot) throws DAOException;
 	Lot getLotInfo(Integer lotId) throws DAOException;
-	boolean deleteConfirmingLot(Integer lotId) throws DAOException;
-	boolean editConfirmingLot(Lot lot) throws DAOException;
+	boolean deleteWaitingLot(Integer lotId) throws DAOException;
+	boolean editWaitingLot(Lot lot) throws DAOException;
 	ArrayList<Lot> getLotsList(Locale locale) throws DAOException;
 	ArrayList<Lot> getLotsBySearching(String searchLine, Locale locale) throws DAOException;
 	ArrayList<Lot> getLotsByType(LotType lotType, Locale locale) throws DAOException;

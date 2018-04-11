@@ -30,7 +30,7 @@ public class CreateAuctionFromExistingLot implements ServletCommand {
 	
 	private static final String AUCTION_DATA_INVALID = "isAuctionDataInvalid";
 	
-	private static final String CURRENT_PAGE = "auction-create.jsp";
+	private static final String CURRENT_PAGE = "lot.jsp";
 	private static final String SUCCESSFUL_PAGE = "FrontController?command=GET_AUCTIONS_LIST&auctionsPageNumber=1";
 	private static final String NOT_FOUND_PAGE = "404.jsp";
 	private static final String ERROR_PAGE = "error.jsp";
