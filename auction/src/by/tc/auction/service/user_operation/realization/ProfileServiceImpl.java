@@ -14,7 +14,7 @@ import by.tc.auction.service.exception.ServiceException;
 import by.tc.auction.service.exception.UserInfoException;
 import by.tc.auction.service.user_operation.ProfileService;
 import by.tc.auction.service.user_operation.realization.util.PortionGetter;
-import by.tc.auction.service.user_operation.realization.validation.Validator;
+import by.tc.auction.service.user_operation.realization.validation.UserEditingValidator;
 
 public class ProfileServiceImpl implements ProfileService {
 
@@ -69,11 +69,20 @@ public class ProfileServiceImpl implements ProfileService {
 	
 	@Override
 	public boolean editUserInfo(User user) throws ServiceException, UserInfoException {
-		if (!Validator.validateUserEditing(user)) {
+		if (!UserEditingValidator.validate(user)) {
 			throw new UserInfoException(ERROR_MESSAGE);
 		}
 		try {
 			return profileDAO.editUserInfo(user);
+		} catch (DAOException e) {
+			throw new ServiceException(e.getMessage(), e.getCause());
+		}
+	}
+
+	@Override
+	public boolean uploadUserImage(String userLogin, String imagePath) throws ServiceException {
+		try {
+			return profileDAO.uploadUserImage(userLogin, imagePath);
 		} catch (DAOException e) {
 			throw new ServiceException(e.getMessage(), e.getCause());
 		}

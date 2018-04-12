@@ -1,14 +1,12 @@
 package by.tc.auction.service.user_operation.realization.validation;
 
-import by.tc.auction.entity.Auction;
-import by.tc.auction.entity.Bet;
 import by.tc.auction.entity.User;
 
-public class Validator {
+public class UserEditingValidator {
 	
-	private Validator() {}
+	private UserEditingValidator() {}
 	
-	public static boolean validateUserEditing(User user) {
+	public static boolean validate(User user) {
 		if (user == null) {
 			return false;
 		}
@@ -28,13 +26,6 @@ public class Validator {
 			return false;
 		}
 		if (user.getPassportIssuedBy().isEmpty()) {
-			return false;
-		}
-		return true;
-	}
-	
-	public static boolean validateUserBet(Auction auction, Bet bet, double minBetDifference) {
-		if (bet.getValue() < auction.getMinBet().getValue() || bet.getValue() < auction.getCurrentBet().getValue() + minBetDifference) {
 			return false;
 		}
 		return true;

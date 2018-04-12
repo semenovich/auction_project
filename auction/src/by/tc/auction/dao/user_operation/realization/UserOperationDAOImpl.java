@@ -1,7 +1,7 @@
 package by.tc.auction.dao.user_operation.realization;
 
 import java.sql.Connection;
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
@@ -24,7 +24,7 @@ public class UserOperationDAOImpl implements UserOperationDAO {
 
 	
 	@Override
-	public boolean placeBet(Auction auction, String userLogin, Bet bet, Date betTime) throws DAOException {
+	public boolean placeBet(Auction auction, String userLogin, Bet bet, Timestamp betTime) throws DAOException {
 		try(Connection connection = ConnectionPool.getInstance().getConnection()){
 			connection.setAutoCommit(false);
 			if (paymentProcessor.placeBet(connection, auction, userLogin, bet, betTime)) {

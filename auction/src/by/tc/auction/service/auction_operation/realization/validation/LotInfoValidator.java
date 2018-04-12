@@ -1,12 +1,12 @@
-package by.tc.auction.service.lot_operation.realization.validation;
+package by.tc.auction.service.auction_operation.realization.validation;
 
 import by.tc.auction.entity.Lot;
 
-public class Validator {
+public class LotInfoValidator {
 
-	private Validator() {}
+	private LotInfoValidator() {}
 	
-	public static boolean validateLotInfo(Lot lot) {
+	public static boolean validate(Lot lot) {
 		if (lot == null) {
 			return false;
 		}

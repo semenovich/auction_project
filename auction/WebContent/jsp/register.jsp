@@ -42,17 +42,11 @@
 				</select>
 			</form>
 		</div>
-		<div class="col-md-6 col-md-offset-3">
+		<div class="col-md-6 col-md-offset-3 register_panel">
 	      	<form class="register_form" action="FrontController" method="POST" onsubmit="validate(); return false">
 				<input type="hidden" name="command" value="REGISTER"/>
 			    <h2 class="register_form_heading text-center"><fmt:message bundle="${current_locale}" key="locale.register.registration"/></h2>
 				<div class="col-md-4 text-right">
-					<label for='userPicture'><fmt:message bundle="${current_locale}" key="locale.register.picture"/>:</label>
-				</div>
-				<div class="col-md-8">
-					<input type='text' class="form-control" name='userPicture' placeholder=<fmt:message bundle="${current_locale}" key="locale.register.picture"/> />
-	  			</div>
-	  			<div class="col-md-4 text-right">
 					<label for='userLogin'><fmt:message bundle="${current_locale}" key="locale.register.login"/>:</label>
 	    		</div>
 	    		<div class="col-md-8">

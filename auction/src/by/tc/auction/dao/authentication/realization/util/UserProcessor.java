@@ -10,7 +10,7 @@ import by.tc.auction.entity.User;
 
 public final class UserProcessor {
 	
-	private static final String REGISTER_USER_SQL_STATEMENT = "INSERT INTO auction.site_users (su_login, su_surname, su_name, su_password, su_email, su_phone, su_passport_id, su_passport_issued_by, uc_id, su_picture) VALUES (?, ?, ?, MD5(?), ?, ?, ?, ?, (SELECT uc_id FROM auction.users_countries WHERE uc_name=?), ?)";
+	private static final String REGISTER_USER_SQL_STATEMENT = "INSERT INTO auction.site_users (su_login, su_surname, su_name, su_password, su_email, su_phone, su_passport_id, su_passport_issued_by, uc_id) VALUES (?, ?, ?, MD5(?), ?, ?, ?, ?, (SELECT uc_id FROM auction.users_countries WHERE uc_name=?))";
 	
 	private static final Logger logger = Logger.getLogger(UserProcessor.class);
 	
@@ -35,6 +35,5 @@ public final class UserProcessor {
 		preparedStatement.setString(7, user.getPassportId());
 		preparedStatement.setString(8, user.getPassportIssuedBy());
 		preparedStatement.setString(9, user.getCountry());
-		preparedStatement.setString(10, user.getPicture());
 	}	
 }

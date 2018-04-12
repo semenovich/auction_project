@@ -51,12 +51,12 @@
 						<p><fmt:message bundle="${current_locale}" key="locale.lot.info.invalid"/></p>
 					</div>
 				</c:if>
-				<c:if test="${requestScope.isAuctionDataInvalid == true}">
+				<c:if test="${requestScope.isBetInvalid == true}">
 					<div id="auction_bet_invalid_message">
 						<p><fmt:message bundle="${current_locale}" key="locale.auction.min.bet.invalid"/></p>
 					</div>
 				</c:if>
-				<c:if test="${requestScope.isAuctionDataInvalid != true}">
+				<c:if test="${requestScope.isBetInvalid != true}">
 					<div id="auction_bet_invalid_message" style="visibility: hidden; display:inline;">
 						<p><fmt:message bundle="${current_locale}" key="locale.auction.min.bet.invalid"/></p>
 					</div>
@@ -65,6 +65,18 @@
 					<div id="lot_info" class="tab-pane fade in active">
 						<div class="col-md-4 lot_picture">
 							<img src="${lot.picture }"/>
+							<c:if test="${lot.owner == sessionScope.userLogin && (lot.status == 'CONFIRMING' || lot.status == 'READY')}">
+								<form class="lot_upload_image" action="ImageUploader" method="post" enctype="multipart/form-data" >
+							    	<input type="hidden" name="command" value="lot"/>
+							        <div class="form-group">
+							        	<input type="file" accept=".jpg,.jpeg" class="form-control-file" id="choose" name="image"/>
+							            <div class="col-md-4">
+											<button class="btn-success btn-md" type="submit"><fmt:message bundle="${current_locale}" key="locale.change"/></button>            
+								    	</div>
+							        </div>
+							        <input type="hidden" name="userLogin" value="${requestScope.userLogin }">
+							    </form>
+						    </c:if>
 						</div>
 						<div class="col-md-7 col-md-offset-1 text-left lot_name">
 							<h1>${lot.name }</h1>
@@ -164,19 +176,13 @@
 										<label for='lotPicture'><fmt:message bundle="${current_locale}" key="locale.lot.picture"/>:</label>
 							    	</div>
 							    	<div class="col-md-9">
-										<input type='text' id='lotPicture' class="form-control" name='lotPicture' value="${lot.picture}" placeholder=<fmt:message bundle="${current_locale}" key="locale.lot.picture"/> />			
-									</div>
-									<div class="col-md-3 text-right">
-										<label for='lotName'><fmt:message bundle="${current_locale}" key="locale.lot.name"/>:</label>
-							    	</div>
-							    	<div class="col-md-9">
-										<input type='text' id='lotName' class="form-control" name='lotName' value="${lot.name}" placeholder=<fmt:message bundle="${current_locale}" key="locale.lot.picture"/> required />			
+										<input type='text' id='lotName' class="form-control" name='lotName' value="${lot.name}" placeholder=<fmt:message bundle="${current_locale}" key="locale.lot.name"/> required />			
 									</div>
 							    	<div class="col-md-3 text-right">
 										<label for='lotDescription'><fmt:message bundle="${current_locale}" key="locale.lot.description"/>:</label>
 							    	</div>
 							    	<div class="col-md-9">
-										<textarea id='lotDescription' class="form-control" name='lotDescription' rows="5" id="comment">${lot.description }</textarea>	
+										<textarea id='lotDescription' class="form-control" name='lotDescription' rows="5" placeholder=<fmt:message bundle="${current_locale}" key="locale.lot.description"/> required>${lot.description }</textarea>	
 									</div>
 									<div class="row">
 										<div class="col-md-4 col-md-offset-5">
@@ -242,6 +248,6 @@
 	</div>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<script src="js/checkAuctionType.js"></script>
-	<script src="js/validateMinBet.js"></script>
+	<script src="js/validateBet.js"></script>
 </body>
 </html>

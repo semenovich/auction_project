@@ -1,7 +1,7 @@
 package by.tc.auction.controller.command.realization.user_operation;
 
 import java.io.IOException;
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Calendar;
 
 import javax.servlet.ServletException;
@@ -48,7 +48,7 @@ public class PlaceBet implements ServletCommand {
 			auction = parseAuction(request);
 			Bet userBet = new Bet();
 			userBet.setValue(Double.valueOf(request.getParameter(USER_BET)));
-			Date betTime = new Date(Calendar.getInstance().getTimeInMillis());
+			Timestamp betTime = new Timestamp(Calendar.getInstance().getTimeInMillis());
 			if (service.placeBet(auction, request.getSession().getAttribute(CURRENT_USER_LOGIN).toString(), userBet, betTime)) {
 				response.sendRedirect(SUCCESSFUL_PAGE + auction.getId());
 			}

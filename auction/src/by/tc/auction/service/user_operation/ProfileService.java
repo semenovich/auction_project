@@ -12,4 +12,5 @@ public interface ProfileService {
 	LotsInfo getUserWinLots(String login, int page) throws ServiceException;
 	AuctionsInfo getUserAuctionParticipations(String login, int page) throws ServiceException;
 	boolean editUserInfo (User user) throws ServiceException, UserInfoException;
+	boolean uploadUserImage (String userLogin, String imagePath) throws ServiceException;
 }

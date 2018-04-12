@@ -27,7 +27,6 @@ public class EditWaitingLot implements ServletCommand {
 	private static final String LOT_NAME = "lotName";
 	private static final String LOT_DESCRIPTION = "lotDescription";
 	private static final String LOT_QUANTITY = "lotQuantity";
-	private static final String LOT_PICTURE = "lotPicture";
 	private static final String LOT_OWNER = "lotOwner";
 	
 	private static final String LOT_DATA_INVALID = "isLotDataInvalid";
@@ -35,7 +34,6 @@ public class EditWaitingLot implements ServletCommand {
 	private static final String SUCCESSFUL_PAGE = "FrontController?command=GET_LOT_INFO&lotId=";
 	private static final String INVAID_DATA_PAGE = "FrontController?command=GET_LOT_INFO&lotId=";
 	private static final String ACCESS_DENIED_PAGE = "access_denied,jsp";
-	private static final String NOT_FOUND_PAGE = "404.jsp";
 	private static final String ERROR_PAGE = "error.jsp";
 
 	private LotOperationService service = new LotOperationServiceImpl();
@@ -54,7 +52,7 @@ public class EditWaitingLot implements ServletCommand {
 			}
 			else {
 				if (service.getLotInfo(lot.getId()) == null) {
-					response.sendRedirect(NOT_FOUND_PAGE);
+					response.sendRedirect(ERROR_PAGE);
 				}
 				else{
 					response.sendRedirect(ACCESS_DENIED_PAGE);
@@ -80,7 +78,6 @@ public class EditWaitingLot implements ServletCommand {
 		lot.setName(request.getParameter(LOT_NAME));
 		lot.setDescription(request.getParameter(LOT_DESCRIPTION));
 		lot.setQuantity(Integer.valueOf(request.getParameter(LOT_QUANTITY)));
-		lot.setPicture(request.getParameter(LOT_PICTURE));
 		return lot;
 	}
 }

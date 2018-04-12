@@ -52,7 +52,7 @@ public class DeleteWaitingLot implements ServletCommand {
 			}
 			else {
 				if (service.getLotInfo(lotId) == null) {
-					response.sendRedirect(NOT_FOUND_PAGE);
+					response.sendRedirect(ERROR_PAGE);
 				}
 				else {
 					response.sendRedirect(ACCESS_DENIED_PAGE);

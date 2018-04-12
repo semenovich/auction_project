@@ -6,7 +6,8 @@ import org.junit.Test;
 import by.tc.auction.entity.Auction;
 import by.tc.auction.entity.Bet;
 import by.tc.auction.entity.User;
-import by.tc.auction.service.user_operation.realization.validation.Validator;
+import by.tc.auction.service.user_operation.realization.validation.UserBetValidator;
+import by.tc.auction.service.user_operation.realization.validation.UserEditingValidator;
 
 public class UserOperationValidatorTest {
 
@@ -32,7 +33,7 @@ public class UserOperationValidatorTest {
 		user2.setPassportIssuedBy("passportIssuedBy");
 		user2.setPassword("password");
 		
-		Assert.assertEquals(false, Validator.validateUserEditing(user2));
+		Assert.assertEquals(false, UserEditingValidator.validate(user2));
 	}
 
 	@Test
@@ -45,16 +46,16 @@ public class UserOperationValidatorTest {
 		bet.setValue(14D);
 		minBet.setValue(13D);
 		currentBet.setValue(0D);
-		auction.setCurrentBet(currentBet);
+		auction.setLastBet(currentBet);
 		auction.setMinBet(minBet);
 		
-		Assert.assertEquals(true, Validator.validateUserBet(auction, bet, betDifference));
+		Assert.assertEquals(true, UserBetValidator.validate(auction, bet, betDifference));
 
 		Bet newCurrentBet = new Bet();
 		newCurrentBet.setValue(15D);
-		auction.setCurrentBet(newCurrentBet);
+		auction.setLastBet(newCurrentBet);
 		
-		Assert.assertEquals(false, Validator.validateUserBet(auction, bet, betDifference));
+		Assert.assertEquals(false, UserBetValidator.validate(auction, bet, betDifference));
 	}
 
 }

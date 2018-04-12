@@ -5,7 +5,8 @@ import by.tc.auction.dao.authentication.AuthDAO;
 import by.tc.auction.dao.exception.DAOException;
 import by.tc.auction.entity.User;
 import by.tc.auction.service.authentication.AuthService;
-import by.tc.auction.service.authentication.realization.validation.Validator;
+import by.tc.auction.service.authentication.realization.validation.UserLoginValidator;
+import by.tc.auction.service.authentication.realization.validation.UserRegistrationValidator;
 import by.tc.auction.service.exception.ServiceException;
 import by.tc.auction.service.exception.UserInfoException;
 
@@ -21,7 +22,7 @@ public class AuthServiceImpl implements AuthService{
 	
 	@Override
 	public User register(User user) throws ServiceException, UserInfoException {
-		if (!Validator.validateRegistration(user)) {
+		if (!UserRegistrationValidator.validate(user)) {
 			throw new UserInfoException(ERROR_MESSAGE);
 		}
 		try {
@@ -40,7 +41,7 @@ public class AuthServiceImpl implements AuthService{
 
 	@Override
 	public User login(String login, String password) throws ServiceException, UserInfoException {
-		if (!Validator.validateLogin(login, password)) {
+		if (!UserLoginValidator.validate(login, password)) {
 			throw new UserInfoException(ERROR_MESSAGE);
 		}
 		try {

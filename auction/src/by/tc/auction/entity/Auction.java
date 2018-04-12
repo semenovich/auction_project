@@ -14,7 +14,7 @@ public class Auction implements Serializable {
 	private AuctionType type;
 	private AuctionStatus status;
 	private Bet minBet = new Bet();
-	private Bet currentBet = new Bet();
+	private Bet lastBet = new Bet();
 	private Timestamp startTime;
 	private Timestamp endTime;
 	private Timestamp lastBetTime;
@@ -60,12 +60,12 @@ public class Auction implements Serializable {
 		this.minBet = minBet;
 	}
 	
-	public Bet getCurrentBet() {
-		return currentBet;
+	public Bet getLastBet() {
+		return lastBet;
 	}
 	
-	public void setCurrentBet(Bet currentBet) {
-		this.currentBet = currentBet;
+	public void setLastBet(Bet currentBet) {
+		this.lastBet = currentBet;
 	}
 	
 	public Timestamp getStartTime() {
@@ -104,7 +104,7 @@ public class Auction implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((currentBet == null) ? 0 : currentBet.hashCode());
+		result = prime * result + ((lastBet == null) ? 0 : lastBet.hashCode());
 		result = prime * result + ((endTime == null) ? 0 : endTime.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((lastBetTime == null) ? 0 : lastBetTime.hashCode());
@@ -126,10 +126,10 @@ public class Auction implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Auction other = (Auction) obj;
-		if (currentBet == null) {
-			if (other.currentBet != null)
+		if (lastBet == null) {
+			if (other.lastBet!= null)
 				return false;
-		} else if (!currentBet.equals(other.currentBet))
+		} else if (!lastBet.equals(other.lastBet))
 			return false;
 		if (endTime == null) {
 			if (other.endTime != null)
@@ -176,7 +176,7 @@ public class Auction implements Serializable {
 	@Override
 	public String toString() {
 		return "Auction [id=" + id + ", lot=" + lot + ", type=" + type + ", status=" + status + ", minBet=" + minBet
-				+ ", currentBet=" + currentBet + ", startTime=" + startTime + ", endTime=" + endTime + ", lastBetTime="
+				+ ", currentBet=" + lastBet + ", startTime=" + startTime + ", endTime=" + endTime + ", lastBetTime="
 				+ lastBetTime + ", lastBetUser=" + lastBetUser + "]";
 	}
 	

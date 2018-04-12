@@ -10,10 +10,11 @@ import by.tc.auction.entity.Lot;
 
 public class LotProcessor {
 
-	private static final String CREATE_LOT_SQL_STATEMENT = "INSERT INTO auction.lots (l_name, l_description, l_quantity, l_picture, su_owner_login, l_date_added, l_status, l_type, l_locale) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String CREATE_LOT_SQL_STATEMENT = "INSERT INTO auction.lots (l_name, l_description, l_quantity, su_owner_login, l_date_added, l_status, l_type, l_locale) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String DELETE_LOT_SQL_STATEMENT = "DELETE FROM auction.lots WHERE l_id=?";
-	private static final String EDIT_LOT_INFO_SQL_STATEMENT = "UPDATE auction.lots SET l_name=?, l_description=?, l_quantity=?, l_picture=? WHERE l_id=?"; 
-		
+	private static final String EDIT_LOT_INFO_SQL_STATEMENT = "UPDATE auction.lots SET l_name=?, l_description=?, l_quantity=? WHERE l_id=?"; 
+	private static final String UPLOAD_LOT_IMAGE_SQL_STATEMENT = "UPDATE auction.lots SET l_picture=? WHERE l_id=?";	
+	
 	private static final Logger logger = Logger.getLogger(LotProcessor.class);
 
 	public boolean createLot(Connection connection, Lot lot) throws SQLException {
@@ -43,8 +44,19 @@ public class LotProcessor {
 			preparedStatement.setString(1, lot.getName());
 			preparedStatement.setString(2, lot.getDescription());
 			preparedStatement.setInt(3, lot.getQuantity());
-			preparedStatement.setString(4, lot.getPicture());
-			preparedStatement.setInt(5, lot.getId());
+			preparedStatement.setInt(4, lot.getId());
+			preparedStatement.executeUpdate();
+			return true;
+		} catch (SQLException e){
+			logger.error("Error in LotProcessor", e);
+			throw e;
+		}
+	}
+	
+	public boolean uploadLotImage(Connection connection, Integer lotId, String imagePath) throws SQLException {
+		try(PreparedStatement preparedStatement = connection.prepareStatement(UPLOAD_LOT_IMAGE_SQL_STATEMENT)) {
+			preparedStatement.setString(1, imagePath);
+			preparedStatement.setInt(2, lotId);
 			preparedStatement.executeUpdate();
 			return true;
 		} catch (SQLException e){
@@ -57,11 +69,10 @@ public class LotProcessor {
 		preparedStatement.setString(1, lot.getName());
 		preparedStatement.setString(2, lot.getDescription());
 		preparedStatement.setInt(3, lot.getQuantity());
-		preparedStatement.setString(4, lot.getPicture());
-		preparedStatement.setString(5, lot.getOwner());
-		preparedStatement.setTimestamp(6, lot.getAdded());
-		preparedStatement.setString(7, lot.getStatus().toString());
-		preparedStatement.setString(8, lot.getType().toString());
-		preparedStatement.setString(9, lot.getLocale().toString());
+		preparedStatement.setString(4, lot.getOwner());
+		preparedStatement.setTimestamp(5, lot.getAdded());
+		preparedStatement.setString(6, lot.getStatus().toString());
+		preparedStatement.setString(7, lot.getType().toString());
+		preparedStatement.setString(8, lot.getLocale().toString());
 	}
 }

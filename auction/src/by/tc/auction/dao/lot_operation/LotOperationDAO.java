@@ -12,6 +12,7 @@ public interface LotOperationDAO {
 	Lot getLotInfo(Integer lotId) throws DAOException;
 	boolean deleteWaitingLot(Integer lotId) throws DAOException;
 	boolean editWaitingLot(Lot lot) throws DAOException;
+	boolean uploadLotImage(Integer lotId, String imagePath) throws DAOException;
 	ArrayList<Lot> getLotsList(Locale locale) throws DAOException;
 	ArrayList<Lot> getLotsBySearching(String searchLine, Locale locale) throws DAOException;
 	ArrayList<Lot> getLotsByType(LotType lotType, Locale locale) throws DAOException;

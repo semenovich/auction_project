@@ -39,10 +39,9 @@ public class CreateAuctionWithLot implements ServletCommand {
 	private static final String LOT_DESCRIPTION = "lotDescription";
 	private static final String LOT_QUANTITY = "lotQuantity";
 	private static final String LOT_TYPE = "lotType";
-	private static final String LOT_PICTURE = "lotPicture";
 	private static final LotStatus LOT_STATUS = LotStatus.READY;
 	
-	private static final String AUCTION_DATA_INVALID = "isAuctionDataInvalid";
+	private static final String INVALID_BET = "isBetInvalid";
 	private static final String LOT_DATA_INVALID = "isLotDataInvalid";
 	
 	private static final String SUCCESSFUL_PAGE = "FrontController?command=GET_AUCTIONS_LIST&auctionsPageNumber=1";
@@ -70,7 +69,7 @@ public class CreateAuctionWithLot implements ServletCommand {
 			request.setAttribute(LOT_DATA_INVALID, true);
 			request.getRequestDispatcher(CURRENT_PAGE).forward(request, response);
 		} catch (NumberFormatException e1) {
-			request.setAttribute(AUCTION_DATA_INVALID, true);
+			request.setAttribute(INVALID_BET, true);
 			request.getRequestDispatcher(CURRENT_PAGE).forward(request, response);
 		}
 	}
@@ -99,7 +98,6 @@ public class CreateAuctionWithLot implements ServletCommand {
 		lot.setType(LotType.valueOf(request.getParameter(LOT_TYPE)));
 		lot.setAdded(new Timestamp(Calendar.getInstance().getTimeInMillis()));
 		lot.setStatus(LOT_STATUS);
-		lot.setPicture(request.getParameter(LOT_PICTURE));
 		lot.setLocale(Locale.valueOf((String)request.getSession().getAttribute(LOCALE)));
 		return lot;
 	}

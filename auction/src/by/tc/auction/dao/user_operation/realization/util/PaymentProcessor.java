@@ -1,10 +1,10 @@
 package by.tc.auction.dao.user_operation.realization.util;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 import org.apache.log4j.Logger;
 
@@ -22,13 +22,13 @@ public class PaymentProcessor {
 	
 	private static final Logger logger = Logger.getLogger(PaymentProcessor.class);
 
-	public boolean placeBet(Connection connection, Auction auction, String userLogin, Bet bet, Date betTime) throws SQLException {
+	public boolean placeBet(Connection connection, Auction auction, String userLogin, Bet bet, Timestamp betTime) throws SQLException {
 		try{
 			if (isAuctionExist(connection, auction.getId()) && isAuctionActive(connection, auction.getId())) {
 			try(PreparedStatement preparedStatement = connection.prepareStatement(PLACE_BET_SQL_STATEMENT)) {
 				preparedStatement.setDouble(1, bet.getValue());
 				preparedStatement.setString(2, userLogin);
-				preparedStatement.setDate(3, betTime);
+				preparedStatement.setTimestamp(3, betTime);
 				preparedStatement.setInt(4, auction.getId());
 				preparedStatement.executeUpdate();
 				return true;

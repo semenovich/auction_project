@@ -11,7 +11,7 @@
   </welcome-file-list>
   <filter>
     <filter-name>CharacterEncodingFilter</filter-name>
-  	<filter-class>by.tc.auction.controller.filter.CharacterEncodingFilter</filter-class>
+    <filter-class>by.tc.auction.controller.filter.CharacterEncodingFilter</filter-class>
     <init-param>
       <param-name>encoding</param-name>
       <param-value>UTF-8</param-value>
@@ -74,7 +74,7 @@
     <filter-name>LoginFilter</filter-name>
     <url-pattern>/register.jsp</url-pattern>
   </filter-mapping>
-    <filter>
+  <filter>
     <display-name>BlockFilter</display-name>
     <filter-name>BlockFilter</filter-name>
     <filter-class>by.tc.auction.controller.filter.BlockFilter</filter-class>
@@ -114,6 +114,14 @@
   <servlet-mapping>
     <servlet-name>FrontController</servlet-name>
     <url-pattern>/FrontController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ImageUploader</servlet-name>
+    <servlet-class>by.tc.auction.controller.ImageUploader</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ImageUploader</servlet-name>
+    <url-pattern>/ImageUploader</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>Register</servlet-name>

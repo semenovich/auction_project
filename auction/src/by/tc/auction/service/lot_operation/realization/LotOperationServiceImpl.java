@@ -13,7 +13,7 @@ import by.tc.auction.service.exception.LotInfoException;
 import by.tc.auction.service.exception.ServiceException;
 import by.tc.auction.service.lot_operation.LotOperationService;
 import by.tc.auction.service.lot_operation.realization.util.LotPortionGetter;
-import by.tc.auction.service.lot_operation.realization.validation.Validator;
+import by.tc.auction.service.lot_operation.realization.validation.LotInfoValidator;
 
 public class LotOperationServiceImpl implements LotOperationService {
 
@@ -29,7 +29,7 @@ public class LotOperationServiceImpl implements LotOperationService {
 
 	@Override
 	public boolean offerLot(Lot lot) throws ServiceException, LotInfoException {
-		if (!Validator.validateLotInfo(lot)) {
+		if (!LotInfoValidator.validate(lot)) {
 			throw new LotInfoException(ERROR_MESSAGE);
 		}
 		try {
@@ -59,7 +59,7 @@ public class LotOperationServiceImpl implements LotOperationService {
 
 	@Override
 	public boolean editWaitingLot(Lot lot) throws ServiceException, LotInfoException {
-		if (!Validator.validateLotInfo(lot)) {
+		if (!LotInfoValidator.validate(lot)) {
 			throw new LotInfoException(ERROR_MESSAGE);
 		}
 		try {
@@ -94,6 +94,15 @@ public class LotOperationServiceImpl implements LotOperationService {
 		try {
 			ArrayList<Lot> lots = lotOperationDAO.getLotsByType(lotType, locale);
 			return lotPortionGetter.getLotsPortion(lots, page);
+		} catch (DAOException e) {
+			throw new ServiceException(e.getMessage(), e.getCause());
+		}
+	}
+
+	@Override
+	public boolean uploadLotImage(Integer lotId, String imagePath) throws ServiceException {
+		try {
+			return lotOperationDAO.uploadLotImage(lotId, imagePath);
 		} catch (DAOException e) {
 			throw new ServiceException(e.getMessage(), e.getCause());
 		}

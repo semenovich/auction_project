@@ -23,7 +23,6 @@ public class BlockLot implements ServletCommand {
 	private static final String USER_ROLE = "userRole";
 	
 	private static final String SUCCESSFUL_PAGE = "FrontController?command=GET_LOT_INFO&lotId=";
-	private static final String NOT_FOUND_PAGE = "404.jsp";
 	private static final String ERROR_PAGE = "error.jsp";
 	private static final String ACCESS_DENIED_PAGE = "access-denied.jsp";
 	
@@ -46,7 +45,7 @@ public class BlockLot implements ServletCommand {
 				response.sendRedirect(SUCCESSFUL_PAGE + lotId);	
 			}
 			else {
-				response.sendRedirect(NOT_FOUND_PAGE);
+				response.sendRedirect(ERROR_PAGE);
 			}
 		} catch (ServiceException e) {
 			logger.error("Error in BlockLot", e);

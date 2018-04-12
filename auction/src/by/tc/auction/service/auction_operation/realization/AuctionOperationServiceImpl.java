@@ -12,7 +12,7 @@ import by.tc.auction.entity.Lot;
 import by.tc.auction.entity.LotType;
 import by.tc.auction.service.auction_operation.AuctionOperationService;
 import by.tc.auction.service.auction_operation.realization.util.AuctionPortionGetter;
-import by.tc.auction.service.auction_operation.realization.validation.Validator;
+import by.tc.auction.service.auction_operation.realization.validation.LotInfoValidator;
 import by.tc.auction.service.exception.LotInfoException;
 import by.tc.auction.service.exception.ServiceException;
 
@@ -30,7 +30,7 @@ public class AuctionOperationServiceImpl implements AuctionOperationService {
 
 	@Override
 	public boolean createAuctionWithLot(Auction auction, Lot lot) throws ServiceException, LotInfoException {
-		if (!Validator.validateLotInfo(lot)) {
+		if (!LotInfoValidator.validate(lot)) {
 			throw new LotInfoException(ERROR_MESSAGE);
 		}
 		try {

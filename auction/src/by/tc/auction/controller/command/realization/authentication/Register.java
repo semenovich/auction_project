@@ -30,7 +30,6 @@ public class Register implements ServletCommand{
 	private static final String USER_PHONE = "userPhone";
 	private static final String USER_PASSPORT_ID = "userPassportId";
 	private static final String USER_PASSPORT_ISSUED_BY = "userPassportIssuedBy";
-	private static final String USER_PICTURE = "userPicture";
 	
 	private static final String CURRENT_PAGE = "register.jsp";
 	private static final String MAIN_PAGE = "index.jsp";
@@ -81,7 +80,6 @@ public class Register implements ServletCommand{
 		user.setPhone(request.getParameter(USER_PHONE));
 		user.setPassportId(request.getParameter(USER_PASSPORT_ID));
 		user.setPassportIssuedBy(request.getParameter(USER_PASSPORT_ISSUED_BY));
-		user.setPicture(request.getParameter(USER_PICTURE));
 		return user;
 	}
 }

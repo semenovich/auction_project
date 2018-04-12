@@ -15,7 +15,10 @@ import by.tc.auction.controller.command.ServletCommand;
 
 public class CommandParser {
 	
-	public static final File SOURCE = new File("/home/semenovich/eclipse/JavaEE/auction/src/resources/commands/commands.xml");
+	private static final String SOURCE_PATH = "/home/semenovich/eclipse/JavaEE/auction/" + 
+												"src/resources/commands/commands.xml";
+	
+	private static final File SOURCE = new File(SOURCE_PATH);
 	
 	private static final Logger logger = Logger.getLogger(CommandParser.class);
 	

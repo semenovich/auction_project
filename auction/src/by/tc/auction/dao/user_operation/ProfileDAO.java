@@ -13,4 +13,5 @@ public interface ProfileDAO {
 	ArrayList<Lot> getUserWinLots(String login) throws DAOException;
 	ArrayList<Auction> getUserAuctionParticipation(String login) throws DAOException;
 	boolean editUserInfo (User user) throws DAOException;
+	boolean uploadUserImage(String userLogin, String imagePath) throws DAOException;
 }

@@ -93,4 +93,19 @@ public class ProfileDAOImpl implements ProfileDAO {
 			throw new DAOException(e.getMessage(), e.getCause());
 		}
 	}
+
+	@Override
+	public boolean uploadUserImage(String userLogin, String imagePath) throws DAOException {
+		try(Connection connection = ConnectionPool.getInstance().getConnection()){
+			if (userChecker.isUserExist(connection, userLogin)) {
+				return userProcessor.uploadUserImage(connection, userLogin, imagePath);
+			}
+			else {
+				return false;
+			}
+		} catch (SQLException | ConnectionPoolException e) {
+			logger.error("Error in ProfileDAOImpl", e);
+			throw new DAOException(e.getMessage(), e.getCause());
+		}
+	}
 }

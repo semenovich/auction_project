@@ -53,7 +53,7 @@ public class LotOperationDAOImpl implements LotOperationDAO {
 	@Override
 	public boolean deleteWaitingLot(Integer lotId) throws DAOException {
 		try(Connection connection = ConnectionPool.getInstance().getConnection()){
-			if (lotCheker.checkIsLotWaiting(connection, lotId)) {
+			if (lotCheker.isLotWaiting(connection, lotId)) {
 				return lotProcessor.deleteLot(connection, lotId);
 			}
 			return false;
@@ -66,7 +66,7 @@ public class LotOperationDAOImpl implements LotOperationDAO {
 	@Override
 	public boolean editWaitingLot(Lot lot) throws DAOException {
 		try(Connection connection = ConnectionPool.getInstance().getConnection()){
-			if (lotCheker.checkIsLotWaiting(connection, lot.getId())) {
+			if (lotCheker.isLotWaiting(connection, lot.getId())) {
 				return lotProcessor.editLot(connection, lot);
 			}
 			return false;
@@ -100,6 +100,19 @@ public class LotOperationDAOImpl implements LotOperationDAO {
 	public ArrayList<Lot> getLotsByType(LotType lotType, Locale locale) throws DAOException {
 		try(Connection connection = ConnectionPool.getInstance().getConnection()){
 			return lotSearcher.getLotsByType(connection, lotType, locale);
+		} catch (SQLException | ConnectionPoolException e) {
+			logger.error("Error in LotOperationDAOImpl", e);
+			throw new DAOException(e.getMessage(), e.getCause());
+		}
+	}
+
+	@Override
+	public boolean uploadLotImage(Integer lotId, String imagePath) throws DAOException {
+		try(Connection connection = ConnectionPool.getInstance().getConnection()){
+			if (lotCheker.isLotExist(connection, lotId)) {
+				return lotProcessor.uploadLotImage(connection, lotId, imagePath);
+			}
+			return false;
 		} catch (SQLException | ConnectionPoolException e) {
 			logger.error("Error in LotOperationDAOImpl", e);
 			throw new DAOException(e.getMessage(), e.getCause());

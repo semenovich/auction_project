@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-5"
-    pageEncoding="ISO-8859-5"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -9,7 +9,7 @@
 	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-	<meta http-equiv="Content-Type" content="text/html; ISO-8859-5">
+	<meta http-equiv="Content-Type" content="text/html; UTF-8">
 	<fmt:setLocale value="${sessionScope.locale}"/>
 	<c:if test="${sessionScope.locale == null}">
 		<fmt:setLocale value="en"/>
@@ -77,6 +77,18 @@
 					<div id="user_info" class="tab-pane fade in active">
 						<div class="user_picture col-md-4">
 							<img alt="" src="${user.picture}"/>
+							<c:if test="${requestScope.userLogin == sessionScope.userLogin}">		
+								<form class="user_upload_image" action="ImageUploader" method="post" enctype="multipart/form-data" >
+						            <input type="hidden" name="command" value="user"/>
+						            <div class="form-group">
+						                <input type="file" accept=".jpg,.jpeg" class="form-control-file" id="choose" name="image"/>
+						                <div class="col-md-4">
+											<button class="btn-success btn-md" type="submit"><fmt:message bundle="${current_locale}" key="locale.change"/></button>            
+							    		</div>
+						            </div>
+						            <input type="hidden" name="userLogin" value="${requestScope.userLogin }">
+						        </form>
+					        </c:if>
 						</div>
 						<div class="col-md-7 col-md-offset-1 text-left user_login">
 							<h1>${user.login}</h1>
@@ -139,12 +151,6 @@
 								    <input type="hidden" name="userLogin" value="${user.login}"/>
 								    <h2 class="edit_form_heading"><fmt:message bundle="${current_locale}" key="locale.user.edit"/></h2>
 									<div class="col-md-4 text-right">
-										<label for='userPicture'><fmt:message bundle="${current_locale}" key="locale.user.picture"/>:</label>
-									</div>
-									<div class="col-md-8">
-										<input type='text' class="form-control" name='userPicture' value="${user.picture}" placeholder=<fmt:message bundle="${current_locale}" key="locale.user.picture"/> />
-						  			</div>
-						  			<div class="col-md-4 text-right">
 										<label for='userPassword'><fmt:message bundle="${current_locale}" key="locale.user.password"/>:</label>
 						    		</div>
 						    		<div class="col-md-8">
@@ -210,7 +216,7 @@
 			<c:if test="${requestScope.userLotsInfo != null}">
 				<c:set var="lots" value="${requestScope.userLotsInfo}"/>
 				<p class="user_lots_text"><fmt:message bundle="${current_locale}" key="locale.user.lots.button"/></p>	
-				<c:if test="${!empty lots.lots}">
+				<c:if test="${not empty lots.lots}">
 					<c:forEach items="${lots.lots}" var="current">
 						<div class="row col-md-12">
 							<form action="FrontController" method="GET">
@@ -306,7 +312,7 @@
 			<c:if test="${requestScope.userWinLotsInfo != null}">
 				<c:set var="lots" value="${requestScope.userWinLotsInfo}"/>
 				<p class="user_lots_text"><fmt:message bundle="${current_locale}" key="locale.user.win.lots"/></p>
-				<c:if test="${!empty lots.lots}">
+				<c:if test="${not empty lots.lots}">
 					<c:forEach items="${lots.lots}" var="current">
 						<div class="row col-md-12">
 							<form action="FrontController" method="GET">
@@ -341,24 +347,6 @@
 										<div class="user_lot_quantity">
 											<span class="user_lot_info_text"></span>
 											<span>${current.quantity }</span>
-										</div>
-										<div class="user_lot_status">
-											<span class="user_lot_info_text"></span>
-											<c:if test="${current.status == 'BLOCKED'}">
-												<span><fmt:message bundle="${current_locale}" key="locale.lot.status.blocked"/></span>	
-											</c:if>
-											<c:if test="${current.status == 'ACTIVE'}">
-												<span><fmt:message bundle="${current_locale}" key="locale.lot.status.active"/></span>	
-											</c:if>
-											<c:if test="${current.status == 'SOLED'}">
-												<span><fmt:message bundle="${current_locale}" key="locale.lot.status.soled"/></span>	
-											</c:if>
-											<c:if test="${current.status == 'CONFIRMING'}">
-												<span><fmt:message bundle="${current_locale}" key="locale.lot.status.confirming"/></span>	
-											</c:if>
-											<c:if test="${current.status == 'READY'}">
-												<span><fmt:message bundle="${current_locale}" key="locale.lot.status.ready"/></span>	
-											</c:if>
 										</div>
 									</div>
 								</button>
@@ -401,7 +389,7 @@
 			</c:if>
 			<c:if test="${requestScope.userAuctionParticipationsInfo != null}">
 				<c:set var="auctions" value="${requestScope.userAuctionParticipationsInfo}"/>
-					<c:if test="${!empty auctions.auctions}">
+					<c:if test="${not empty auctions.auctions}">
 						<c:forEach items="${auctions.auctions}" var="current">
 							<form action="FrontController" method="GET">
 								<input type="hidden" name="command" value="GET_AUCTION_INFO"/>
@@ -418,12 +406,14 @@
 											<span class="user_auction_info_text"><fmt:message bundle="${current_locale}" key="locale.auction.start.time"/>:</span>
 											<span>${current.startTime}</span>
 										</div>
-										<div class="user_auction_end_time">
-											<span class="user_auction_info_text"><fmt:message bundle="${current_locale}" key="locale.auction.end.time"/>:</span>
-											<c:if test="${current.type == 'ONLINE' || current.status == 'COMPLETED' || current.status == 'PENDING_PAYMENT'}">
-												<span>${current.endTime}</span>
-											</c:if>
-										</div>
+										<c:if test="${current.status == 'PENDING_PAYMENT' || current.status == 'COMPLETED'}">
+											<div class="user_auction_end_time">
+												<span class="user_auction_info_text"><fmt:message bundle="${current_locale}" key="locale.auction.end.time"/>:</span>
+												<c:if test="${current.type == 'ONLINE' || current.status == 'COMPLETED' || current.status == 'PENDING_PAYMENT'}">
+													<span>${current.endTime}</span>
+												</c:if>
+											</div>
+										</c:if>
 										<div class="user_auction_type">
 											<span class="user_auction_info_text"><fmt:message bundle="${current_locale}" key="locale.auction.type"/>:</span>
 											<c:if test="${current.type == 'ENGLISH'}">

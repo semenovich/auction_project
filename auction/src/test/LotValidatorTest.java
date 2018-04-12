@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import by.tc.auction.entity.Lot;
 import by.tc.auction.entity.LotType;
-import by.tc.auction.service.lot_operation.realization.validation.Validator;
+import by.tc.auction.service.lot_operation.realization.validation.LotInfoValidator;
 
 
 public class LotValidatorTest {
@@ -29,7 +29,7 @@ public class LotValidatorTest {
 		lot2.setType(LotType.ART);
 		
 
-		Assert.assertEquals(true, Validator.validateLotInfo(lot));
-		Assert.assertEquals(false, Validator.validateLotInfo(lot2));
+		Assert.assertEquals(true, LotInfoValidator.validate(lot));
+		Assert.assertEquals(false, LotInfoValidator.validate(lot2));
 	}
 }

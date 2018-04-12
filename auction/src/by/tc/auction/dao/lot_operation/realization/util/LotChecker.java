@@ -27,7 +27,7 @@ public class LotChecker {
 		}
 	}
 	
-	public boolean checkIsLotWaiting(Connection connection, Integer lotId) throws SQLException {
+	public boolean isLotWaiting(Connection connection, Integer lotId) throws SQLException {
 		try {
 			try(PreparedStatement preparedStatement = connection.prepareStatement(CHECK_IS_LOT_CONFIRMING_SQL_STATEMENT)) {
 				preparedStatement.setInt(1, lotId);

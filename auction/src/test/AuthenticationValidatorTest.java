@@ -4,7 +4,8 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import by.tc.auction.entity.User;
-import by.tc.auction.service.authentication.realization.validation.Validator;
+import by.tc.auction.service.authentication.realization.validation.UserLoginValidator;
+import by.tc.auction.service.authentication.realization.validation.UserRegistrationValidator;
 
 public class AuthenticationValidatorTest {
 
@@ -13,12 +14,12 @@ public class AuthenticationValidatorTest {
 		String login = "";
 		String password = "";
 		
-		Assert.assertEquals(false, Validator.validateLogin(login, password));
+		Assert.assertEquals(false, UserLoginValidator.validate(login, password));
 		
 		login = "login";
 		password = "password";
 		
-		Assert.assertEquals(true, Validator.validateLogin(login, password));
+		Assert.assertEquals(true, UserLoginValidator.validate(login, password));
 	}
 
 	@Test
@@ -45,8 +46,8 @@ public class AuthenticationValidatorTest {
 		user2.setPassportIssuedBy("issuedBy");
 		user2.setPassword("");
 		
-		Assert.assertEquals(true, Validator.validateRegistration(user));
-		Assert.assertEquals(false, Validator.validateRegistration(user2));
+		Assert.assertEquals(true, UserRegistrationValidator.validate(user));
+		Assert.assertEquals(false, UserRegistrationValidator.validate(user2));
 	}
 
 }

@@ -2,24 +2,11 @@ package by.tc.auction.service.authentication.realization.validation;
 
 import by.tc.auction.entity.User;
 
-public final class Validator {
+public final class UserRegistrationValidator {
 	
-	private Validator() {};
+	private UserRegistrationValidator() {};
 	
-	public static boolean validateLogin(String login, String password) {
-		if (login == null || password == null) {
-			return false;
-		}
-		if (login.isEmpty() || !login.matches("^\\w+$")) {
-			return false;
-		}
-		if (password.isEmpty()) {
-			return false;
-		}
-		return true;
-	}
-	
-	public static boolean validateRegistration(User user) {
+	public static boolean validate(User user) {
 		if (user == null) {
 			return false;
 		}

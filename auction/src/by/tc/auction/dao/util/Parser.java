@@ -136,15 +136,15 @@ public class Parser {
 			Auction auction = null;
 			while (result.next()) {
 				Bet minBet = new Bet();
-				Bet currentBet = new Bet();
+				Bet lastBet = new Bet();
 				auction = new Auction();
 				auction.setId(result.getInt(AUCTION_ID));
 				auction.setStartTime(result.getTimestamp(AUCTION_START_TIME));
 				auction.setEndTime(result.getTimestamp(AUCTION_END_TIME));
 				minBet.setValue(result.getDouble(AUCTION_MINIMUM_BET));
 				auction.setMinBet(minBet);;
-				currentBet.setValue(result.getDouble(AUCTION_CURRENT_BET));
-				auction.setCurrentBet(currentBet);;
+				lastBet.setValue(result.getDouble(AUCTION_CURRENT_BET));
+				auction.setLastBet(lastBet);;
 				auction.setLastBetUser(result.getString(AUCTION_LAST_BET_USER));
 				auction.setStatus(AuctionStatus.valueOf(result.getString(AUCTION_STATUS)));
 				auction.setType(AuctionType.valueOf(result.getString(AUCTION_TYPE)));
@@ -164,15 +164,15 @@ public class Parser {
 			Auction auction = null;
 			if (result.next()) {
 				Bet minBet = new Bet();
-				Bet currentBet = new Bet();
+				Bet lastBet = new Bet();
 				auction = new Auction();
 				auction.setId(result.getInt(AUCTION_ID));
 				auction.setStartTime(result.getTimestamp(AUCTION_START_TIME));
 				auction.setEndTime(result.getTimestamp(AUCTION_END_TIME));
 				minBet.setValue(result.getDouble(AUCTION_MINIMUM_BET));
 				auction.setMinBet(minBet);;
-				currentBet.setValue(result.getDouble(AUCTION_CURRENT_BET));
-				auction.setCurrentBet(currentBet);;
+				lastBet.setValue(result.getDouble(AUCTION_CURRENT_BET));
+				auction.setLastBet(lastBet);;
 				auction.setLastBetUser(result.getString(AUCTION_LAST_BET_USER));
 				auction.setStatus(AuctionStatus.valueOf(result.getString(AUCTION_STATUS)));
 				auction.setType(AuctionType.valueOf(result.getString(AUCTION_TYPE)));

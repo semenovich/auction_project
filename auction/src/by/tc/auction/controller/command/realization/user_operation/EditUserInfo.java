@@ -28,14 +28,12 @@ public class EditUserInfo implements ServletCommand{
 	private static final String USER_PHONE = "userPhone";
 	private static final String USER_PASSPORT_ID = "userPassportId";
 	private static final String USER_PASSPORT_ISSUED_BY = "userPassportIssuedBy";
-	private static final String USER_PICTURE = "userPicture";
 
     private static final String USER_DATA_INVALID = "isUserDataInvalid";
 	
     private static final String SUCCESSFUL_PAGE = "FrontController?command=GET_USER_INFO&userLogin=";
     private static final String INVALID_DATA_PAGE = "FrontController?command=GET_USER_INFO&userLogin=";
     private static final String ACCESS_DENIED_PAGE = "access_denied,jsp";
-	private static final String NOT_FOUND_PAGE = "404.jsp";
 	private static final String ERROR_PAGE = "error.jsp";
 	
 	private ProfileService service;
@@ -58,7 +56,9 @@ public class EditUserInfo implements ServletCommand{
 				response.sendRedirect(SUCCESSFUL_PAGE + user.getLogin());
 			}
 			else {
-				response.sendRedirect(NOT_FOUND_PAGE);
+				if (service.getUserInfo(user.getLogin()) == null){
+					response.sendRedirect(ERROR_PAGE);
+				}
 			}
 		} catch (UserInfoException e) {
 			request.setAttribute(USER_DATA_INVALID, true);
@@ -79,7 +79,6 @@ public class EditUserInfo implements ServletCommand{
 		user.setPhone(request.getParameter(USER_PHONE));
 		user.setPassportId(request.getParameter(USER_PASSPORT_ID));
 		user.setPassportIssuedBy(request.getParameter(USER_PASSPORT_ISSUED_BY));
-		user.setPicture(request.getParameter(USER_PICTURE));
 		return user;
 	}
 }

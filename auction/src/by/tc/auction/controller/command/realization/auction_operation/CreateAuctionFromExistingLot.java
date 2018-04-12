@@ -28,7 +28,7 @@ public class CreateAuctionFromExistingLot implements ServletCommand {
 	
 	private static final String LOT_ID = "lotId";
 	
-	private static final String AUCTION_DATA_INVALID = "isAuctionDataInvalid";
+	private static final String INVALID_BET = "isBetInvalid";
 	
 	private static final String CURRENT_PAGE = "lot.jsp";
 	private static final String SUCCESSFUL_PAGE = "FrontController?command=GET_AUCTIONS_LIST&auctionsPageNumber=1";
@@ -65,7 +65,7 @@ public class CreateAuctionFromExistingLot implements ServletCommand {
 			logger.error("Error in CreateAuctionFromExistingLot", e);
 			response.sendRedirect(ERROR_PAGE);
 		} catch (NumberFormatException e1) {
-			request.setAttribute(AUCTION_DATA_INVALID, true);
+			request.setAttribute(INVALID_BET, true);
 			request.getRequestDispatcher(CURRENT_PAGE).forward(request, response);
 		}
 	}
