@@ -27,10 +27,10 @@ public class UserOperationDAOImpl implements UserOperationDAO {
 	public boolean placeBet(Auction auction, String userLogin, Bet bet, Timestamp betTime) throws DAOException {
 		try(Connection connection = ConnectionPool.getInstance().getConnection()){
 			connection.setAutoCommit(false);
+			if (!paymentChecker.isParictipationExist(connection, auction, userLogin)) {
+				paymentProcessor.createParticipation(connection, auction, userLogin);
+			}
 			if (paymentProcessor.placeBet(connection, auction, userLogin, bet, betTime)) {
-				if (!paymentChecker.isParictipationExist(connection, auction, userLogin)) {
-					paymentProcessor.createParticipation(connection, auction, userLogin);
-				}
 				connection.commit();
 				connection.setAutoCommit(true);
 				return true;

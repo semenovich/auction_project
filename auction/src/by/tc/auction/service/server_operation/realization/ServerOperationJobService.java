@@ -48,7 +48,7 @@ public class ServerOperationJobService implements Job {
 				}
 			}
 			if (auctions.get(i).getType() == AuctionType.ENGLISH) {
-				if (auctions.get(i).getLastBetTime() != null && auctions.get(i).getLastBetTime().getTime() < currentTime.getTime() + AMOUNT_OF_TIME_TO_CLOSE_ENGLISH_AUCTION_TYPE) {
+				if (auctions.get(i).getLastBetTime() != null && (currentTime.getTime() - auctions.get(i).getLastBetTime().getTime()) > AMOUNT_OF_TIME_TO_CLOSE_ENGLISH_AUCTION_TYPE) {
 					endedAuctions.add(auctions.get(i));
 				}
 			} 

@@ -13,7 +13,7 @@ import by.tc.auction.entity.Bet;
 
 public class PaymentProcessor {
 
-	private static final String PLACE_BET_SQL_STATEMENT = "UPDATE auction.auctions SET a_current_price=?, su_login_last_bet=?, a_last_bet_time=? WHERE a_id=?";
+	private static final String PLACE_BET_SQL_STATEMENT = "UPDATE auction.user_participation_in_bidding SET upib_bet=?, upib_last_bet_time=? WHERE su_login=? AND a_id=?";
 	private static final String CREATE_PARTICIPATION_SQL_STATEMENT = "INSERT INTO auction.user_participation_in_bidding (su_login, a_id, upib_status) VALUES (?, ?, 'ACTIVE')";
 	private static final String SET_AUCTION_STATUS_COMPLETED_SQL_STATEMENT = "UPDATE auction.auctions SET a_status='COMPLETED' WHERE a_id=?";
 	private static final String SET_LOT_STATUS_SOLED_SQL_STATEMENT = "UPDATE auction.lots SET l_status='SOLED' WHERE l_id=?";
@@ -27,8 +27,8 @@ public class PaymentProcessor {
 			if (isAuctionExist(connection, auction.getId()) && isAuctionActive(connection, auction.getId())) {
 			try(PreparedStatement preparedStatement = connection.prepareStatement(PLACE_BET_SQL_STATEMENT)) {
 				preparedStatement.setDouble(1, bet.getValue());
-				preparedStatement.setString(2, userLogin);
-				preparedStatement.setTimestamp(3, betTime);
+				preparedStatement.setTimestamp(2, betTime);
+				preparedStatement.setString(3, userLogin);
 				preparedStatement.setInt(4, auction.getId());
 				preparedStatement.executeUpdate();
 				return true;

@@ -8,7 +8,10 @@ public class UserBetValidator {
 	private UserBetValidator() {}
 	
 	public static boolean validate(Auction auction, Bet userBet, double minBetDifference) {
-		if (userBet.getValue() < auction.getMinBet().getValue() || userBet.getValue() < auction.getLastBet().getValue() + minBetDifference) {
+		if (userBet.getValue() < auction.getMinBet().getValue()) {
+			return false;
+		}
+		if (auction.getLastBet().getValue() != 0 && userBet.getValue() < auction.getLastBet().getValue() + minBetDifference) {
 			return false;
 		}
 		return true;

@@ -12,7 +12,7 @@ import by.tc.auction.entity.Auction;
 public class PaymentChecker {
 
 	private static final String CHECK_IS_PARTICIPATION_EXIST_SQL_STATEMENT = "SELECT * FROM auction.user_participation_in_bidding WHERE su_login=? AND a_id=?";
-	private static final String GET_AUCTION_CURRENT_BET_SQL_STATEMENT = "SELECT a_current_price AS auctionCurrentBet FROM auction.auctions WHERE a_id=?";
+	private static final String GET_AUCTION_CURRENT_BET_SQL_STATEMENT = "SELECT MAX(upib_bet) AS auctionCurrentBet FROM auction.user_participation_in_bidding upib_max WHERE upib_max.a_id = ?";
 	
 	private static final String AUCTION_CURRENT_BET = "auctionCurrentBet";
 	

@@ -327,7 +327,7 @@
 											<span><h1>${current.name }</h1></span>
 										</div>
 										<div class="user_lot_type">
-											<span class="user_lot_info_text"></span>
+											<span class="user_lot_info_text"><fmt:message bundle="${current_locale}" key="locale.lot.type"/>:</span>
 											<c:if test="${current.type == 'CAR'}">
 												<span><fmt:message bundle="${current_locale}" key="locale.lot.type.car"/></span>
 											</c:if>
@@ -345,7 +345,7 @@
 											</c:if>
 										</div>
 										<div class="user_lot_quantity">
-											<span class="user_lot_info_text"></span>
+											<span class="user_lot_info_text"><fmt:message bundle="${current_locale}" key="locale.lot.quantity"/>:</span>
 											<span>${current.quantity }</span>
 										</div>
 									</div>
