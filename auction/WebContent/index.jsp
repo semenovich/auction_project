@@ -24,7 +24,7 @@
 			<div class="main_chooser">
 				<div class="row main_chooser_header">
 					<div class="col-md-4 text-center">
-						<form action="FrontController" method="GET"">
+						<form action="FrontController" method="GET">
 							<input type="hidden" name="command" value="GET_AUCTIONS_BY_LOT_TYPE"/>
 							<input type="hidden" name="auctionsPageNumber" value="1"/>
 							<input type="hidden" name="lotType" value="CAR"/>
@@ -35,7 +35,7 @@
 						</form>
 					</div>
 					<div class="col-md-4 text-center">
-						<form action="FrontController" method="GET"">
+						<form action="FrontController" method="GET">
 							<input type="hidden" name="command" value="GET_AUCTIONS_BY_LOT_TYPE"/>
 							<input type="hidden" name="auctionsPageNumber" value="1"/>
 							<input type="hidden" name="lotType" value="JET"/>
@@ -46,7 +46,7 @@
 						</form>
 					</div>
 					<div class="col-md-4 text-center">
-						<form action="FrontController" method="GET"">
+						<form action="FrontController" method="GET">
 							<input type="hidden" name="command" value="GET_AUCTIONS_BY_LOT_TYPE"/>
 							<input type="hidden" name="auctionsPageNumber" value="1"/>
 							<input type="hidden" name="lotType" value="SPORT"/>
@@ -59,7 +59,7 @@
 				</div>
 				<div class="row main_chooser_footer">
 					<div class="col-md-4 text-center">
-						<form action="FrontController" method="GET"">
+						<form action="FrontController" method="GET">
 							<input type="hidden" name="command" value="GET_AUCTIONS_BY_LOT_TYPE"/>
 							<input type="hidden" name="auctionsPageNumber" value="1"/>
 							<input type="hidden" name="lotType" value="ART"/>
@@ -70,7 +70,7 @@
 						</form>
 					</div>
 					<div class="col-md-4 text-center">
-						<form action="FrontController" method="GET"">
+						<form action="FrontController" method="GET">
 							<input type="hidden" name="command" value="GET_AUCTIONS_BY_LOT_TYPE"/>
 							<input type="hidden" name="auctionsPageNumber" value="1"/>
 							<input type="hidden" name="lotType" value="REALTY"/>
@@ -81,7 +81,7 @@
 						</form>
 					</div>
 					<div class="col-md-4 text-center">
-						<form action="FrontController" method="GET"">
+						<form action="FrontController" method="GET">
 							<input type="hidden" name="command" value="GET_AUCTIONS_LIST"/>
 							<input type="hidden" name="auctionsPageNumber" value="1"/>
 							<button type="submit" class="btn">

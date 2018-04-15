@@ -402,6 +402,24 @@
 										<div class="user_auction_name">
 											<span><h1>${current.lot.name }</h1></span>
 										</div>
+										<div class="user_auction_lot_type">
+											<span class="user_auction_lot_info_text"><fmt:message bundle="${current_locale}" key="locale.lot.type"/>:</span>
+											<c:if test="${current.lot.type == 'CAR'}">
+												<span><fmt:message bundle="${current_locale}" key="locale.lot.type.car"/></span>
+											</c:if>
+											<c:if test="${current.lot.type == 'JET'}">
+												<span><fmt:message bundle="${current_locale}" key="locale.lot.type.jet"/></span>
+											</c:if>
+											<c:if test="${current.lot.type == 'ART'}">
+												<span><fmt:message bundle="${current_locale}" key="locale.lot.type.art"/></span>
+											</c:if>
+											<c:if test="${current.lot.type == 'REALTY'}">
+												<span><fmt:message bundle="${current_locale}" key="locale.lot.type.realty"/></span>
+											</c:if>
+											<c:if test="${current.lot.type == 'SPORT'}">
+												<span><fmt:message bundle="${current_locale}" key="locale.lot.type.sport"/></span>
+											</c:if>
+										</div>
 										<div class="user_auction_start_time">
 											<span class="user_auction_info_text"><fmt:message bundle="${current_locale}" key="locale.auction.start.time"/>:</span>
 											<span>${current.startTime}</span>
@@ -468,7 +486,7 @@
 							<div class="current">
 								<p>${auctions.currentPage }</p>
 							</div>
-							<c:if test="${auctions.currentPage < lots.pages}">
+							<c:if test="${auctions.currentPage < auctions.pages}">
 								<div class="next">
 									<form action="FrontController" method="GET">
 										<input type="hidden" name="command" value="GET_USER_LOTS"/>
