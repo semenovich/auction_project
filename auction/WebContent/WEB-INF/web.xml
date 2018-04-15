@@ -212,28 +212,12 @@
     <url-pattern>/auction.jsp</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>Successful</servlet-name>
-    <jsp-file>/jsp/successful.jsp</jsp-file>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Successful</servlet-name>
-    <url-pattern>/successful.jsp</url-pattern>
-  </servlet-mapping>
-  <servlet>
     <servlet-name>404</servlet-name>
     <jsp-file>/jsp/errors/404.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>404</servlet-name>
     <url-pattern>/404.jsp</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>BetError</servlet-name>
-    <jsp-file>/jsp/errors/bet-error.jsp</jsp-file>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>BetError</servlet-name>
-    <url-pattern>/bet-error.jsp</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>Error</servlet-name>
@@ -280,9 +264,7 @@
     <param-value>true</param-value>
   </context-param>
   <listener>
-    <listener-class>
-      org.quartz.ee.servlet.QuartzInitializerListener
-    </listener-class>
+    <listener-class>org.quartz.ee.servlet.QuartzInitializerListener</listener-class>
   </listener>
   <listener>
     <listener-class>by.tc.auction.controller.listener.quartz.QuartzJobListener</listener-class>

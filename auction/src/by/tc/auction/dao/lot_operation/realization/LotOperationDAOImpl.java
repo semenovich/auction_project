@@ -107,6 +107,16 @@ public class LotOperationDAOImpl implements LotOperationDAO {
 	}
 
 	@Override
+	public ArrayList<Lot> getWaitingLots(Locale locale) throws DAOException {
+		try(Connection connection = ConnectionPool.getInstance().getConnection()){
+			return lotSearcher.getWaitingLots(connection, locale);
+		} catch (SQLException | ConnectionPoolException e) {
+			logger.error("Error in LotOperationDAOImpl", e);
+			throw new DAOException(e.getMessage(), e.getCause());
+		}
+	}
+
+	@Override
 	public boolean uploadLotImage(Integer lotId, String imagePath) throws DAOException {
 		try(Connection connection = ConnectionPool.getInstance().getConnection()){
 			if (lotCheker.isLotExist(connection, lotId)) {

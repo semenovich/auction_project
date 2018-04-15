@@ -21,7 +21,7 @@
 	<c:import url="WEB-INF/jsp/header.jsp" />
 	<div class="container">
 		<div class="row">
-			<div class="col-md-12 auction_list_page_name">
+			<div class="col-md-12 auctions_list_page_name">
 				<p><fmt:message bundle="${current_locale}" key="locale.auctions"/></p>
 			</div>
 		</div>
@@ -39,7 +39,7 @@
 				</form>
         	</div>
         </div>
-        <div class="col-md-10 col-md-offset-1 auction_list_chooser">
+        <div class="col-md-10 col-md-offset-1 auctions_list_type_chooser">
         	<ul class="nav navbar-nav">
 				<li>
 					<div class="text-left">
@@ -114,11 +114,11 @@
 				</li>
 			</ul>
 		</div>
-		<div class="col-md-10 col-md-offset-1 auction_list_panel">
+		<div class="col-md-10 col-md-offset-1 auctions_list_panel">
 			<c:if test="${requestScope.auctionsInfo != null}">
 				<c:set var="auctions" value="${requestScope.auctionsInfo}"/>
 				<c:if test="${empty auctions.auctions }">
-					<div class="auctions_list_not_found col-md-10 ">
+					<div class="auctions_list_not_found col-md-12 text-center">
 						<p><fmt:message bundle="${current_locale}" key="locale.not.found"/></p>
 					</div>
 				</c:if>
@@ -128,15 +128,15 @@
 							<input type="hidden" name="command" value="GET_AUCTION_INFO"/>
 							<input type="hidden" name="auctionId" value="${current.id}"/>
 							<button type="submit" class="btn btn col-md-10 col-md-offset-1">
-								<div class="auction_list_img col-md-4">
+								<div class="auctions_list_img col-md-4">
 									<img src="${current.lot.picture }"/>
 								</div>
-								<div id="auction_list_info" class="col-md-7 col-md-offset-1 text-left">
-									<div class="auction_list_name">
+								<div id="auctions_list_info" class="col-md-7 col-md-offset-1 text-left">
+									<div class="auctions_list_name">
 										<span><h1>${current.lot.name }</h1></span>
 									</div>
-									<div class="auction_list_lot_type">
-										<span class="auction_list_lot_info_text"><fmt:message bundle="${current_locale}" key="locale.lot.type"/>:</span>
+									<div class="auctions_list_lot_type">
+										<span class="auctions_list_lot_info_text"><fmt:message bundle="${current_locale}" key="locale.lot.type"/>:</span>
 										<c:if test="${current.lot.type == 'CAR'}">
 											<span><fmt:message bundle="${current_locale}" key="locale.lot.type.car"/></span>
 										</c:if>
@@ -153,20 +153,20 @@
 											<span><fmt:message bundle="${current_locale}" key="locale.lot.type.sport"/></span>
 										</c:if>
 									</div>
-									<div class="auction_list_start_time">
-										<span class="auction_list_info_text"><fmt:message bundle="${current_locale}" key="locale.auction.start.time"/>:</span>
+									<div class="auctions_list_start_time">
+										<span class="auctions_list_info_text"><fmt:message bundle="${current_locale}" key="locale.auction.start.time"/>:</span>
 										<span>${current.startTime}</span>
 									</div>
 									<c:if test="${current.status == 'PENDING_PAYMENT' || current.status == 'COMPLETED'}">
-										<div class="auction_list_end_time">
-											<span class="auction_list_info_text"><fmt:message bundle="${current_locale}" key="locale.auction.end.time"/>:</span>
+										<div class="auctions_list_end_time">
+											<span class="auctions_list_info_text"><fmt:message bundle="${current_locale}" key="locale.auction.end.time"/>:</span>
 											<c:if test="${current.type == 'ONLINE' || current.status == 'COMPLETED' || current.status == 'PENDING_PAYMENT'}">
 												<span>${current.endTime}</span>
 											</c:if>
 										</div>
 									</c:if>
-									<div class="auction_list_type">
-										<span class="auction_list_info_text"><fmt:message bundle="${current_locale}" key="locale.auction.type"/>:</span>
+									<div class="auctions_list_type">
+										<span class="auctions_list_info_text"><fmt:message bundle="${current_locale}" key="locale.auction.type"/>:</span>
 										<c:if test="${current.type == 'ENGLISH'}">
 											<span><fmt:message bundle="${current_locale}" key="locale.auction.type.english"/></span>
 										</c:if>
@@ -174,12 +174,12 @@
 											<span><fmt:message bundle="${current_locale}" key="locale.auction.type.online"/></span>
 										</c:if>
 									</div>
-									<div class="auction_list_status">
-										<span class="auction_list_info_text"></span>
+									<div class="auctions_list_status">
+										<span class="auctions_list_info_text"></span>
 										<c:if test="${current.status == 'COMPLETED'}">
 											<span><fmt:message bundle="${current_locale}" key="locale.auction.status.completed"/></span>
-											<div class="auction_list_winner">
-												<span class="auction_list_info_text"><fmt:message bundle="${current_locale}" key="locale.auction.winner"/>:</span>
+											<div class="auctions_list_winner">
+												<span class="auctions_list_info_text"><fmt:message bundle="${current_locale}" key="locale.auction.winner"/>:</span>
 												<span>${current.lastBetUser }</span>
 											</div>	
 										</c:if>
@@ -188,8 +188,8 @@
 										</c:if>
 										<c:if test="${current.status == 'PENDING_PAYMENT'}">
 											<span><fmt:message bundle="${current_locale}" key="locale.auction.status.pending.payment"/></span>	
-											<div class="auction_list_winner">
-												<span class="auction_list_info_text"><fmt:message bundle="${current_locale}" key="locale.auction.winner"/>:</span>
+											<div class="auctions_list_winner">
+												<span class="auctions_list_info_text"><fmt:message bundle="${current_locale}" key="locale.auction.winner"/>:</span>
 												<span>${current.lastBetUser }</span>
 											</div>
 										</c:if>
@@ -200,7 +200,7 @@
 					</c:forEach>
 					<div class="col-md-12">
 						<c:if test="${requestScope.listType == 'list' }">
-							<div class="auction_list_navigation">
+							<div class="auctions_list_navigation text-center">
 								<c:if test="${auctions.currentPage > 1 }">
 									<div class="previous">
 										<form action="FrontController" method="GET">
@@ -225,7 +225,7 @@
 							</div>
 						</c:if>
 						<c:if test="${requestScope.listType == 'searchingBySearchLine' }">
-							<div class="auction_list_navigation">
+							<div class="auctions_list_navigation text-center">
 								<c:if test="${auctions.currentPage > 1 }">
 									<div class="previous">
 										<form action="FrontController" method="GET">
@@ -252,7 +252,7 @@
 							</div>
 						</c:if>
 						<c:if test="${requestScope.listType == 'searchingByLotType' }">
-							<div class="auction_list_navigation">
+							<div class="auctions_list_navigation text-center">
 								<c:if test="${auctions.currentPage > 1 }">
 									<div class="previous">
 										<form action="FrontController" method="GET">

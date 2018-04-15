@@ -23,8 +23,10 @@ public class GetUsersBySearching implements ServletCommand {
 	
 	private static final String SEARCH_LINE = "searchLine";
 	private static final String CHOOSEN_USERS_PAGE_NUMBER = "usersPageNumber";
-	
+	private static final String LIST_TYPE = "listType";
+	private static final String SEARCHING_BY_SEARCH_LINE = "searchingBySearchLine";
 	private static final String USERS_INFO = "usersInfo";
+	
 	private static final String ERROR_PAGE = "error.jsp";
 	private static final String CURRENT_PAGE = "user-list.jsp";
 	private static final String ACCESS_DENIED_PAGE = "access-denied.jsp";
@@ -46,6 +48,8 @@ public class GetUsersBySearching implements ServletCommand {
 			int page = Integer.valueOf((String)request.getParameter(CHOOSEN_USERS_PAGE_NUMBER));
 			UsersInfo usersInfo = service.getUsersByNameSearch(request.getParameter(SEARCH_LINE), page);
 			request.setAttribute(USERS_INFO, usersInfo);
+			request.setAttribute(SEARCH_LINE, request.getParameter(SEARCH_LINE));
+			request.setAttribute(LIST_TYPE, SEARCHING_BY_SEARCH_LINE);
 			request.getRequestDispatcher(CURRENT_PAGE).forward(request, response);
 		} catch (ServiceException e) {
 			logger.error("Error in GetUsersBySearching", e);

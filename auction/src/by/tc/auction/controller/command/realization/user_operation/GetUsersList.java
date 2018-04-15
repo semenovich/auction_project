@@ -20,8 +20,12 @@ public class GetUsersList implements ServletCommand {
 	private static final Logger logger = Logger.getLogger(GetUsersList.class);
 	
 	private static final String USER_ROLE = "userRole";
+	
 	private static final String CHOOSEN_USERS_PAGE_NUMBER = "usersPageNumber";
+	private static final String LIST_TYPE = "listType";
+	private static final String LIST = "list";
 	private static final String USERS_INFO = "usersInfo";
+	
 	private static final String ERROR_PAGE = "error.jsp";
 	private static final String CURRENT_PAGE = "user-list.jsp";
 	private static final String ACCESS_DENIED_PAGE = "access-denied.jsp";
@@ -42,6 +46,7 @@ public class GetUsersList implements ServletCommand {
 			}
 			int page = Integer.valueOf((String)request.getParameter(CHOOSEN_USERS_PAGE_NUMBER));
 			UsersInfo usersInfo = service.getUsers(page);
+			request.setAttribute(LIST_TYPE, LIST);
 			request.setAttribute(USERS_INFO, usersInfo);
 			request.getRequestDispatcher(CURRENT_PAGE).forward(request, response);
 		} catch (ServiceException e) {

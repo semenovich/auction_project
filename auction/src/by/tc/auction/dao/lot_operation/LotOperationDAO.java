@@ -16,4 +16,5 @@ public interface LotOperationDAO {
 	ArrayList<Lot> getLotsList(Locale locale) throws DAOException;
 	ArrayList<Lot> getLotsBySearching(String searchLine, Locale locale) throws DAOException;
 	ArrayList<Lot> getLotsByType(LotType lotType, Locale locale) throws DAOException;
+	ArrayList<Lot> getWaitingLots(Locale locale) throws DAOException;
 }

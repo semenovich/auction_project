@@ -90,58 +90,68 @@
 						        </form>
 					        </c:if>
 						</div>
-						<div class="col-md-7 col-md-offset-1 text-left user_login">
-							<h1>${user.login}</h1>
+						<div class="user_info col-md-7 col-md-offset-1">
+							<div class="text-left user_login">
+								<h1>${user.login}</h1>
+								<c:if test="${sessionScope.userRole == 'ADMIN' && user.role != 'ADMIN'}">
+									<c:if test="${!user.blocked}">
+										<form action="FrontController" method="POST">
+											<input type="hidden" name="command" value="BLOCK_USER"/>
+									    	<input type="hidden" name="userLogin" value="${user.login}"/>
+									    	<div class="col-md-3">
+											<button class="btn btn-md btn-primary btn-block" type="submit"><fmt:message bundle="${current_locale}" key="locale.admin.block"/></button>            
+									    	</div>
+									    </form>
+									</c:if>
+									<c:if test="${user.blocked}">
+										<form action="FrontController" method="POST">
+											<input type="hidden" name="command" value="UNBLOCK_USER"/>
+									    	<input type="hidden" name="userLogin" value="${user.login}"/>
+									    	<div class="col-md-3">
+												<button class="btn btn-md btn-primary btn-block" type="submit"><fmt:message bundle="${current_locale}" key="locale.admin.unblock"/></button>            
+									    	</div>	
+										</form>
+									</c:if>
+								</c:if>
+							</div>
+							<div class="text-left user_surname">
+								<span class="user_info_text"><fmt:message bundle="${current_locale}" key="locale.user.surname"/>:</span>
+								<span>${user.surname}</span>	
+							</div>
+							<div class="text-left user_name">
+								<span class="user_info_text"><fmt:message bundle="${current_locale}" key="locale.user.name"/>:</span>
+								<span>${user.name}</span>	
+							</div>
 							<c:if test="${sessionScope.userRole == 'ADMIN' && user.role != 'ADMIN'}">
+								<span class="user_info_text"><fmt:message bundle="${current_locale}" key="locale.user.blocked"/>:</span>
 								<c:if test="${!user.blocked}">
-									<form action="FrontController" method="POST">
-										<input type="hidden" name="command" value="BLOCK_USER"/>
-								    	<input type="hidden" name="userLogin" value="${user.login}"/>
-								    	<div class="col-md-3">
-										<button class="btn btn-md btn-primary btn-block" type="submit"><fmt:message bundle="${current_locale}" key="locale.lot.delete"/></button>            
-								    	</div>
-								    </form>
+									<fmt:message bundle="${current_locale}" key="locale.no"/>
 								</c:if>
 								<c:if test="${user.blocked}">
-									<form action="FrontController" method="POST">
-										<input type="hidden" name="command" value="UNBLOCK_USER"/>
-								    	<input type="hidden" name="userLogin" value="${user.login}"/>
-								    	<div class="col-md-3">
-											<button class="btn btn-md btn-primary btn-block" type="submit"><fmt:message bundle="${current_locale}" key="locale.lot.delete"/></button>            
-								    	</div>	
-									</form>
+									<fmt:message bundle="${current_locale}" key="locale.yes"/>
 								</c:if>
 							</c:if>
+							<div class="text-left user_email">
+								<span class="user_info_text"><fmt:message bundle="${current_locale}" key="locale.user.email"/>:</span>
+								<span>${user.email}</span>	
+							</div>
+							<div class="text-left user_phone">
+								<span class="user_info_text"><fmt:message bundle="${current_locale}" key="locale.user.phone"/>:</span>
+								<span>${user.phone}</span>	
+							</div>
+							<div class="text-left user_country">
+								<span class="user_info_text"><fmt:message bundle="${current_locale}" key="locale.user.country"/>:</span>
+								<c:if test="${user.country == 'Belarus'}">
+									<span><fmt:message bundle="${current_locale}" key="locale.belarus"/></span>
+								</c:if>
+								<c:if test="${user.country == 'Russia'}">
+									<span><fmt:message bundle="${current_locale}" key="locale.russia"/></span>
+								</c:if>
+								<c:if test="${user.country == 'USA'}">
+									<span><fmt:message bundle="${current_locale}" key="locale.usa"/></span>
+								</c:if>	
+							</div>
 						</div>
-						<div class="col-md-7 col-md-offset-1 text-left user_surname">
-							<span class="user_info_text"><fmt:message bundle="${current_locale}" key="locale.user.surname"/>:</span>
-							<span>${user.surname}</span>	
-						</div>
-						<div class="col-md-7 col-md-offset-1 text-left user_name">
-							<span class="user_info_text"><fmt:message bundle="${current_locale}" key="locale.user.name"/>:</span>
-							<span>${user.name}</span>	
-						</div>
-						<div class="col-md-7 col-md-offset-1 text-left user_email">
-							<span class="user_info_text"><fmt:message bundle="${current_locale}" key="locale.user.email"/>:</span>
-							<span>${user.email}</span>	
-						</div>
-						<div class="col-md-7 col-md-offset-1 text-left user_phone">
-							<span class="user_info_text"><fmt:message bundle="${current_locale}" key="locale.user.phone"/>:</span>
-							<span>${user.phone}</span>	
-						</div>
-						<div class="col-md-7 col-md-offset-1 text-left user_country">
-							<span class="user_info_text"><fmt:message bundle="${current_locale}" key="locale.user.country"/>:</span>
-							<c:if test="${user.country == 'Belarus'}">
-								<span><fmt:message bundle="${current_locale}" key="locale.belarus"/></span>
-							</c:if>
-							<c:if test="${user.country == 'Russia'}">
-								<span><fmt:message bundle="${current_locale}" key="locale.russia"/></span>
-							</c:if>
-							<c:if test="${user.country == 'USA'}">
-								<span><fmt:message bundle="${current_locale}" key="locale.usa"/></span>
-							</c:if>	
-						</div>
-						
 					</div>
 					<c:if test="${requestScope.userLogin == sessionScope.userLogin}">		
 						<div id="user_edit" class="tab-pane fade">
@@ -197,6 +207,7 @@
 											<button class="btn btn-lg btn-primary btn-block" type="submit"><fmt:message bundle="${current_locale}" key="locale.user.edit"/></button>            
 						    			</div>
 						    		</div>
+						    		
 					    		</form>
 					    	</div>
 						</div>
@@ -461,6 +472,7 @@
 												</div>
 											</c:if>
 										</div>
+										
 									</div>
 								</button>
 							</form>

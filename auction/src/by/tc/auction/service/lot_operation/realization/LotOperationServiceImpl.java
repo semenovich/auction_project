@@ -100,6 +100,16 @@ public class LotOperationServiceImpl implements LotOperationService {
 	}
 
 	@Override
+	public LotsInfo getWaitingLots(Locale locale, int page) throws ServiceException {
+		try {
+			ArrayList<Lot> lots = lotOperationDAO.getWaitingLots(locale);
+			return lotPortionGetter.getLotsPortion(lots, page);
+		} catch (DAOException e) {
+			throw new ServiceException(e.getMessage(), e.getCause());
+		}
+	}
+
+	@Override
 	public boolean uploadLotImage(Integer lotId, String imagePath) throws ServiceException {
 		try {
 			return lotOperationDAO.uploadLotImage(lotId, imagePath);

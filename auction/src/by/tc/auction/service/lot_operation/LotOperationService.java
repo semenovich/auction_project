@@ -16,4 +16,5 @@ public interface LotOperationService {
 	LotsInfo getLotsList(Locale locale, int page) throws ServiceException;
 	LotsInfo getLotsBySearching(String searchLine, Locale locale, int page) throws ServiceException;
 	LotsInfo getLotsByType(LotType lotType, Locale locale, int page) throws ServiceException;
+	LotsInfo getWaitingLots(Locale locale, int page) throws ServiceException;
 }

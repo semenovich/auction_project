@@ -53,6 +53,10 @@
         <class>by.tc.auction.controller.command.realization.lot_operation.GetLotsList</class>
     </command>
     <command>
+        <name>GET_WAITING_LOTS</name>
+        <class>by.tc.auction.controller.command.realization.lot_operation.GetWaitingLots</class>
+    </command>
+    <command>
         <name>GET_LOTS_BY_SEARCHING</name>
         <class>by.tc.auction.controller.command.realization.lot_operation.GetLotsBySearching</class>
     </command>
