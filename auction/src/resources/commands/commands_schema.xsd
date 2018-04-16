@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tc.com" xmlns:tns="http://www.tc.com" elementFormDefault="qualified">
+<element name="commands">
+	<complexType>
+  		<choice maxOccurs="unbounded">
+			<element name="command">
+  				<complexType>
+    				<sequence>
+     					<element name="name">
+     						<simpleType>
+    							<restriction base="string">
+      								<pattern value="[A-Z_]+"/>
+    							</restriction>
+  							</simpleType>
+     					</element>
+     					<element name="class">
+     						<simpleType>
+    							<restriction base="string">
+      								<pattern value="by\.tc\.auction\.controller\.command\.realization\.[a-z_]+\.[A-Za-z]+"/>
+    							</restriction>
+  							</simpleType>
+     					</element>
+    				</sequence>
+  				</complexType>
+			</element>
+		</choice>
+  	</complexType>
+</element>
+</schema>

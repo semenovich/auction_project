@@ -235,7 +235,7 @@
     <servlet-name>Blocked</servlet-name>
     <url-pattern>/blocked.jsp</url-pattern>
   </servlet-mapping>
-  <servlet>
+  <servlet> 
     <servlet-name>AccessDenied</servlet-name>
     <jsp-file>/jsp/errors/access-denied.jsp</jsp-file>
   </servlet>

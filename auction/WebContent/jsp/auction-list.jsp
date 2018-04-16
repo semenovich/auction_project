@@ -133,7 +133,7 @@
 								</div>
 								<div id="auctions_list_info" class="col-md-7 col-md-offset-1 text-left">
 									<div class="auctions_list_name">
-										<span><h1>${current.lot.name }</h1></span>
+										<span><p>${current.lot.name }</p></span>
 									</div>
 									<div class="auctions_list_lot_type">
 										<span class="auctions_list_lot_info_text"><fmt:message bundle="${current_locale}" key="locale.lot.type"/>:</span>

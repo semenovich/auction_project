@@ -140,8 +140,8 @@
 										<img src="${current.picture }"/>
 									</div>
 									<div id="lots_list_info" class="col-md-7 col-md-offset-1 text-left">
-										<div class="lots_list_name">
-											<span><h1>${current.name }</h1></span>
+										<div class="lots_list_name" style="white-space: normal">
+											<span><p>${current.name }</p></span>
 										</div>
 										<div class="lots_list_type">
 											<span class="lots_list_info_text"><fmt:message bundle="${current_locale}" key="locale.lot.type"/>:</span>

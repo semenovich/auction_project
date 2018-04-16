@@ -59,7 +59,7 @@
 									</div>
 									<div class="user_list_info col-md-7 col-md-offset-1">
 										<div class="text-left user_login">
-											<h1>${current.login}</h1>
+											<p>${current.login}</p>
 										</div>
 										<div class="text-left user_surname">
 											<span class="user_info_text"><fmt:message bundle="${current_locale}" key="locale.user.surname"/>:</span>

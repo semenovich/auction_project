@@ -92,7 +92,7 @@
 						</div>
 						<div class="user_info col-md-7 col-md-offset-1">
 							<div class="text-left user_login">
-								<h1>${user.login}</h1>
+								<p>${user.login}</p>
 								<c:if test="${sessionScope.userRole == 'ADMIN' && user.role != 'ADMIN'}">
 									<c:if test="${!user.blocked}">
 										<form action="FrontController" method="POST">
@@ -239,7 +239,7 @@
 									</div>
 									<div id="user_lot_info" class="col-md-7 col-md-offset-1 text-left">
 										<div class="user_lot_name">
-											<span><h1>${current.name }</h1></span>
+											<span><p>${current.name }</p></span>
 										</div>
 										<div class="user_lot_type">
 											<span class="user_lot_info_text"><fmt:message bundle="${current_locale}" key="locale.lot.type"/>:</span>
@@ -335,7 +335,7 @@
 									</div>
 									<div id="user_lot_info" class="col-md-7 col-md-offset-1 text-left">
 										<div class="user_lot_name">
-											<span><h1>${current.name }</h1></span>
+											<span><p>${current.name }</p></span>
 										</div>
 										<div class="user_lot_type">
 											<span class="user_lot_info_text"><fmt:message bundle="${current_locale}" key="locale.lot.type"/>:</span>
@@ -411,7 +411,7 @@
 									</div>
 									<div id="user_auction_info" class="col-md-7 col-md-offset-1 text-left">
 										<div class="user_auction_name">
-											<span><h1>${current.lot.name }</h1></span>
+											<span><p>${current.lot.name }</p></span>
 										</div>
 										<div class="user_auction_lot_type">
 											<span class="user_auction_lot_info_text"><fmt:message bundle="${current_locale}" key="locale.lot.type"/>:</span>

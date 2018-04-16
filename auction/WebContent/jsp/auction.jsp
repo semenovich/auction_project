@@ -43,7 +43,7 @@
 						<img src="${auction.lot.picture }"/>
 					</div>
 					<div class="col-md-7 col-md-offset-1 text-left auction_name">
-						<h1>${auction.lot.name }</h1>		
+						<p>${auction.lot.name }</p>		
 					</div>
 					<div class="col-md-7 col-md-offset-1 text-left auction_lot">
 						<span><fmt:message bundle="${current_locale}" key="locale.lot"/>:</span>

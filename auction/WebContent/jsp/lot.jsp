@@ -79,7 +79,7 @@
 						    </c:if>
 						</div>
 						<div class="col-md-7 col-md-offset-1 text-left lot_name">
-							<h1>${lot.name }</h1>
+							<p>${lot.name }</p>
 							<c:if test="${sessionScope.userLogin == 'ADMIN' && lot.status == 'CONFIRMING'}">
 								<form action="FrontController" method="POST">
 									<input type="hidden" name="command" value="BLOCK_LOT"/>
