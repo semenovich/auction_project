@@ -7,6 +7,7 @@
 <head>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/style.css"/>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<fmt:setLocale value="${sessionScope.locale}"/>
@@ -17,22 +18,22 @@
 	<title><fmt:message bundle="${current_locale}" key="locale.register.registration"/></title>
 </head>
 <body>
+	<c:if test="${requestScope.isUserExists}">
+		<div id="register_user_existance_text">
+			<p><fmt:message bundle="${current_locale}" key="locale.register.user.exists"/></p>
+		</div>
+	</c:if>
+	<c:if test="${requestScope.isUserDataInvalid}">
+		<div id="register_data_invalid_text">
+			<p><fmt:message bundle="${current_locale}" key="locale.register.data.invalid"/></p>
+		</div>
+	</c:if>
+	<c:if test="${!requestScope.isUserDataInvalid}">
+		<div id="register_data_invalid_text" style="display: none;">
+			<p><fmt:message bundle="${current_locale}" key="locale.register.data.invalid"/></p>
+		</div>
+	</c:if>
 	<div class="container">
-		<c:if test="${requestScope.isUserExists}">
-			<div id="register_user_existance_text">
-				<p><fmt:message bundle="${current_locale}" key="locale.register.user.exists"/></p>
-			</div>
-		</c:if>
-		<c:if test="${requestScope.isUserDataInvalid}">
-			<div id="register_data_invalid_text">
-				<p><fmt:message bundle="${current_locale}" key="locale.register.data.invalid"/></p>
-			</div>
-		</c:if>
-		<c:if test="${!requestScope.isUserDataInvalid}">
-			<div id="register_data_invalid_text" style="visibility: hidden; display:inline;">
-				<p><fmt:message bundle="${current_locale}" key="locale.register.data.invalid"/></p>
-			</div>
-		</c:if>
 		<div class="register_language col-md-2 col-md-offset-5">
 			<form action="FrontController">
 		        <input type="hidden" name="command" value="CHANGE_LOCALE"/>

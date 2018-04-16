@@ -74,7 +74,7 @@
 											<button class="btn-success btn-md" type="submit"><fmt:message bundle="${current_locale}" key="locale.change"/></button>            
 								    	</div>
 							        </div>
-							        <input type="hidden" name="userLogin" value="${requestScope.userLogin }">
+							        <input type="hidden" name="lotId" value="${lot.id }">
 							    </form>
 						    </c:if>
 						</div>
@@ -173,12 +173,6 @@
 									<input type="hidden" name="lotOwner" value="${lot.owner }">
 									<input type="hidden" name="lotQuantity" value="${lot.quantity }"/>
 									<div class="col-md-3 text-right">
-										<label for='lotPicture'><fmt:message bundle="${current_locale}" key="locale.lot.picture"/>:</label>
-							    	</div>
-							    	<div class="col-md-9">
-										<input type='text' id='lotName' class="form-control" name='lotName' value="${lot.name}" placeholder=<fmt:message bundle="${current_locale}" key="locale.lot.name"/> required />			
-									</div>
-							    	<div class="col-md-3 text-right">
 										<label for='lotDescription'><fmt:message bundle="${current_locale}" key="locale.lot.description"/>:</label>
 							    	</div>
 							    	<div class="col-md-9">

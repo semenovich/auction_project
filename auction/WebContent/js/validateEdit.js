@@ -1,5 +1,4 @@
-const FORM_CLASS = "register_form";
-const LOGIN_ID = "userLogin";
+const FORM_CLASS = "user_edit_form";
 const PHONE_ID = "userPhone";
 const EMAIL_ID = "userEmail";
 
@@ -7,11 +6,6 @@ const MESSAGE_BLOCK_ID = "register_data_invalid_text";
 const USER_EXISTS_MESSAGE_ID = "register_user_existance_text";
 
 function validate(){
-    var loginRegex = /^\w+$/;
-    if (!loginRegex.test(document.getElementById(LOGIN_ID).value)){
-        invalidInput();
-        return false;
-    }
 
     var emailRegex = /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
     if (!emailRegex.test(document.getElementById(EMAIL_ID).value)){

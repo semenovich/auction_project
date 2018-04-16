@@ -9,6 +9,7 @@
 	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/style.css"/>
 	<meta http-equiv="Content-Type" content="text/html; UTF-8">
 	<fmt:setLocale value="${sessionScope.locale}"/>
 	<c:if test="${sessionScope.locale == null}">
@@ -26,41 +27,43 @@
 			</div>
 		</div>
 		<c:if test="${requestScope.userLogin == sessionScope.userLogin}">
-			<ul class="nav nav-pills">
-				<li class="active">
-	          		<form action="FrontController" method="GET">
-						<input type="hidden" name="command" value="GET_USER_INFO"/>
-						<input type="hidden" name="userLogin" value="${requestScope.userLogin}"/>
-						<button type="submit" class="btn"><fmt:message bundle="${current_locale}" key="locale.header.profile"/></button>
-					</form>
-	           	</li>
-		           <li>
-		           	<form action="FrontController" method="GET">
-						<input type="hidden" name="command" value="GET_USER_LOTS"/>
-						<input type="hidden" name="userLogin" value="${requestScope.userLogin}"/>
-						<input type="hidden" name="choosenLotsPageNumber" value="1"/>
-						<button type="submit" class="btn"><fmt:message bundle="${current_locale}" key="locale.user.lots.button"/></button>
-					</form>
-		           </li>
-		           <li>
-		           	<form action="FrontController" method="GET">
-						<input type="hidden" name="command" value="GET_USER_WIN_LOTS"/>
-						<input type="hidden" name="userLogin" value="${requestScope.userLogin}"/>
-						<input type="hidden" name="choosenLotsPageNumber" value="1"/>
-						<button type="submit" class="btn"><fmt:message bundle="${current_locale}" key="locale.user.win.lots"/></button>
-					</form>
-		           </li>
-		           <li>
-					<form action="FrontController" method="GET">
-						<input type="hidden" name="command" value="GET_USER_AUCTION_PARTICIPATIONS"/>
-						<input type="hidden" name="userLogin" value="${requestScope.userLogin}"/>
-						<input type="hidden" name="choosenAuctionsPageNumber" value="1"/>
-						<button type="submit" class="btn"><fmt:message bundle="${current_locale}" key="locale.user.participations.button"/></button>
-					</form>
-				</li>
-			</ul>
+			<div class="row">
+				<ul class="user_nav_panel nav nav-pills">
+					<li class="active">
+		          		<form action="FrontController" method="GET">
+							<input type="hidden" name="command" value="GET_USER_INFO"/>
+							<input type="hidden" name="userLogin" value="${requestScope.userLogin}"/>
+							<button type="submit" class="btn"><fmt:message bundle="${current_locale}" key="locale.header.profile"/></button>
+						</form>
+		           	</li>
+			           <li>
+			           	<form action="FrontController" method="GET">
+							<input type="hidden" name="command" value="GET_USER_LOTS"/>
+							<input type="hidden" name="userLogin" value="${requestScope.userLogin}"/>
+							<input type="hidden" name="choosenLotsPageNumber" value="1"/>
+							<button type="submit" class="btn"><fmt:message bundle="${current_locale}" key="locale.user.lots.button"/></button>
+						</form>
+			           </li>
+			           <li>
+			           	<form action="FrontController" method="GET">
+							<input type="hidden" name="command" value="GET_USER_WIN_LOTS"/>
+							<input type="hidden" name="userLogin" value="${requestScope.userLogin}"/>
+							<input type="hidden" name="choosenLotsPageNumber" value="1"/>
+							<button type="submit" class="btn"><fmt:message bundle="${current_locale}" key="locale.user.win.lots"/></button>
+						</form>
+			           </li>
+			           <li>
+						<form action="FrontController" method="GET">
+							<input type="hidden" name="command" value="GET_USER_AUCTION_PARTICIPATIONS"/>
+							<input type="hidden" name="userLogin" value="${requestScope.userLogin}"/>
+							<input type="hidden" name="choosenAuctionsPageNumber" value="1"/>
+							<button type="submit" class="btn"><fmt:message bundle="${current_locale}" key="locale.user.participations.button"/></button>
+						</form>
+					</li>
+				</ul>
+			</div>
 		</c:if>
-		<div class="user_info_panel">
+		<div class="row user_info_panel">
 			<c:if test="${requestScope.user != null}">
 				<c:if test="${requestScope.isUserDataInvalid == true}">
 					<div id="user_edit_info_invalid_message">
@@ -68,7 +71,7 @@
 					</div>
 				</c:if>
 				<c:if test="${requestScope.isUserDataInvalid != true}">
-					<div id="user_edit_info_invalid_message" style="visibility: hidden; display:inline;">
+					<div id="user_edit_info_invalid_message" style="display: none;">
 						<p><fmt:message bundle="${current_locale}" key="locale.user.edit.invalid.data"/></p>
 					</div>
 				</c:if>
@@ -83,36 +86,38 @@
 						            <div class="form-group">
 						                <input type="file" accept=".jpg,.jpeg" class="form-control-file" id="choose" name="image"/>
 						                <div class="col-md-4">
-											<button class="btn-success btn-md" type="submit"><fmt:message bundle="${current_locale}" key="locale.change"/></button>            
+											<button class="btn-md" type="submit"><fmt:message bundle="${current_locale}" key="locale.change"/></button>            
 							    		</div>
 						            </div>
-						            <input type="hidden" name="userLogin" value="${requestScope.userLogin }">
+						            <input type="hidden" name="userLogin" value="${user.login }">
 						        </form>
 					        </c:if>
 						</div>
 						<div class="user_info col-md-7 col-md-offset-1">
 							<div class="text-left user_login">
-								<p>${user.login}</p>
-								<c:if test="${sessionScope.userRole == 'ADMIN' && user.role != 'ADMIN'}">
-									<c:if test="${!user.blocked}">
-										<form action="FrontController" method="POST">
-											<input type="hidden" name="command" value="BLOCK_USER"/>
-									    	<input type="hidden" name="userLogin" value="${user.login}"/>
-									    	<div class="col-md-3">
-											<button class="btn btn-md btn-primary btn-block" type="submit"><fmt:message bundle="${current_locale}" key="locale.admin.block"/></button>            
-									    	</div>
-									    </form>
+								<div class="row">
+									<p class="col-md-8">${user.login}</p>
+									<c:if test="${sessionScope.userRole == 'ADMIN' && user.role != 'ADMIN'}">
+										<c:if test="${!user.blocked}">
+											<form action="FrontController" method="POST">
+												<input type="hidden" name="command" value="BLOCK_USER"/>
+										    	<input type="hidden" name="userLogin" value="${user.login}"/>
+										    	<div class="col-md-4">
+													<button class="btn btn-md btn-primary btn-block" type="submit"><fmt:message bundle="${current_locale}" key="locale.admin.block"/></button>            
+										    	</div>
+										    </form>
+										</c:if>
+										<c:if test="${user.blocked}">
+											<form action="FrontController" method="POST">
+												<input type="hidden" name="command" value="UNBLOCK_USER"/>
+										    	<input type="hidden" name="userLogin" value="${user.login}"/>
+										    	<div>
+													<button class="btn btn-md btn-primary btn-block" type="submit"><fmt:message bundle="${current_locale}" key="locale.admin.unblock"/></button>            
+										    	</div>	
+											</form>
+										</c:if>
 									</c:if>
-									<c:if test="${user.blocked}">
-										<form action="FrontController" method="POST">
-											<input type="hidden" name="command" value="UNBLOCK_USER"/>
-									    	<input type="hidden" name="userLogin" value="${user.login}"/>
-									    	<div class="col-md-3">
-												<button class="btn btn-md btn-primary btn-block" type="submit"><fmt:message bundle="${current_locale}" key="locale.admin.unblock"/></button>            
-									    	</div>	
-										</form>
-									</c:if>
-								</c:if>
+								</div>
 							</div>
 							<div class="text-left user_surname">
 								<span class="user_info_text"><fmt:message bundle="${current_locale}" key="locale.user.surname"/>:</span>
@@ -125,10 +130,10 @@
 							<c:if test="${sessionScope.userRole == 'ADMIN' && user.role != 'ADMIN'}">
 								<span class="user_info_text"><fmt:message bundle="${current_locale}" key="locale.user.blocked"/>:</span>
 								<c:if test="${!user.blocked}">
-									<fmt:message bundle="${current_locale}" key="locale.no"/>
+									<span><fmt:message bundle="${current_locale}" key="locale.no"/></span>
 								</c:if>
 								<c:if test="${user.blocked}">
-									<fmt:message bundle="${current_locale}" key="locale.yes"/>
+									<span><fmt:message bundle="${current_locale}" key="locale.yes"/></span>
 								</c:if>
 							</c:if>
 							<div class="text-left user_email">
@@ -156,10 +161,10 @@
 					<c:if test="${requestScope.userLogin == sessionScope.userLogin}">		
 						<div id="user_edit" class="tab-pane fade">
 							<div class="col-md-6 col-md-offset-2">
-								<form class="edit_form" action="FrontController" method="POST" onsubmit="validate(); return false">
+								<form class="user_edit_form" action="FrontController" method="POST" onsubmit="validate(); return false">
 									<input type="hidden" name="command" value="EDIT_USER_INFO"/>
 								    <input type="hidden" name="userLogin" value="${user.login}"/>
-								    <h2 class="edit_form_heading"><fmt:message bundle="${current_locale}" key="locale.user.edit"/></h2>
+								    <p class="user_edit_form_heading text-center"><fmt:message bundle="${current_locale}" key="locale.user.edit"/></p>
 									<div class="col-md-4 text-right">
 										<label for='userPassword'><fmt:message bundle="${current_locale}" key="locale.user.password"/>:</label>
 						    		</div>
@@ -226,10 +231,10 @@
 			</c:if>
 			<c:if test="${requestScope.userLotsInfo != null}">
 				<c:set var="lots" value="${requestScope.userLotsInfo}"/>
-				<p class="user_lots_text"><fmt:message bundle="${current_locale}" key="locale.user.lots.button"/></p>	
+				<p class="user_lots_text text-center"><fmt:message bundle="${current_locale}" key="locale.user.lots.button"/></p>	
 				<c:if test="${not empty lots.lots}">
 					<c:forEach items="${lots.lots}" var="current">
-						<div class="row col-md-12">
+						<div class="user_lot row col-md-12">
 							<form action="FrontController" method="GET">
 								<input type="hidden" name="command" value="GET_LOT_INFO"/>
 								<input type="hidden" name="lotId" value="${current.id}"/>
@@ -239,7 +244,7 @@
 									</div>
 									<div id="user_lot_info" class="col-md-7 col-md-offset-1 text-left">
 										<div class="user_lot_name">
-											<span><p>${current.name }</p></span>
+											<p>${current.name }</p>
 										</div>
 										<div class="user_lot_type">
 											<span class="user_lot_info_text"><fmt:message bundle="${current_locale}" key="locale.lot.type"/>:</span>
@@ -288,12 +293,12 @@
 					</c:forEach>
 				</c:if>
 				<c:if test="${empty lots.lots}">
-					<div class="user_not_found">
+					<div class="user_not_found text-center">
 						<p><fmt:message bundle="${current_locale}" key="locale.not.found"/></p>
 					</div>
 				</c:if>
 				<div class="col-md-12">
-					<div class="user_lots_navigation">
+					<div class="user_lots_navigation text-center">
 						<c:if test="${lots.currentPage > 1 }">
 							<div class="previous">
 								<form action="FrontController" method="GET">
@@ -322,10 +327,10 @@
 			</c:if>
 			<c:if test="${requestScope.userWinLotsInfo != null}">
 				<c:set var="lots" value="${requestScope.userWinLotsInfo}"/>
-				<p class="user_lots_text"><fmt:message bundle="${current_locale}" key="locale.user.win.lots"/></p>
+				<p class="user_lots_text text-center"><fmt:message bundle="${current_locale}" key="locale.user.win.lots"/></p>
 				<c:if test="${not empty lots.lots}">
 					<c:forEach items="${lots.lots}" var="current">
-						<div class="row col-md-12">
+						<div class="user_lot row col-md-12">
 							<form action="FrontController" method="GET">
 								<input type="hidden" name="command" value="GET_LOT_INFO"/>
 								<input type="hidden" name="lotId" value="${current.id}"/>
@@ -335,7 +340,7 @@
 									</div>
 									<div id="user_lot_info" class="col-md-7 col-md-offset-1 text-left">
 										<div class="user_lot_name">
-											<span><p>${current.name }</p></span>
+											<p>${current.name }</p>
 										</div>
 										<div class="user_lot_type">
 											<span class="user_lot_info_text"><fmt:message bundle="${current_locale}" key="locale.lot.type"/>:</span>
@@ -366,12 +371,12 @@
 					</c:forEach>
 				</c:if>
 				<c:if test="${empty lots.lots}">
-					<div class="user_not_found">
+					<div class="user_not_found text-center">
 						<p><fmt:message bundle="${current_locale}" key="locale.not.found"/></p>
 					</div>
 				</c:if>
 				<div class="col-md-12">
-					<div class="user_lots_navigation">
+					<div class="user_lots_navigation text-center">
 						<c:if test="${lots.currentPage > 1 }">
 							<div class="previous">
 								<form action="FrontController" method="GET">
@@ -399,92 +404,95 @@
 				</div>
 			</c:if>
 			<c:if test="${requestScope.userAuctionParticipationsInfo != null}">
+				<p class="user_participations_text text-center"><fmt:message bundle="${current_locale}" key="locale.user.participations.button"/></p>
 				<c:set var="auctions" value="${requestScope.userAuctionParticipationsInfo}"/>
 					<c:if test="${not empty auctions.auctions}">
 						<c:forEach items="${auctions.auctions}" var="current">
-							<form action="FrontController" method="GET">
-								<input type="hidden" name="command" value="GET_AUCTION_INFO"/>
-								<input type="hidden" name="auctionId" value="${current.id}"/>
-								<button type="submit" class="btn btn col-md-8 col-md-offset-2">
-									<div class="user_auction_img col-md-4">
-										<img src="${current.lot.picture }"/>
-									</div>
-									<div id="user_auction_info" class="col-md-7 col-md-offset-1 text-left">
-										<div class="user_auction_name">
-											<span><p>${current.lot.name }</p></span>
+							<div class="user_auction">
+								<form action="FrontController" method="GET">
+									<input type="hidden" name="command" value="GET_AUCTION_INFO"/>
+									<input type="hidden" name="auctionId" value="${current.id}"/>
+									<button type="submit" class="btn btn col-md-8 col-md-offset-2">
+										<div class="user_auction_img col-md-4">
+											<img src="${current.lot.picture }"/>
 										</div>
-										<div class="user_auction_lot_type">
-											<span class="user_auction_lot_info_text"><fmt:message bundle="${current_locale}" key="locale.lot.type"/>:</span>
-											<c:if test="${current.lot.type == 'CAR'}">
-												<span><fmt:message bundle="${current_locale}" key="locale.lot.type.car"/></span>
-											</c:if>
-											<c:if test="${current.lot.type == 'JET'}">
-												<span><fmt:message bundle="${current_locale}" key="locale.lot.type.jet"/></span>
-											</c:if>
-											<c:if test="${current.lot.type == 'ART'}">
-												<span><fmt:message bundle="${current_locale}" key="locale.lot.type.art"/></span>
-											</c:if>
-											<c:if test="${current.lot.type == 'REALTY'}">
-												<span><fmt:message bundle="${current_locale}" key="locale.lot.type.realty"/></span>
-											</c:if>
-											<c:if test="${current.lot.type == 'SPORT'}">
-												<span><fmt:message bundle="${current_locale}" key="locale.lot.type.sport"/></span>
-											</c:if>
-										</div>
-										<div class="user_auction_start_time">
-											<span class="user_auction_info_text"><fmt:message bundle="${current_locale}" key="locale.auction.start.time"/>:</span>
-											<span>${current.startTime}</span>
-										</div>
-										<c:if test="${current.status == 'PENDING_PAYMENT' || current.status == 'COMPLETED'}">
-											<div class="user_auction_end_time">
-												<span class="user_auction_info_text"><fmt:message bundle="${current_locale}" key="locale.auction.end.time"/>:</span>
-												<c:if test="${current.type == 'ONLINE' || current.status == 'COMPLETED' || current.status == 'PENDING_PAYMENT'}">
-													<span>${current.endTime}</span>
+										<div id="user_auction_info" class="col-md-7 col-md-offset-1 text-left">
+											<div class="user_auction_name">
+												<p>${current.lot.name }</p>
+											</div>
+											<div class="user_auction_lot_type">
+												<span class="user_auction_info_text"><fmt:message bundle="${current_locale}" key="locale.lot.type"/>:</span>
+												<c:if test="${current.lot.type == 'CAR'}">
+													<span><fmt:message bundle="${current_locale}" key="locale.lot.type.car"/></span>
+												</c:if>
+												<c:if test="${current.lot.type == 'JET'}">
+													<span><fmt:message bundle="${current_locale}" key="locale.lot.type.jet"/></span>
+												</c:if>
+												<c:if test="${current.lot.type == 'ART'}">
+													<span><fmt:message bundle="${current_locale}" key="locale.lot.type.art"/></span>
+												</c:if>
+												<c:if test="${current.lot.type == 'REALTY'}">
+													<span><fmt:message bundle="${current_locale}" key="locale.lot.type.realty"/></span>
+												</c:if>
+												<c:if test="${current.lot.type == 'SPORT'}">
+													<span><fmt:message bundle="${current_locale}" key="locale.lot.type.sport"/></span>
 												</c:if>
 											</div>
-										</c:if>
-										<div class="user_auction_type">
-											<span class="user_auction_info_text"><fmt:message bundle="${current_locale}" key="locale.auction.type"/>:</span>
-											<c:if test="${current.type == 'ENGLISH'}">
-												<span><fmt:message bundle="${current_locale}" key="locale.auction.type.english"/></span>
-											</c:if>
-											<c:if test="${current.type == 'ONLINE'}">
-												<span><fmt:message bundle="${current_locale}" key="locale.auction.type.online"/></span>
-											</c:if>
-										</div>
-										<div class="user_auction_status">
-											<span class="user_auction_info_text"></span>
-											<c:if test="${current.status == 'COMPLETED'}">
-												<span><fmt:message bundle="${current_locale}" key="locale.auction.status.completed"/></span>
-												<div class="user_auction_winner">
-													<span class="user_auction_info_text"><fmt:message bundle="${current_locale}" key="locale.auction.winner"/>:</span>
-													<span>${current.lastBetUser }</span>
-												</div>	
-											</c:if>
-											<c:if test="${current.status == 'ACTIVE'}">
-												<span><fmt:message bundle="${current_locale}" key="locale.auction.status.active"/></span>	
-											</c:if>
-											<c:if test="${current.status == 'PENDING_PAYMENT'}">
-												<span><fmt:message bundle="${current_locale}" key="locale.auction.status.pending.payment"/></span>	
-												<div class="user_auction_winner">
-													<span class="user_auction_info_text"><fmt:message bundle="${current_locale}" key="locale.auction.winner"/>:</span>
-													<span>${current.lastBetUser }</span>
+											<div class="user_auction_start_time">
+												<span class="user_auction_info_text"><fmt:message bundle="${current_locale}" key="locale.auction.start.time"/>:</span>
+												<span>${current.startTime}</span>
+											</div>
+											<c:if test="${current.status == 'PENDING_PAYMENT' || current.status == 'COMPLETED'}">
+												<div class="user_auction_end_time">
+													<span class="user_auction_info_text"><fmt:message bundle="${current_locale}" key="locale.auction.end.time"/>:</span>
+													<c:if test="${current.type == 'ONLINE' || current.status == 'COMPLETED' || current.status == 'PENDING_PAYMENT'}">
+														<span>${current.endTime}</span>
+													</c:if>
 												</div>
 											</c:if>
+											<div class="user_auction_type">
+												<span class="user_auction_info_text"><fmt:message bundle="${current_locale}" key="locale.auction.type"/>:</span>
+												<c:if test="${current.type == 'ENGLISH'}">
+													<span><fmt:message bundle="${current_locale}" key="locale.auction.type.english"/></span>
+												</c:if>
+												<c:if test="${current.type == 'ONLINE'}">
+													<span><fmt:message bundle="${current_locale}" key="locale.auction.type.online"/></span>
+												</c:if>
+											</div>
+											<div class="user_auction_status">
+												<span class="user_auction_info_text"></span>
+												<c:if test="${current.status == 'COMPLETED'}">
+													<span><fmt:message bundle="${current_locale}" key="locale.auction.status.completed"/></span>
+													<div class="user_auction_winner">
+														<span class="user_auction_info_text"><fmt:message bundle="${current_locale}" key="locale.auction.winner"/>:</span>
+														<span>${current.lastBetUser }</span>
+													</div>	
+												</c:if>
+												<c:if test="${current.status == 'ACTIVE'}">
+													<span><fmt:message bundle="${current_locale}" key="locale.auction.status.active"/></span>	
+												</c:if>
+												<c:if test="${current.status == 'PENDING_PAYMENT'}">
+													<span><fmt:message bundle="${current_locale}" key="locale.auction.status.pending.payment"/></span>	
+													<div class="user_auction_winner">
+														<span class="user_auction_info_text"><fmt:message bundle="${current_locale}" key="locale.auction.winner"/>:</span>
+														<span>${current.lastBetUser }</span>
+													</div>
+												</c:if>
+											</div>
+											
 										</div>
-										
-									</div>
-								</button>
-							</form>
+									</button>
+								</form>
+							</div>
 						</c:forEach>
 					</c:if>
 					<c:if test="${empty auctions.auctions}">
-						<div class="user_not_found">
+						<div class="user_not_found text-center">
 							<p><fmt:message bundle="${current_locale}" key="locale.not.found"/></p>
 						</div>
 					</c:if>
 					<div class="col-md-12">
-						<div class="user_participations_navigation">
+						<div class="user_participations_navigation text-center">
 							<c:if test="${auctions.currentPage > 1 }">
 								<div class="previous">
 									<form action="FrontController" method="GET">
@@ -514,6 +522,6 @@
 		</div>
 	</div>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	
+	<script src="js/validateEdit.js"></script>
 </body>
 </html>
