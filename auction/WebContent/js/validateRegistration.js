@@ -29,8 +29,8 @@ function validate(){
 
 function invalidInput(){
     event.preventDefault();
-    if (document.getElementById(USER_DOESNT_EXIST_MESSAGE_ID) != null) {
-        document.getElementById(USER_DOESNT_EXIST_MESSAGE_ID).style.display = 'none';
+    if (document.getElementById(USER_EXISTS_MESSAGE_ID) != null) {
+        document.getElementById(USER_EXISTS_MESSAGE_ID).style.display = 'none';
     }
     document.getElementById(MESSAGE_BLOCK_ID).style.display = 'block';
     return;

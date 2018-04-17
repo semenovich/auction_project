@@ -1,111 +1,112 @@
 @charset "UTF-8";
 
-body{
+body {
 	background-image: url(../img/background.jpg) !important;
-    background-repeat: repeat;
+	background-repeat: repeat;
 }
 
-nav{
+nav {
 	width: 100% !important;
 	margin-top: 8px;
-    font-size: 12pt;
-    font-weight: bold !important;
-    background: #ffdb4d !important;
-    box-shadow: 0px 3px 6px rgba(0,0,0,0.3) !important;
+	font-size: 12pt;
+	font-weight: bold !important;
+	background: #ffdb4d !important;
+	box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.3) !important;
 }
 
-.header button{
-    border: none;
-    background: none;
-    font-weight: bold !important;
-    padding: 14px;
-    color: #333;
-    font-size: 12pt;
+.header button {
+	border: none;
+	background: none;
+	font-weight: bold !important;
+	padding: 14px;
+	color: #333;
+	font-size: 12pt;
 }
 
-.header button:hover{
+.header button:hover {
 	opacity: .8;
 }
 
-.header select{
-    margin-top: 8px;    
+.header select {
+	margin-top: 8px;
 }
 
-.header a{
-    color: #333 !important;
+.header a {
+	color: #333 !important;
 }
 
-.header a:hover{
+.header a:hover {
 	opacity: .6;
 }
 
-#login_user_existance_text, #login_data_invalid_text, #register_user_existance_text, #register_data_invalid_text{
-    color: white;
-    background: red;
-    text-align: center;
-    font-size: 14pt;
-    font-weight: bold;
+#login_user_existance_text, #login_data_invalid_text,
+	#register_user_existance_text, #register_data_invalid_text {
+	color: white;
+	background: red;
+	text-align: center;
+	font-size: 14pt;
+	font-weight: bold;
 }
 
-.login_language{
+.login_language {
 	margin-top: 20px;
 }
 
-.register_language{
+.register_language {
 	margin-top: 5px;
 }
 
-.login_language select, .register_language select{
+.login_language select, .register_language select {
 	background: #ffdb4d;
 	font-weight: bold;
 	width: 80px;
 	margin: 0 auto;
 }
 
-.login_panel{
+.login_panel {
 	background: #ffdb4d;
-	box-shadow: 0 0 15px rgba(0,0,0,0.5);
-	border: 1px solid #333; 
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+	border: 1px solid #333;
 	border-radius: 15px;
 	margin-top: 40px;
 }
 
-.register_panel{
+.register_panel {
 	background: #ffdb4d;
-	box-shadow: 0 0 15px rgba(0,0,0,0.5);
-	border: 1px solid #333; 
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+	border: 1px solid #333;
 	border-radius: 15px;
 	margin-top: 20px;
 }
 
-.login_form_heading{
+.login_form_heading {
 	font-size: 25pt;
 	padding: 30px;
 	font-weight: bold;
 	color: #333;
-	text-shadow: 2px 2px 2px rgba(255,255,255,0.7);
+	text-shadow: 2px 2px 2px rgba(255, 255, 255, 0.7);
 }
 
-.register_form_heading{
+.register_form_heading {
 	font-size: 20pt;
 	font-weight: bold;
 	color: #333;
-	text-shadow: 2px 2px 2px rgba(255,255,255,0.7);
+	text-shadow: 2px 2px 2px rgba(255, 255, 255, 0.7);
 }
 
-.login_form input{
+.login_form input {
 	margin: 15px;
 	width: 315px;
 	height: 45px;
 	line-height: 45px;
 }
 
-.register_form label{
+.register_form label {
 	font-size: 12pt;
 	margin-top: 10px;
 }
 
-.register_form input{
+.register_form input {
 	margin-top: 3px;
 	margin-bottom: 2px;
 	width: 315px;
@@ -113,13 +114,12 @@ nav{
 	line-height: 35px;
 }
 
-.register_form select{
+.register_form select {
 	margin-top: 5px;
 	width: 100px;
-	
 }
 
-.login_form button, .register_form button{
+.login_form button, .register_form button {
 	margin-top: 25px;
 	background: #333 !important;
 	color: #ffdb4d;
@@ -132,17 +132,17 @@ nav{
 	font-size: 14pt;
 }
 
-.main_body{
+.main_body {
 	background: #FFFAFA;
 	border-radius: 5px;
-	box-shadow: 0 0 5px rgba(0,0,0,0.5);
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
-#main_carousel{
-	box-shadow: 0 5px 5px rgba(0,0,0,0.8) !important;
+#main_carousel {
+	box-shadow: 0 5px 5px rgba(0, 0, 0, 0.8) !important;
 }
 
-.carousel-caption{
+.carousel-caption {
 	border-radius: 10px;
 	width: 400px;
 	height: 110px;
@@ -150,13 +150,13 @@ nav{
 	margin: 18% auto;
 }
 
-.carousel-caption p{
+.carousel-caption p {
 	font-weight: bold;
 	font-size: 35pt;
 	color: #1c1c1c;
 }
 
-.carousel-inner img{
+.carousel-inner img {
 	width: 100%;
 	height: 570px !important;
 }
@@ -168,29 +168,29 @@ nav{
 	margin-top: 10px;
 }
 
-.main_chooser{
+.main_chooser {
 	margin-top: 40px;
 	border-top: 1px solid black;
 	border-bottom: 1px solid black;
 	padding-bottom: 40px;
 }
 
-.main_chooser button{
+.main_chooser button {
 	margin-top: 10px;
 	margin-bottom: 10px;
 	width: 295px;
 	background: none;
 }
 
-.main_chooser button:hover{
+.main_chooser button:hover {
 	background: rgba(255, 219, 77, 0.8);
 }
 
-.main_choose img{
+.main_choose img {
 	width: 60%;
 }
 
-.main_choose p{
+.main_choose p {
 	margin-top: 10px;
 	font-size: 15pt;
 	background: #333 !important;
@@ -198,61 +198,64 @@ nav{
 	border-radius: 5px;
 }
 
-.user_page_name, .lot_page_name{
+.user_page_name, .lot_page_name, .lots_list_page_name,
+	.auctions_list_page_name, .users_list_page_name, .auction_page_name {
 	margin: 10px;
 	font-size: 20pt;
 	font-weight: bold;
 }
 
-#user_edit_info_invalid_message{
+#user_edit_info_invalid_message {
 	color: white;
-    background: red;
-    text-align: center;
-    font-size: 14pt;
-    font-weight: bold;
-}
-
-.user_nav_panel button{
-	background: #ffdb4d;
-	box-shadow: 0px 3px 6px rgba(0,0,0,0.3) !important;
+	background: red;
+	text-align: center;
+	font-size: 14pt;
 	font-weight: bold;
 }
 
-.user_nav_panel button:hover{
+.user_nav_panel button {
+	background: #ffdb4d;
+	box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.3) !important;
+	font-weight: bold;
+}
+
+.user_nav_panel button:hover {
 	opacity: .9;
 }
 
-.user_info_panel, .lot_info_panel{
+.user_info_panel, .lot_info_panel, .lots_list_panel, 
+				.auctions_list_panel, .users_list_panel, .auction_info_panel,
+				.lot_create_panel, .lot_offer_panel, .auction_create_panel {
 	background: #FFFAFA;
 	margin-top: 10px;
 	border-radius: 5px;
-	box-shadow: 0 0 5px rgba(0,0,0,0.5);
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
-.user_picture img{
+.user_picture img {
 	height: 250px;
 	width: 260px;
 	margin-left: 120px;
 	margin-top: 20px;
-	box-shadow: 0px 0px 5px rgba(0,0,0,0.5) !important;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5) !important;
 }
 
-.user_picture form{
+.user_picture form {
 	margin-left: 120px;
 	margin-top: 10px;
 }
 
-.user_picture button{
+.user_picture button {
 	margin-top: 5px;
 	margin-left: -15px;
 	background: #ffdb4d;
 	border: 1px solid #333;
-	box-shadow: 0px 0px 5px rgba(0,0,0,0.8) !important;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.8) !important;
 	font-size: 12pt;
 	color: #333;
 }
 
-.user_picture button:hover{
+.user_picture button:hover {
 	background: #ffdb4d;
 	color: #333;
 	border: 1px solid #333;
@@ -263,8 +266,8 @@ nav{
 	margin-top: 10px;
 }
 
-.user_info span{
-	font-size: 18pt;
+.user_info span {
+	font-size: 16pt;
 	color: #333;
 }
 
@@ -274,55 +277,54 @@ nav{
 	color: #333;
 }
 
-.user_login button{
+.user_login button {
 	width: 150px;
 	background: #ffdb4d !important;
 	border: 1px solid #333;
-	box-shadow: 0px 0px 5px rgba(0,0,0,0.8) !important;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.8) !important;
 	font-size: 12pt;
 	color: #333 !important;
-	font-weigh: bold;
 }
 
-.user_login button:hover{
+.user_login button:hover {
 	opacity: .9;
 }
 
-.user_info_text{
+.user_info_text {
 	font-size: 14pt !important;
 	opacity: .6;
 	width: 100px !important;
 }
 
-.user_edit_form_heading{
+.user_edit_form_heading {
 	margin-top: 10px;
 	margin-left: 140px;
 	font-size: 20pt;
 	font-weight: bold;
 	color: #333;
-	text-shadow: 2px 2px 2px rgba(255,255,255,0.7);
+	text-shadow: 2px 2px 2px rgba(255, 255, 255, 0.7);
 }
 
-.user_edit_form label{
+.user_edit_form label {
 	font-size: 12pt;
 	margin-top: 20px;
 }
 
-.user_edit_form input{
+.user_edit_form input {
 	margin-top: 10px;
 	width: 315px;
 	height: 45px;
 	line-height: 45px;
 }
 
-.user_edit_form button{
+.user_edit_form button {
 	margin-top: 25px;
 	background: #ffdb4d !important;
 	color: #333 !important;
 	font-size: 14pt;
 }
 
-.user_edit_form button:hover{
+.user_edit_form button:hover {
 	opacity: .9;
 }
 
@@ -331,62 +333,62 @@ nav{
 	padding-bottom: 20px;
 }
 
-.user_edit_tab a{
+.user_edit_tab a {
 	margin-top: 25px;
 	margin-left: 22px;
 	background: #333 !important;
 	border: 1px solid #333;
 	font-size: 12pt;
-	color: #ffdb4d!important;
+	color: #ffdb4d !important;
 }
 
-.user_edit_tab a:hover{
+.user_edit_tab a:hover {
 	opacity: .9;
 }
 
-.user_lots_text, .user_participations_text{
+.user_lots_text, .user_participations_text {
 	font-weight: bold;
 	font-size: 25pt;
 	color: #333;
 	margin-top: 10px;
 }
 
-.user_lot button, .user_auction button{
+.user_lot button, .user_auction button {
 	border: none;
 	background: rgba(255, 219, 77, 0.2);
 	margin-bottom: 10px;
 	margin-top: 10px;
-	box-shadow: 0px 5px 15px rgba(0,0,0,0.8) !important;
+	box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.8) !important;
 }
 
-.user_lot_img img, .user_auction_img img{
+.user_lot_img img, .user_auction_img img {
 	margin-left: 20px;
 	margin-top: 15px;
 	margin-bottom: 15px;
 	width: 250px;
 	height: 250px;
-	box-shadow: 0px 0px 5px rgba(0,0,0,0.5) !important;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5) !important;
 }
 
-.user_lot_name, .user_auction_name{
+.user_lot_name, .user_auction_name {
 	margin-top: 5px;
 	font-weight: bold;
 	font-size: 20pt;
 	color: #333;
 }
 
-#user_lot_info span, #user_auction_info span{
-	font-size: 18pt;
+#user_lot_info span, #user_auction_info span {
+	font-size: 16pt;
 	color: #333;
 }
 
-.user_lot_info_text, .user_auction_info_text{
+.user_lot_info_text, .user_auction_info_text {
 	font-size: 14pt !important;
 	opacity: .6;
 	width: 100px !important;
 }
 
-.current{
+.current {
 	margin-top: 5px;
 	margin-bottom: 5px;
 	font-size: 14pt;
@@ -407,171 +409,516 @@ nav{
 	color: #333;
 }
 
-.previous button{
+.previous button {
 	background: #ffdb4d;
-	box-shadow: 0 0 15px rgba(0,0,0,0.5);
-	border: 1px solid #333; 
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+	border: 1px solid #333;
 	border-radius: 3px;
 }
 
-.next button{
+.next button {
 	background: #ffdb4d;
-	box-shadow: 0 0 15px rgba(0,0,0,0.5);
-	border: 1px solid #333; 
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+	border: 1px solid #333;
 	border-radius: 3px;
 }
 
-.previous button:hover{
+.previous button:hover {
 	opacity: .9;
 }
 
-.next button:hover{
+.next button:hover {
 	opacity: .9;
 }
 
 .user_not_found {
-	margin-top: 200px;
+	margin-top: 100px;
+	margin-bottom: 100px;
 	font-size: 14pt;
 	font-weight: bold;
 	color: #333;
 }
 
-.lot_operation_tab{
+.lot_operation_tab {
 	padding-bottom: 10px;
 }
 
-
-.lot_operation_tab a{
+.lot_operation_tab a {
 	margin-top: 25px;
 	background: #333 !important;
 	border: 1px solid #333;
 	font-size: 12pt;
-	color: #ffdb4d!important;
+	color: #ffdb4d !important;
 }
 
-.lot_picture img{
+.lot_picture img {
 	height: 250px;
 	width: 260px;
 	margin-top: 5px;
-	box-shadow: 0px 0px 5px rgba(0,0,0,0.5) !important;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5) !important;
 	margin-bottom: 50px;
 }
 
-.lot_picture form{
+.lot_picture form {
 	margin-top: 10px;
 	padding-bottom: 50px;
 }
 
-.lot_picture button{
+.lot_picture button {
 	margin-top: 5px;
 	margin-left: -15px;
 	background: #ffdb4d;
 	border: 1px solid #333;
-	box-shadow: 0px 0px 5px rgba(0,0,0,0.8) !important;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.8) !important;
 	font-size: 12pt;
 	color: #333;
 }
 
-.lot_picture button:hover{
+.lot_picture button:hover {
 	background: #ffdb4d;
 	color: #333;
 	border: 1px solid #333;
 	opacity: .9;
 }
 
-.lot_name{
+.lot_name {
 	font-size: 25pt;
 	font-weight: bold;
 	color: #333;
 }
 
-.lot_name button{	
-	width: 150px;
+.lot_name button {
+	width: 130px;
+	margin-bottom: 10px;
+	padding: 5px;
 	background: #ffdb4d !important;
 	border: 1px solid #333;
-	box-shadow: 0px 0px 5px rgba(0,0,0,0.8) !important;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.8) !important;
 	font-size: 12pt;
 	color: #333 !important;
-	font-weigh: bold;
 }
 
-.lot_name button:hover{
+.lot_name button:hover {
 	opacity: .9;
 }
-	
-#lot_info span{
-	font-size: 18pt;
-	color: #333;	
+
+#lot_info span {
+	font-size: 16pt;
+	color: #333;
 }
 
-.lot_info_text{
+.lot_info_text {
 	font-size: 14pt !important;
 	opacity: .6;
 	width: 100px !important;
 }
 
-.lot_owner button{
+.lot_owner button {
 	background: none !important;
 	border: none !important;
 	font-size: 18pt;
 	margin-top: -5px;
 }
 
-#lot_edit label{
+#lot_edit label {
 	font-size: 12pt;
 	margin-top: 5px;
 }
 
-#lot_edit button{
+#lot_edit button {
 	margin-top: 25px;
 	margin-bottom: 50px;
 	background: #ffdb4d !important;
 	color: #333;
 	font-size: 14pt;
-	box-shadow: 0px 0px 15px rgba(0,0,0,0.8) !important;
-	
+	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.8) !important;
 }
 
-#lot_edit button:hover{
+#lot_edit button:hover {
 	opacity: .9;
 }
 
- #auction_bet_invalid_message, #lot_edit_info_invalid_message{
- 	color: white;
-    background: red;
-    text-align: center;
-    font-size: 14pt;
-    font-weight: bold;
- }
- 
- #create_auction label{
-	font-size: 12pt;
+#auction_bet_invalid_message, #lot_edit_info_invalid_message {
+	color: white;
+	background: red;
+	text-align: center;
+	font-size: 14pt;
+	font-weight: bold;
+}
+
+#lot_create_auction button {
+	margin-top: 25px;
+	margin-bottom: 50px;
+	background: #ffdb4d !important;
+	color: #333;
+	font-size: 14pt;
+	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.8) !important;
+}
+
+#search-input input {
+	box-shadow: none;
+	border: none;
+	box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.8) !important;
+}
+
+#search-input button {
+	background: #ffdb4d !important;
+	color: #333;
+	box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.8) !important;
+	border: none;
+	padding: 13px !important;
+}
+
+#search-input button:hover {
+	opacity: .9;
+}
+
+.lots_list_lot button {
+	border: none;
+	background: rgba(255, 219, 77, 0.2);
+	margin-bottom: 10px;
+	margin-top: 20px;
+	box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.8) !important;
+}
+
+.lots_list_img img {
+	margin-left: 20px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	width: 250px;
+	height: 250px;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5) !important;
+}
+
+.lots_list_name {
 	margin-top: 5px;
+	font-weight: bold;
+	font-size: 20pt;
+	color: #333;
 }
 
-#auction_minimum_price{
-	width: 205px;
+#lots_list_info span, #user_auction_info span {
+	font-size: 16pt;
+	color: #333;
 }
 
-.auction_type{
+.lots_list_info_text {
+	font-size: 14pt !important;
+	opacity: .6;
+	width: 100px !important;
+}
+
+.lots_list_type_chooser button {
+	background: #ffdb4d !important;
+	color: #333;
+	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.8) !important;
+	margin-right: 5px;
+	margin-top: 10px;
+}
+
+.lots_list_type_chooser button:hover {
+	opacity: .9;
+}
+
+.lots_list_status_chooser button {
+	background: #333 !important;
+	color: #ffdb4d;
+	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.8) !important;
+	margin-right: 5px;
+	margin-top: 10px;
+}
+
+.lots_list_status_chooser button:hover {
+	color: #ffdb4d;
+	opacity: .9;
+}
+
+.lots_list_not_found {
+	margin-top: 100px;
+	margin-bottom: 100px;
+	font-size: 14pt;
+	font-weight: bold;
+	color: #333;
+}
+
+.auctions_list_not_found {
+	margin-top: 100px;
+	margin-bottom: 100px;
+	font-size: 14pt;
+	font-weight: bold;
+	color: #333;
+}
+
+.auctions_list_type_chooser button {
+	background: #ffdb4d !important;
+	color: #333;
+	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.8) !important;
+	margin-right: 5px;
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
 
-.online_type_end_time_select{
-	margin-left: -58px;
+.auctions_list_type_chooser button:hover {
+	opacity: .9;
+}
+
+.auctions_list_auction button {
+	border: none;
+	background: rgba(255, 219, 77, 0.2);
+	margin-bottom: 10px;
+	margin-top: 20px;
+	box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.8) !important;
+}
+
+.auctions_list_img img {
+	margin-left: 20px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	width: 250px;
+	height: 250px;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5) !important;
+}
+
+.auctions_list_name {
+	margin-top: 5px;
+	font-weight: bold;
+	font-size: 20pt;
+	color: #333;
+}
+
+#auctions_list_info span {
+	font-size: 16pt;
+	color: #333;
+}
+
+.auctions_list_info_text {
+	font-size: 14pt !important;
+	opacity: .6;
+	width: 100px !important;
+}
+
+.users_list_user button {
+	border: none;
+	background: rgba(255, 219, 77, 0.2);
+	margin-bottom: 10px;
+	margin-top: 20px;
+	box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.8) !important;
+}
+
+.users_list_picture img {
+	margin-left: 20px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	width: 250px;
+	height: 250px;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5) !important;
+}
+
+.users_list_name {
+	margin-top: 5px;
+	font-weight: bold;
+	font-size: 20pt;
+	color: #333;
+}
+
+.users_list_user span{
+	font-size: 16pt;
+	color: #333;
+}
+
+.users_list_info_text {
+	font-size: 14pt !important;
+	opacity: .6;
+	width: 100px !important;
+}
+
+.auction_picture img{
+	height: 250px;
+	width: 260px;
+	margin-left: 120px;
+	margin-top: 20px;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5) !important;
+}
+
+.auction_info {
 	margin-top: 10px;
+	margin-bottom: 30px;
+}
+
+.auction_info span {
+	font-size: 14pt;
+	color: #333;
+}
+
+.auction_name {
+	font-size: 25pt;
+	font-weight: bold;
+	color: #333;
+}
+
+.auction_info_text{
+	font-size: 12pt !important;
+	opacity: .6;
+}
+
+.auction_info button {
+	background: none !important;
+	border: none !important;
+	padding: 0;
+	font-size: 14pt;
+	margin-top: -5px;
+}
+
+.bet_pay_panel{
+	margin-bottom: 40px;
+}
+
+.place_bet_header{
+	font-size: 18pt;
+	color: #333;
+}
+
+.bet_pay_panel button{
+	margin-top: 10px;
+	background: #333 !important;
+	border: none;
+	color: #ffdb4d !important;
+	font-size: 14pt;
+	font-weight: bold;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.8) !important;
+}
+
+.bet_pay_panel button:hover{
+	opacity: .9;
+}
+#lot_create_info_invalid_message, #lot_offer_info_invalid_message{
+	color: white;
+	background: red;
+	text-align: center;
+	font-size: 14pt;
+	font-weight: bold;
+}
+
+.lot_create_form_heading, .lot_offer_form_heading{
+	margin-top: 10px;
+	font-size: 20pt;
+	font-weight: bold;
+	color: #333;
+	text-shadow: 2px 2px 2px rgba(255, 255, 255, 0.7);
+}
+
+.lot_create_form label, .lot_offer_form label{
+	font-size: 12pt;
+	margin-top: 20px;
+}
+
+.lot_create_form input, .lot_offer_form input{
+	margin-top: 10px;
+	width: 375px;
+	height: 45px;
+	line-height: 45px;
+}
+
+ .lot_create_form select,  .lot_offer_form select{
+ 	margin-top: 10px;
+ 	margin-left: 0px;
+	width: 376px;
+	height: 45px;
+ }
+ 
+ .lot_create_form textarea, .lot_offer_form textarea{
+ 	margin-top: 10px;
+	width: 375px;
+ }
+ 
+ .lot_create_form button,  .lot_offer_form button{
+ 	margin-top: 25px;
+	margin-bottom: 25px;
+	background: #333 !important;
+	color: #ffdb4d !important;
+	font-size: 14pt;
+ }
+ 
+ .lot_create_form button:hover,  .lot_offer_form button:hover{
+ 	opacity: .9;
+ }
+
+.auction_create_form, .lot_create_form, .lot_create_form {
+	margin-left: 20%;
+}
+ 
+.auction_create_form_heading{
+	margin-top: 10px;
+	font-size: 20pt;
+	font-weight: bold;
+	color: #333;
+	text-shadow: 2px 2px 2px rgba(255, 255, 255, 0.7);
+}
+
+.auction_create_form label, #lot_create_auction label{
+	font-size: 12pt;
+	margin-top: 20px!important;
+}
+
+.auction_create_form input, #lot_create_auction input{
+	margin-top: 10px;
+	width: 375px;
+	height: 45px;
+	line-height: 45px;
+}
+
+.auction_create_form select, #lot_create_auction select {
+ 	margin-top: 10px;
+ 	margin-left: 0px;
+	width: 376px;
+	height: 45px;
+ }
+
+.auction_create_form textarea{
+ 	margin-top: 10px;
+	width: 375px;
+}
+
+.auction_type{
+	margin-left: -85px;
 }
 
 #auction_min_bet{
-	margin-left: 15px;
+	margin-left: -150px;
 }
 
-#create_auction button{
-	margin-top: 25px;
-	margin-bottom: 50px;
-	background: #ffdb4d !important;
-	color: #333;
-	font-size: 14pt;
-	box-shadow: 0px 0px 15px rgba(0,0,0,0.8) !important;
+#auction_min_bet input{
+	width: 375px;
 }
+
+.select_label{
+	margin-left: -8px;
+}
+
+.auction_create_form button{
+ 	margin-top: 25px;
+	margin-bottom: 25px;
+	margin-left: 15%;
+	background: #333 !important;
+	color: #ffdb4d !important;
+	font-size: 14pt;
+ }
+ 
+ .auction_create_form button:hover{
+ 	opacity: .9;
+ }
+ 
+ .error_body{
+ 	margin-top: 150px;
+ }
+ 
+ .error_img img{
+ 	heigh: 300px;
+ 	width: 300px;
+ }
+ 
+ .error_text{
+ 	margin: 30px;
+	font-size: 20pt;
+	font-weight: bold;
+ }

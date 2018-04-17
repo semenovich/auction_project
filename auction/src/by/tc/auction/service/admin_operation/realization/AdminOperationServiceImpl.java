@@ -45,7 +45,7 @@ public class AdminOperationServiceImpl implements AdminOperationService {
 	@Override
 	public boolean unblockLot(Integer lotId) throws ServiceException {
 		try {
-			return adminOperationDAO.blockLot(lotId);
+			return adminOperationDAO.unblockLot(lotId);
 		} catch (DAOException e) {
 			throw new ServiceException(e.getMessage(), e.getCause());
 		}

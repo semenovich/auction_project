@@ -79,31 +79,31 @@
 						    </c:if>
 						</div>
 						<div class="col-md-7 col-md-offset-1 text-left lot_name">
-							<p class="col-md-6">${lot.name }</p>
-							<c:if test="${sessionScope.userLogin == 'ADMIN' && lot.status == 'CONFIRMING'}">
+							<p class="col-md-12">${lot.name }</p>
+							<c:if test="${sessionScope.userRole == 'ADMIN' && lot.status == 'CONFIRMING'}">
 								<form action="FrontController" method="POST">
 									<input type="hidden" name="command" value="BLOCK_LOT"/>
 									<input type="hidden" name="lotId" value="${lot.id}"/>
-									<div class="col-md-3">
-										<button class="btn btn-md btn-primary btn-block" type="submit"><fmt:message bundle="${current_locale}" key="locale.lot.delete"/></button>            
+									<div class="col-md-4">
+										<button class="btn btn-md btn-primary btn-block" type="submit"><fmt:message bundle="${current_locale}" key="locale.admin.block"/></button>            
 							    	</div>
 								</form>
 							</c:if>
-							<c:if test="${sessionScope.userLogin == 'ADMIN' && lot.status == 'BLOCKED'}">
+							<c:if test="${sessionScope.userRole == 'ADMIN' && lot.status == 'BLOCKED'}">
 								<form action="FrontController" method="POST">
 									<input type="hidden" name="command" value="UNBLOCK_LOT"/>
 									<input type="hidden" name="lotId" value="${lot.id}"/>
-									<div class="col-md-3">
-										<button class="btn btn-md btn-primary btn-block" type="submit"><fmt:message bundle="${current_locale}" key="locale.lot.delete"/></button>            
+									<div class="col-md-4">
+										<button class="btn btn-md btn-primary btn-block" type="submit"><fmt:message bundle="${current_locale}" key="locale.admin.unblock"/></button>            
 							    	</div>
-								</form>
+								</form> 
 							</c:if>
 							<c:if test="${lot.owner == sessionScope.userLogin && (lot.status == 'CONFIRMING' || lot.status == 'READY')}">
 								<form action="FrontController" method="POST">
 									<input type="hidden" name="command" value="DELETE_WAITING_LOT"/>
 									<input type="hidden" name="lotId" value="${lot.id}"/>
 									<input type="hidden" name="lotOwner" value="${lot.owner }">
-									<div class="col-md-3">
+									<div class="col-md-4">
 										<button class="btn btn-md btn-danger btn-block" type="submit"><fmt:message bundle="${current_locale}" key="locale.lot.delete"/></button>            
 							    	</div>
 								</form>
@@ -111,7 +111,7 @@
 						</div>
 						<div class="col-md-7 col-md-offset-1 text-left lot_type">
 							<span class="lot_info_text"><fmt:message bundle="${current_locale}" key="locale.lot.type"/>:</span>
-								<c:if test="${lot.type == 'CAR'}">
+							<c:if test="${lot.type == 'CAR'}">
 								<span><fmt:message bundle="${current_locale}" key="locale.lot.type.car"/></span>
 							</c:if>
 							<c:if test="${lot.type == 'JET'}">
@@ -188,13 +188,13 @@
 					<c:if test="${sessionScope.userRole == 'ADMIN' && (lot.status == 'CONFIRMING' || lot.status == 'READY')}">	
 						<div id="lot_create_auction" class="tab-pane fade">
 							<div class="col-md-10 col-md-offset-1">
-								<form id="create_auction" action="FrontController" method="POST" onsubmit="validate(); return false">
+								<form id="lot_create_auction" action="FrontController" method="POST" onsubmit="validate(); return false">
 									<input type="hidden" name="command" value="CREATE_AUCTION_FROM_EXISTING_LOT"/>
 									<input type="hidden" name="lotId" value="${lot.id}"/>
 									<div class="auction_type col-md-12">
 										<div class="form-group">
 											<div class="col-md-12">
-												<label class="col-md-4 text-right" for="auction_type_select"><fmt:message bundle="${current_locale}" key="locale.auction.type"/>:</label>
+												<label class="col-md-5 select_label text-right" for="auction_type_select"><fmt:message bundle="${current_locale}" key="locale.auction.type"/>:</label>
 												<div class="col-md-4">
 													<select id="auction_type_select" class="form-control" name="auctionType"  onchange="checkType()">
 												    	<option value="ENGLISH"><fmt:message bundle="${current_locale}" key="locale.auction.type.english"/></option>
@@ -205,7 +205,7 @@
 										</div>
 										<div class="form-group" id="online_type_end_time_select" style="display: none;">
 											<div class="col-md-12 online_type_end_time_select">
-												<label class="col-md-5 text-right" for="auction_online_type_end_time"><fmt:message bundle="${current_locale}" key="locale.auction.end.time"/>:</label>
+												<label class="col-md-5 select_label text-right" for="auction_online_type_end_time"><fmt:message bundle="${current_locale}" key="locale.auction.end.time"/>:</label>
 												<div class="col-md-4">
 													<select class="form-control" id="online_type_end_time" name="auctionEndTime">
 														<option value="TEN_MINUTES"><fmt:message bundle="${current_locale}" key="locale.ten.minutes"/></option>
@@ -218,8 +218,8 @@
 										</div>
 									</div>
 									<div class="form-group" id="auction_min_bet">
-										<div class="col-md-4 text-right ">
-											<label for='auction_minimum_price'><fmt:message bundle="${current_locale}" key="locale.auction.min.bet"/>:</label>
+										<div class="col-md-5 text-right ">
+											<label for='lot_auction_minimum_price'><fmt:message bundle="${current_locale}" key="locale.auction.min.bet"/>:</label>
 								    	</div>
 								    	<div class="col-md-5">
 											<input type='text' id='auction_minimum_price' class="form-control" name='auctionMinimumPrice' placeholder=<fmt:message bundle="${current_locale}" key="locale.auction.min.bet"/> />			

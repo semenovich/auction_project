@@ -2,8 +2,7 @@ const FORM_CLASS = "user_edit_form";
 const PHONE_ID = "userPhone";
 const EMAIL_ID = "userEmail";
 
-const MESSAGE_BLOCK_ID = "register_data_invalid_text";
-const USER_EXISTS_MESSAGE_ID = "register_user_existance_text";
+const MESSAGE_BLOCK_ID = "user_edit_info_invalid_message";
 
 function validate(){
 
@@ -23,9 +22,6 @@ function validate(){
 
 function invalidInput(){
     event.preventDefault();
-    if (document.getElementById(USER_DOESNT_EXIST_MESSAGE_ID) != null) {
-        document.getElementById(USER_DOESNT_EXIST_MESSAGE_ID).style.display = 'none';
-    }
     document.getElementById(MESSAGE_BLOCK_ID).style.display = 'block';
     return;
 }
