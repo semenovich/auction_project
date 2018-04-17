@@ -6,7 +6,7 @@ const INVALID_BET_MESSAGE_ID = "auction_bet_invalid_message";
 function validate(){
     if (!isNumeric(document.getElementById(MIN_BET_ID).value)){
     	event.preventDefault();
-        document.getElementById(INVALID_BET_MESSAGE_ID).style.visibility = 'visible';
+        document.getElementById(INVALID_BET_MESSAGE_ID).style.display = inline;
     }
     else {
     	document.getElementById(create_auction).submit();

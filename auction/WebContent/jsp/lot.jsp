@@ -5,10 +5,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/style.css"/>
 	<meta http-equiv="Content-Type" content="text/html; UTF-8">
 	<fmt:setLocale value="${sessionScope.locale}"/>
 	<c:if test="${sessionScope.locale == null}">
@@ -26,8 +26,28 @@
 				<p><fmt:message bundle="${current_locale}" key="locale.lot"/></p>
 			</div>
 		</div>
-		<div class="lot_info_panel">
+		<div class="lot_info_panel row">
 			<c:if test="${lot != null}">
+				<c:if test="${requestScope.isLotDataInvalid == true}">
+					<div id="lot_edit_info_invalid_message">
+						<p><fmt:message bundle="${current_locale}" key="locale.lot.info.invalid"/></p>
+					</div>
+				</c:if>
+				<c:if test="${requestScope.isLotDataInvalid != true}">
+					<div id="lot_edit_info_invalid_message" style="display:none;">
+						<p><fmt:message bundle="${current_locale}" key="locale.lot.info.invalid"/></p>
+					</div>
+				</c:if>
+				<c:if test="${requestScope.isBetInvalid == true}">
+					<div id="auction_bet_invalid_message">
+						<p><fmt:message bundle="${current_locale}" key="locale.auction.min.bet.invalid"/></p>
+					</div>
+				</c:if>
+				<c:if test="${requestScope.isBetInvalid != true}">
+					<div id="auction_bet_invalid_message" style="display:none;">
+						<p><fmt:message bundle="${current_locale}" key="locale.auction.min.bet.invalid"/></p>
+					</div>
+				</c:if>
 				<div class="col-md-12">
 					<div class="lot_operation_tab">
 						<ul class="nav nav-pills">
@@ -41,26 +61,6 @@
 						</ul>
 					</div>
 				</div>
-				<c:if test="${requestScope.isLotDataInvalid == true}">
-					<div id="lot_edit_info_invalid_message">
-						<p><fmt:message bundle="${current_locale}" key="locale.lot.info.invalid"/></p>
-					</div>
-				</c:if>
-				<c:if test="${requestScope.isLotDataInvalid != true}">
-					<div id="lot_edit_info_invalid_message" style="visibility: hidden; display:inline;">
-						<p><fmt:message bundle="${current_locale}" key="locale.lot.info.invalid"/></p>
-					</div>
-				</c:if>
-				<c:if test="${requestScope.isBetInvalid == true}">
-					<div id="auction_bet_invalid_message">
-						<p><fmt:message bundle="${current_locale}" key="locale.auction.min.bet.invalid"/></p>
-					</div>
-				</c:if>
-				<c:if test="${requestScope.isBetInvalid != true}">
-					<div id="auction_bet_invalid_message" style="visibility: hidden; display:inline;">
-						<p><fmt:message bundle="${current_locale}" key="locale.auction.min.bet.invalid"/></p>
-					</div>
-				</c:if>
 				<div class="tab-content col-md-10 col-md-offset-1">
 					<div id="lot_info" class="tab-pane fade in active">
 						<div class="col-md-4 lot_picture">
@@ -71,7 +71,7 @@
 							        <div class="form-group">
 							        	<input type="file" accept=".jpg,.jpeg" class="form-control-file" id="choose" name="image"/>
 							            <div class="col-md-4">
-											<button class="btn-success btn-md" type="submit"><fmt:message bundle="${current_locale}" key="locale.change"/></button>            
+											<button class="btn-md" type="submit"><fmt:message bundle="${current_locale}" key="locale.change"/></button>            
 								    	</div>
 							        </div>
 							        <input type="hidden" name="lotId" value="${lot.id }">
@@ -79,7 +79,7 @@
 						    </c:if>
 						</div>
 						<div class="col-md-7 col-md-offset-1 text-left lot_name">
-							<p>${lot.name }</p>
+							<p class="col-md-6">${lot.name }</p>
 							<c:if test="${sessionScope.userLogin == 'ADMIN' && lot.status == 'CONFIRMING'}">
 								<form action="FrontController" method="POST">
 									<input type="hidden" name="command" value="BLOCK_LOT"/>
@@ -110,7 +110,7 @@
 							</c:if>
 						</div>
 						<div class="col-md-7 col-md-offset-1 text-left lot_type">
-							<span class="user_lot_info_text"><fmt:message bundle="${current_locale}" key="locale.lot.type"/>:</span>
+							<span class="lot_info_text"><fmt:message bundle="${current_locale}" key="locale.lot.type"/>:</span>
 								<c:if test="${lot.type == 'CAR'}">
 								<span><fmt:message bundle="${current_locale}" key="locale.lot.type.car"/></span>
 							</c:if>
@@ -154,13 +154,11 @@
 							<span>${lot.description }</span>
 						</div>
 						<div class="col-md-7 col-md-offset-1 text-left lot_owner">
-							<span class="lot_info_text"><fmt:message bundle="${current_locale}" key="locale.lot.owner"/>:</span>
 							<form action="FrontController" method="GET">
 								<input type="hidden" name="command" value="GET_USER_INFO"/>
 								<input type="hidden" name="userLogin" value="${lot.owner}"/>
-								<span>
-									<button type="submit" class="btn">${lot.owner }</button>
-								</span>
+								<span class="lot_info_text span2"><fmt:message bundle="${current_locale}" key="locale.lot.owner"/>:</span>
+								<button type="submit" class="btn"><a>${lot.owner }</a></button>
 							</form>
 						</div>
 					</div>
@@ -196,7 +194,7 @@
 									<div class="auction_type col-md-12">
 										<div class="form-group">
 											<div class="col-md-12">
-												<label class="col-md-3 text-right" for="auction_type_select"><fmt:message bundle="${current_locale}" key="locale.auction.type"/>:</label>
+												<label class="col-md-4 text-right" for="auction_type_select"><fmt:message bundle="${current_locale}" key="locale.auction.type"/>:</label>
 												<div class="col-md-4">
 													<select id="auction_type_select" class="form-control" name="auctionType"  onchange="checkType()">
 												    	<option value="ENGLISH"><fmt:message bundle="${current_locale}" key="locale.auction.type.english"/></option>
@@ -205,9 +203,9 @@
 												 </div>
 											</div>
 										</div>
-										<div class="form-group" id="online_type_end_time_select" style="visibility: hidden;">
-											<div class="col-md-12">
-												<label class="col-md-3 text-right" for="auction_online_type_end_time"><fmt:message bundle="${current_locale}" key="locale.auction.end.time"/>:</label>
+										<div class="form-group" id="online_type_end_time_select" style="display: none;">
+											<div class="col-md-12 online_type_end_time_select">
+												<label class="col-md-5 text-right" for="auction_online_type_end_time"><fmt:message bundle="${current_locale}" key="locale.auction.end.time"/>:</label>
 												<div class="col-md-4">
 													<select class="form-control" id="online_type_end_time" name="auctionEndTime">
 														<option value="TEN_MINUTES"><fmt:message bundle="${current_locale}" key="locale.ten.minutes"/></option>
@@ -220,7 +218,7 @@
 										</div>
 									</div>
 									<div class="form-group" id="auction_min_bet">
-										<div class="col-md-3 text-right ">
+										<div class="col-md-4 text-right ">
 											<label for='auction_minimum_price'><fmt:message bundle="${current_locale}" key="locale.auction.min.bet"/>:</label>
 								    	</div>
 								    	<div class="col-md-5">

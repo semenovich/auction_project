@@ -6,9 +6,9 @@ const ONLINE = "ONLINE";
 
 function checkType() {
     if (document.getElementById(AUCTION_TYPE_SELECTOR_ID).value == ONLINE){
-        document.getElementById(AUCTION_ONLINE_TYPE_END_TIME_SELECTOR).style.visibility = 'visible';
+        document.getElementById(AUCTION_ONLINE_TYPE_END_TIME_SELECTOR).style.display = 'block';
     }
     if (document.getElementById(AUCTION_TYPE_SELECTOR_ID).value == ENGLISH){
-        document.getElementById(AUCTION_ONLINE_TYPE_END_TIME_SELECTOR).style.visibility = 'hidden';
+        document.getElementById(AUCTION_ONLINE_TYPE_END_TIME_SELECTOR).style.display = 'none';
     }
 }

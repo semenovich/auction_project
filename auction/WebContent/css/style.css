@@ -198,7 +198,7 @@ nav{
 	border-radius: 5px;
 }
 
-.user_page_name{
+.user_page_name, .lot_page_name{
 	margin: 10px;
 	font-size: 20pt;
 	font-weight: bold;
@@ -222,7 +222,7 @@ nav{
 	opacity: .9;
 }
 
-.user_info_panel{
+.user_info_panel, .lot_info_panel{
 	background: #FFFAFA;
 	margin-top: 10px;
 	border-radius: 5px;
@@ -235,7 +235,6 @@ nav{
 	margin-left: 120px;
 	margin-top: 20px;
 	box-shadow: 0px 0px 5px rgba(0,0,0,0.5) !important;
-	
 }
 
 .user_picture form{
@@ -435,4 +434,144 @@ nav{
 	font-size: 14pt;
 	font-weight: bold;
 	color: #333;
+}
+
+.lot_operation_tab{
+	padding-bottom: 10px;
+}
+
+
+.lot_operation_tab a{
+	margin-top: 25px;
+	background: #333 !important;
+	border: 1px solid #333;
+	font-size: 12pt;
+	color: #ffdb4d!important;
+}
+
+.lot_picture img{
+	height: 250px;
+	width: 260px;
+	margin-top: 5px;
+	box-shadow: 0px 0px 5px rgba(0,0,0,0.5) !important;
+	margin-bottom: 50px;
+}
+
+.lot_picture form{
+	margin-top: 10px;
+	padding-bottom: 50px;
+}
+
+.lot_picture button{
+	margin-top: 5px;
+	margin-left: -15px;
+	background: #ffdb4d;
+	border: 1px solid #333;
+	box-shadow: 0px 0px 5px rgba(0,0,0,0.8) !important;
+	font-size: 12pt;
+	color: #333;
+}
+
+.lot_picture button:hover{
+	background: #ffdb4d;
+	color: #333;
+	border: 1px solid #333;
+	opacity: .9;
+}
+
+.lot_name{
+	font-size: 25pt;
+	font-weight: bold;
+	color: #333;
+}
+
+.lot_name button{	
+	width: 150px;
+	background: #ffdb4d !important;
+	border: 1px solid #333;
+	box-shadow: 0px 0px 5px rgba(0,0,0,0.8) !important;
+	font-size: 12pt;
+	color: #333 !important;
+	font-weigh: bold;
+}
+
+.lot_name button:hover{
+	opacity: .9;
+}
+	
+#lot_info span{
+	font-size: 18pt;
+	color: #333;	
+}
+
+.lot_info_text{
+	font-size: 14pt !important;
+	opacity: .6;
+	width: 100px !important;
+}
+
+.lot_owner button{
+	background: none !important;
+	border: none !important;
+	font-size: 18pt;
+	margin-top: -5px;
+}
+
+#lot_edit label{
+	font-size: 12pt;
+	margin-top: 5px;
+}
+
+#lot_edit button{
+	margin-top: 25px;
+	margin-bottom: 50px;
+	background: #ffdb4d !important;
+	color: #333;
+	font-size: 14pt;
+	box-shadow: 0px 0px 15px rgba(0,0,0,0.8) !important;
+	
+}
+
+#lot_edit button:hover{
+	opacity: .9;
+}
+
+ #auction_bet_invalid_message, #lot_edit_info_invalid_message{
+ 	color: white;
+    background: red;
+    text-align: center;
+    font-size: 14pt;
+    font-weight: bold;
+ }
+ 
+ #create_auction label{
+	font-size: 12pt;
+	margin-top: 5px;
+}
+
+#auction_minimum_price{
+	width: 205px;
+}
+
+.auction_type{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.online_type_end_time_select{
+	margin-left: -58px;
+	margin-top: 10px;
+}
+
+#auction_min_bet{
+	margin-left: 15px;
+}
+
+#create_auction button{
+	margin-top: 25px;
+	margin-bottom: 50px;
+	background: #ffdb4d !important;
+	color: #333;
+	font-size: 14pt;
+	box-shadow: 0px 0px 15px rgba(0,0,0,0.8) !important;
 }
