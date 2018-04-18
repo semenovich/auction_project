@@ -49,7 +49,7 @@
 						<p class="auction_create_form_heading col-md-offset-2 text-center"><fmt:message bundle="${current_locale}" key="locale.auction.create.auction"/></p>
 						<div class="col-md-3 text-right">
 							<label for='lotName'><fmt:message bundle="${current_locale}" key="locale.lot.name"/>:</label>
-						</div>
+		 				</div>
 						<div class="col-md-9">
 							<input type='text' id='lotName' class="form-control" name='lotName' placeholder=<fmt:message bundle="${current_locale}" key="locale.lot.name"/> required />			
 						</div>
