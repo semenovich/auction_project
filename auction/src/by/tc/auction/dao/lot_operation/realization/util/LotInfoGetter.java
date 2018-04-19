@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
-import by.tc.auction.dao.util.Parser;
+import by.tc.auction.dao.util.EntityCreator;
 import by.tc.auction.entity.Locale;
 import by.tc.auction.entity.Lot;
 public class LotInfoGetter {
@@ -18,13 +18,13 @@ public class LotInfoGetter {
 	
 	private static final Logger logger = Logger.getLogger(LotInfoGetter.class);
 
-	private final Parser parser = Parser.getInstance();
+	private final EntityCreator creator = EntityCreator.getInstance();
 	
 	public Lot getLotInfo(Connection connection, Integer lotId) throws SQLException {
 		try(PreparedStatement preparedStatement = connection.prepareStatement(GET_LOT_INFO_SQL_STATEMENT)) {
 			preparedStatement.setInt(1, lotId);
 			ResultSet result = preparedStatement.executeQuery();
-			return parser.parseLot(result);
+			return creator.createLot(result);
 		} catch (SQLException e){
 			logger.error("Error in LotInfoGetter", e);
 			throw e;
@@ -35,7 +35,7 @@ public class LotInfoGetter {
 		try(PreparedStatement preparedStatement = connection.prepareStatement(GET_LOTS_LIST_SQL_STATEMENT)) {
 			preparedStatement.setString(1, locale.toString());
 			ResultSet result = preparedStatement.executeQuery();
-			return parser.parseLots(result);
+			return creator.createLots(result);
 		} catch (SQLException e){
 			logger.error("Error in LotInfoGetter", e);
 			throw e;

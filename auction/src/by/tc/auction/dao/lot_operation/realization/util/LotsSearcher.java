@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
-import by.tc.auction.dao.util.Parser;
+import by.tc.auction.dao.util.EntityCreator;
 import by.tc.auction.entity.Locale;
 import by.tc.auction.entity.Lot;
 import by.tc.auction.entity.LotType;
@@ -21,14 +21,14 @@ public class LotsSearcher {
 	
 	private static final Logger logger = Logger.getLogger(LotsSearcher.class);
 
-	private final Parser parser = Parser.getInstance();
+	private final EntityCreator creator = EntityCreator.getInstance();
 	
 	public ArrayList<Lot> getLotsBySearching(Connection connection, String searchLine, Locale locale) throws SQLException {
 		try(PreparedStatement preparedStatement = connection.prepareStatement(GET_LOTS_BY_SEARCHING_SQL_STATEMENT)) {
 			preparedStatement.setString(1, "%" + searchLine + "%");
 			preparedStatement.setString(2, locale.toString());
 			ResultSet result = preparedStatement.executeQuery();
-			return parser.parseLots(result);
+			return creator.createLots(result);
 		} catch (SQLException e){
 			logger.error("Error in LotsSearcher", e);
 			throw e;
@@ -40,7 +40,7 @@ public class LotsSearcher {
 			preparedStatement.setString(1, lotType.toString());
 			preparedStatement.setString(2, locale.toString());
 			ResultSet result = preparedStatement.executeQuery();
-			return parser.parseLots(result);
+			return creator.createLots(result);
 		} catch (SQLException e){
 			logger.error("Error in LotsSearcher", e);
 			throw e;
@@ -51,7 +51,7 @@ public class LotsSearcher {
 		try(PreparedStatement preparedStatement = connection.prepareStatement(GET_WAITING_LOTS_SQL_STATEMENT)) {
 			preparedStatement.setString(1, locale.toString());
 			ResultSet result = preparedStatement.executeQuery();
-			return parser.parseLots(result);
+			return creator.createLots(result);
 		} catch (SQLException e){
 			logger.error("Error in LotsSearcher", e);
 			throw e;

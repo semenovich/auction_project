@@ -17,7 +17,7 @@ import by.tc.auction.entity.LotType;
 import by.tc.auction.entity.User;
 import by.tc.auction.entity.UserRole;
 
-public class Parser {
+public class EntityCreator {
 
 	private static final String USER_LOGIN = "userLogin";
 	private static final String USER_ROLE = "userRole";
@@ -52,17 +52,17 @@ public class Parser {
 	private static final String AUCTION_STATUS = "auctionStatus";
 	private static final String AUCTION_LAST_BET_TIME = "auctionLastBetTime";
 	
-	private static final Logger logger = Logger.getLogger(Parser.class);
+	private static final Logger logger = Logger.getLogger(EntityCreator.class);
 	
-	private static final Parser instance = new Parser();
+	private static final EntityCreator instance = new EntityCreator();
 	
-	private Parser() {};
+	private EntityCreator() {};
 	
-	public static Parser getInstance() {
+	public static EntityCreator getInstance() {
 		return instance;
 	}
 	
-	public Lot parseLot(ResultSet result) throws SQLException {
+	public Lot createLot(ResultSet result) throws SQLException {
 		try{
 			Lot lot = null;
 			if (result.next()) {
@@ -85,7 +85,7 @@ public class Parser {
 		}
 	}
 	
-	private Lot parseAuctionLot(ResultSet result) throws SQLException {
+	private Lot createAuctionLot(ResultSet result) throws SQLException {
 		try {
 			Lot lot = new Lot();
 			lot.setId(result.getInt(LOT_ID));
@@ -105,7 +105,7 @@ public class Parser {
 		}
 	}
 	
-	public ArrayList<Lot> parseLots(ResultSet result) throws SQLException{
+	public ArrayList<Lot> createLots(ResultSet result) throws SQLException{
 		try {
 			ArrayList<Lot> lots = new ArrayList<>();
 			Lot lot = null;
@@ -130,7 +130,7 @@ public class Parser {
 		}
 	}
 	
-	public ArrayList<Auction> parseAuctions(ResultSet result) throws SQLException {
+	public ArrayList<Auction> createAuctions(ResultSet result) throws SQLException {
 		try {
 			ArrayList<Auction> auctions = new ArrayList<>();
 			Auction auction = null;
@@ -149,7 +149,7 @@ public class Parser {
 				auction.setStatus(AuctionStatus.valueOf(result.getString(AUCTION_STATUS)));
 				auction.setType(AuctionType.valueOf(result.getString(AUCTION_TYPE)));
 				auction.setLastBetTime(result.getTimestamp(AUCTION_LAST_BET_TIME));
-				auction.setLot(parseAuctionLot(result));
+				auction.setLot(createAuctionLot(result));
 				auctions.add(auction);
 			}
 			return auctions;
@@ -159,7 +159,7 @@ public class Parser {
 		}
 	}
 	
-	public Auction parseAuction(ResultSet result) throws SQLException {
+	public Auction createAuction(ResultSet result) throws SQLException {
 		try {
 			Auction auction = null;
 			if (result.next()) {
@@ -177,7 +177,7 @@ public class Parser {
 				auction.setStatus(AuctionStatus.valueOf(result.getString(AUCTION_STATUS)));
 				auction.setType(AuctionType.valueOf(result.getString(AUCTION_TYPE)));
 				auction.setLastBetTime(result.getTimestamp(AUCTION_LAST_BET_TIME));
-				auction.setLot(parseAuctionLot(result));
+				auction.setLot(createAuctionLot(result));
 			}
 			return auction;
 		} catch (SQLException e) {
@@ -186,7 +186,7 @@ public class Parser {
 		}
 	}
 	
-	public User parseUser(ResultSet result) throws SQLException {
+	public User createUser(ResultSet result) throws SQLException {
 		try {
 			User user = null;
 			if (result.next()) {
@@ -210,7 +210,7 @@ public class Parser {
 		}
 	}
 	
-	public ArrayList<User> parseUsers(ResultSet result) throws SQLException {
+	public ArrayList<User> createUsers(ResultSet result) throws SQLException {
 		try {
 			ArrayList<User> users = new ArrayList<>();
 			User user = null;

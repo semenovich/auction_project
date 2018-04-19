@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
-import by.tc.auction.dao.util.Parser;
+import by.tc.auction.dao.util.EntityCreator;
 import by.tc.auction.entity.Auction;
 import by.tc.auction.entity.Locale;
 
@@ -19,13 +19,13 @@ public class AuctionInfoGetter {
 	
 	private static final Logger logger = Logger.getLogger(AuctionInfoGetter.class);
 	
-	private final Parser parser = Parser.getInstance();
+	private final EntityCreator creator = EntityCreator.getInstance();
 	
 	public Auction getAuctionInfo(Connection connection, Integer auctionId) throws SQLException {
 		try(PreparedStatement preparedStatement = connection.prepareStatement(GET_AUCTION_INFO_SQL_STATEMENT)){
 			preparedStatement.setInt(1, auctionId);
 			ResultSet result = preparedStatement.executeQuery();
-			return parser.parseAuction(result);
+			return creator.createAuction(result);
 		} catch (SQLException e){
 			logger.error("Error in AuctionInfoGetter", e);
 			throw e;
@@ -36,7 +36,7 @@ public class AuctionInfoGetter {
 		try(PreparedStatement preparedStatement = connection.prepareStatement(GET_AUCTIONS_LIST_SQL_STATEMENT)){
 			preparedStatement.setString(1, locale.toString());
 			ResultSet result = preparedStatement.executeQuery();
-			return parser.parseAuctions(result);
+			return creator.createAuctions(result);
 		} catch (SQLException e){
 			logger.error("Error in AuctionInfoGetter", e);
 			throw e;

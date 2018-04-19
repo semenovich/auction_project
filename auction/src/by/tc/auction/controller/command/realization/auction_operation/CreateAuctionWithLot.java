@@ -48,7 +48,7 @@ public class CreateAuctionWithLot implements ServletCommand {
 	private static final String CURRENT_PAGE = "auction-create.jsp";
 	private static final String ERROR_PAGE = "error.jsp";
 	
-	AuctionOperationService service;
+	private AuctionOperationService service;
 	
 	public CreateAuctionWithLot() {
 		ServiceFactory factory = ServiceFactory.getInstance();
@@ -77,11 +77,15 @@ public class CreateAuctionWithLot implements ServletCommand {
 	private Auction parseAuction(HttpServletRequest request) throws NumberFormatException {
 		Auction auction = new Auction();
 		Long currentTime = Calendar.getInstance().getTimeInMillis();
+		
 		auction.setType(AuctionType.valueOf(request.getParameter(AUCTION_TYPE)));
 		auction.setStartTime(new Timestamp(currentTime));
+		
 		Bet minBet = new Bet();
 		minBet.setValue(Double.valueOf(request.getParameter(AUCTION_MINIMUM_BET)));
+		
 		auction.setMinBet(minBet);;
+		
 		if (AuctionType.valueOf(request.getParameter(AUCTION_TYPE)) == AuctionType.ONLINE) {
 			Long remainTime = TimeGetter.getInstance().getMilliseconds(Time.valueOf(request.getParameter(AUCTION_END_TIME)));
 			auction.setEndTime(new Timestamp(currentTime + remainTime));

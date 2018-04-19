@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
 
-import by.tc.auction.dao.util.Parser;
+import by.tc.auction.dao.util.EntityCreator;
 import by.tc.auction.entity.User;
 
 public class UserInfoGetter {
@@ -16,13 +16,13 @@ public class UserInfoGetter {
 	
 	private static final Logger logger = Logger.getLogger(UserInfoGetter.class);
 	
-	private final Parser parser = Parser.getInstance();
+	private final EntityCreator creator = EntityCreator.getInstance();
 	
 	public User getPersonalUserInfo(Connection connection, String login) throws SQLException {
 		try(PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_SQL_STATEMENT)){
 			preparedStatement.setString(1, login);
 			ResultSet result = preparedStatement.executeQuery();
-			return parser.parseUser(result);
+			return creator.createUser(result);
 		} catch (SQLException e){
 			logger.error("Error in UserInfoGetter", e);
 			throw e;

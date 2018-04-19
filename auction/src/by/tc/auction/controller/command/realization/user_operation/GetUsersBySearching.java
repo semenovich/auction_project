@@ -31,7 +31,7 @@ public class GetUsersBySearching implements ServletCommand {
 	private static final String CURRENT_PAGE = "user-list.jsp";
 	private static final String ACCESS_DENIED_PAGE = "access-denied.jsp";
 	
-	UsersService service;
+	private UsersService service;
 	
 	public GetUsersBySearching() {
 		ServiceFactory factory = ServiceFactory.getInstance();

@@ -10,7 +10,7 @@ import java.util.Calendar;
 
 import org.apache.log4j.Logger;
 
-import by.tc.auction.dao.util.Parser;
+import by.tc.auction.dao.util.EntityCreator;
 import by.tc.auction.entity.Auction;
 
 public class ServerProcessor {
@@ -22,12 +22,12 @@ public class ServerProcessor {
 	
 	private static final Logger logger = Logger.getLogger(ServerProcessor.class);
 	
-	private static final Parser parser = Parser.getInstance();
+	private static final EntityCreator creator = EntityCreator.getInstance();
 	
 	public ArrayList<Auction> getActiveAuctions(Connection connection) throws SQLException{
 		try(PreparedStatement preparedStatement = connection.prepareStatement(GET_ACTIVE_AUCTIONS_LIST_SQL_STATEMENT)){
 			ResultSet result = preparedStatement.executeQuery();
-			return parser.parseAuctions(result);
+			return creator.createAuctions(result);
 		} catch (SQLException e){
 			logger.error("Error in ServerProcessor", e);
 			throw e;

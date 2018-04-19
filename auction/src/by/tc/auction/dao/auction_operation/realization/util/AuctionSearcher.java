@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
-import by.tc.auction.dao.util.Parser;
+import by.tc.auction.dao.util.EntityCreator;
 import by.tc.auction.entity.Auction;
 import by.tc.auction.entity.Locale;
 import by.tc.auction.entity.LotType;
@@ -20,14 +20,14 @@ public class AuctionSearcher {
 	
 	private static final Logger logger = Logger.getLogger(AuctionSearcher.class);
 	
-	private final Parser parser = Parser.getInstance();
+	private final EntityCreator creator = EntityCreator.getInstance();
 	
 	public ArrayList <Auction> getAuctionsBySearching(Connection connection, String searchLine, Locale locale) throws SQLException{
 		try(PreparedStatement preparedStatement = connection.prepareStatement(GET_AUCTIONS_LIST_BY_SEARCHING_SQL_STATEMENT)){
 			preparedStatement.setString(1, "%" + searchLine + "%");
 			preparedStatement.setString(2, locale.toString());
 			ResultSet result = preparedStatement.executeQuery();
-			return parser.parseAuctions(result);
+			return creator.createAuctions(result);
 		} catch (SQLException e){
 			logger.error("Error in AuctionSearcher", e);
 			throw e;
@@ -39,7 +39,7 @@ public class AuctionSearcher {
 			preparedStatement.setString(1, lotType.toString());
 			preparedStatement.setString(2, locale.toString());
 			ResultSet result = preparedStatement.executeQuery();
-			return parser.parseAuctions(result);
+			return creator.createAuctions(result);
 		} catch (SQLException e){
 			logger.error("Error in AuctionSearcher", e);
 			throw e;
