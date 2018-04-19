@@ -235,7 +235,7 @@
     <servlet-name>Blocked</servlet-name>
     <url-pattern>/blocked.jsp</url-pattern>
   </servlet-mapping>
-  <servlet> 
+  <servlet>
     <servlet-name>AccessDenied</servlet-name>
     <jsp-file>/jsp/errors/access-denied.jsp</jsp-file>
   </servlet>
@@ -245,11 +245,11 @@
   </servlet-mapping>
   <context-param>
     <param-name>log4j-config-location</param-name>
-    <param-value>WEB-INF/quartz.properties</param-value>
+    <param-value>WEB-INF/log4j.properties</param-value>
   </context-param>
   <context-param>
     <param-name>quartz:config-file</param-name>
-    <param-value>quartz.properties</param-value>
+    <param-value>resources/quartz/quartz.properties</param-value>
   </context-param>
   <context-param>
     <param-name>quartz:shutdown-on-unload</param-name>
@@ -263,12 +263,6 @@
     <param-name>quartz:start-scheduler-on-load</param-name>
     <param-value>true</param-value>
   </context-param>
-  <listener>
-    <listener-class>org.quartz.ee.servlet.QuartzInitializerListener</listener-class>
-  </listener>
-  <listener>
-    <listener-class>by.tc.auction.controller.listener.quartz.QuartzJobListener</listener-class>
-  </listener>
   <servlet>
     <servlet-name>QuartzInitializer</servlet-name>
     <servlet-class>org.quartz.ee.servlet.QuartzInitializerServlet</servlet-class>
@@ -280,5 +274,14 @@
   </servlet>
   <listener>
     <listener-class>by.tc.auction.controller.listener.connection_pool.InitializeConnectionPoolListener</listener-class>
+  </listener>
+  <listener>
+    <listener-class>by.tc.auction.controller.listener.logger.LoggerInitializeListener</listener-class>
+  </listener>
+  <listener>
+    <listener-class>org.quartz.ee.servlet.QuartzInitializerListener</listener-class>
+  </listener>
+  <listener>
+    <listener-class>by.tc.auction.controller.listener.quartz.QuartzJobListener</listener-class>
   </listener>
 </web-app>
