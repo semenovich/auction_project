@@ -41,15 +41,15 @@ public class ServerOperationJobService implements Job {
 	private ArrayList<Auction> getEndedAuctions(ArrayList<Auction> auctions){
 		ArrayList<Auction> endedAuctions = new ArrayList<>();
 		Timestamp currentTime = new Timestamp(Calendar.getInstance().getTimeInMillis());
-		for (int i = 0; i < auctions.size(); i++) {
-			if (auctions.get(i).getType() == AuctionType.ONLINE) {
-				if (auctions.get(i).getEndTime().getTime() < currentTime.getTime()) {
-					endedAuctions.add(auctions.get(i));
+		for (Auction auction : auctions) {
+			if (auction.getType() == AuctionType.ONLINE) {
+				if (auction.getEndTime().getTime() < currentTime.getTime()) {
+					endedAuctions.add(auction);
 				}
 			}
-			if (auctions.get(i).getType() == AuctionType.ENGLISH) {
-				if (auctions.get(i).getLastBetTime() != null && (currentTime.getTime() - auctions.get(i).getLastBetTime().getTime()) > AMOUNT_OF_TIME_TO_CLOSE_ENGLISH_AUCTION_TYPE) {
-					endedAuctions.add(auctions.get(i));
+			if (auction.getType() == AuctionType.ENGLISH) {
+				if (auction.getLastBetTime() != null && (currentTime.getTime() - auction.getLastBetTime().getTime()) > AMOUNT_OF_TIME_TO_CLOSE_ENGLISH_AUCTION_TYPE) {
+					endedAuctions.add(auction);
 				}
 			} 
 		}
