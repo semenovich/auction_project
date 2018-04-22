@@ -53,10 +53,13 @@ public class CreateLot implements ServletCommand {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			HttpSession session = request.getSession();
+			
 			String ownerLogin = (String) session.getAttribute(USER_LOGIN);
 			Locale locale = Locale.valueOf((String) session.getAttribute(LOCALE));
 			Lot lot = parseLot(request, ownerLogin, locale);
-			service.offerLot(lot);
+			
+			service.createLot(lot);
+			
 			response.sendRedirect(SUCCESSFUL_PAGE + (String)request.getSession().getAttribute(USER_LOGIN));
 		} catch (ServiceException e) {
 			logger.error("Error in CreateLot", e);

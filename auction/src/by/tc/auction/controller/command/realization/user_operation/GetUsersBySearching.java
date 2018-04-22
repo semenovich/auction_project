@@ -46,7 +46,7 @@ public class GetUsersBySearching implements ServletCommand {
 				return;
 			}
 			int page = Integer.valueOf((String)request.getParameter(CHOOSEN_USERS_PAGE_NUMBER));
-			UsersInfo usersInfo = service.getUsersByNameSearch(request.getParameter(SEARCH_LINE), page);
+			UsersInfo usersInfo = service.getUsersBySearching(request.getParameter(SEARCH_LINE), page);
 			request.setAttribute(USERS_INFO, usersInfo);
 			request.setAttribute(SEARCH_LINE, request.getParameter(SEARCH_LINE));
 			request.setAttribute(LIST_TYPE, SEARCHING_BY_SEARCH_LINE);

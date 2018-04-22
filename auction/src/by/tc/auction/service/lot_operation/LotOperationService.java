@@ -8,7 +8,7 @@ import by.tc.auction.service.exception.LotInfoException;
 import by.tc.auction.service.exception.ServiceException;
 
 public interface LotOperationService {
-	boolean offerLot(Lot lot) throws ServiceException, LotInfoException;
+	boolean createLot(Lot lot) throws ServiceException, LotInfoException;
 	Lot getLotInfo(Integer lotId) throws ServiceException;
 	boolean deleteWaitingLot(Integer lotId) throws ServiceException;
 	boolean editWaitingLot(Lot lot) throws ServiceException, LotInfoException;

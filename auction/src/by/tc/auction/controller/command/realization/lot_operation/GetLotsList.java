@@ -47,10 +47,13 @@ public class GetLotsList implements ServletCommand {
 				response.sendRedirect(ACCESS_DENIED_PAGE);
 				return;
 			}
+			
 			int page = Integer.valueOf((String)request.getParameter(CHOOSEN_LOTS_PAGE_NUMBER));
 			LotsInfo lotsInfo = service.getLotsList(Locale.valueOf((String) request.getSession().getAttribute(LOCALE)), page);
+			
 			request.setAttribute(LOTS_INFO, lotsInfo);
 			request.setAttribute(LIST_TYPE, LIST);
+			
 			request.getRequestDispatcher(CURRENT_PAGE).forward(request, response);
 		} catch (ServiceException e) {
 			logger.error("Error in GetLotsList", e);

@@ -5,5 +5,5 @@ import by.tc.auction.service.exception.ServiceException;
 
 public interface UsersService {
 	UsersInfo getUsers(int page) throws ServiceException;
-	UsersInfo getUsersByNameSearch(String searchLine, int page) throws ServiceException;
+	UsersInfo getUsersBySearching(String searchLine, int page) throws ServiceException;
 }

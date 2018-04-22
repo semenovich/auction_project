@@ -48,12 +48,15 @@ public class GetLotsBySearching implements ServletCommand {
 				response.sendRedirect(ACCESS_DENIED_PAGE);
 				return;
 			}
+			
 			int page = Integer.valueOf((String)request.getParameter(CHOOSEN_LOTS_PAGE_NUMBER));
 			LotsInfo lotsInfo = service.getLotsBySearching(request.getParameter(SEARCH_LINE), 
 					Locale.valueOf((String) request.getSession().getAttribute(LOCALE)), page);
+			
 			request.setAttribute(LOTS_INFO, lotsInfo);
 			request.setAttribute(LIST_TYPE, SEARCHING_BY_SEARCH_LINE);
 			request.setAttribute(SEARCH_LINE, request.getParameter(SEARCH_LINE));
+			
 			request.getRequestDispatcher(CURRENT_PAGE).forward(request, response);
 		} catch (ServiceException e) {
 			logger.error("Error in GetLotsBySearching", e);

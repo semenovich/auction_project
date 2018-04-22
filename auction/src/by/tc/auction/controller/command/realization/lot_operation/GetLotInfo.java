@@ -38,9 +38,11 @@ public class GetLotInfo implements ServletCommand {
 		try {
 			String lotId = request.getParameter(LOT_ID);
 			Lot lot =  null;
+			
 			if (!lotId.isEmpty()) {
 				lot = service.getLotInfo(Integer.valueOf(lotId));
 			}
+			
 			if (lot != null) {
 				request.setAttribute(LOT, lot);
 				request.getRequestDispatcher(LOT_PAGE).forward(request, response);

@@ -18,6 +18,7 @@ public class AdminOperationTest {
 		ProfileDAO profileDAO = DAOFactory.getInstance().getProfileDAO();
 		
 		String userLogin = "BlockUser";
+		
 		try {
 			adminOperationDAO.blockUser(userLogin);
 			Assert.assertEquals(true, profileDAO.getUserInfo(userLogin).isBlocked());
@@ -32,8 +33,9 @@ public class AdminOperationTest {
 		ProfileDAO profileDAO = DAOFactory.getInstance().getProfileDAO();
 		
 		String userLogin = "UnblockUser";
+		
 		try {
-			adminOperationDAO.blockUser(userLogin);
+			adminOperationDAO.unblockUser(userLogin);
 			Assert.assertEquals(false, profileDAO.getUserInfo(userLogin).isBlocked());
 		} catch (DAOException e) {
 			e.printStackTrace();
@@ -46,6 +48,7 @@ public class AdminOperationTest {
 		LotOperationDAO lotOperationDAO = DAOFactory.getInstance().getLotOperationDAO();
 		
 		Integer lotId = 1;
+		
 		try {
 			adminOperationDAO.blockLot(lotId);
 			Assert.assertEquals(LotStatus.BLOCKED, lotOperationDAO.getLotInfo(lotId).getStatus());
@@ -60,6 +63,7 @@ public class AdminOperationTest {
 		LotOperationDAO lotOperationDAO = DAOFactory.getInstance().getLotOperationDAO();
 		
 		Integer lotId = 2;
+		
 		try {
 			adminOperationDAO.unblockLot(lotId);
 			Assert.assertEquals(LotStatus.READY, lotOperationDAO.getLotInfo(lotId).getStatus());

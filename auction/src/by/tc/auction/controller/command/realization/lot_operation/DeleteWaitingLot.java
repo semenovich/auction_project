@@ -40,6 +40,7 @@ public class DeleteWaitingLot implements ServletCommand {
 		try {
 			String lotIdStr = request.getParameter(LOT_ID);
 			Integer lotId = null;
+			
 			if (!lotIdStr.isEmpty()) {
 				lotId = Integer.valueOf(lotIdStr);
 			}
@@ -47,6 +48,7 @@ public class DeleteWaitingLot implements ServletCommand {
 				response.sendRedirect(NOT_FOUND_PAGE);
 				return;
 			}
+			
 			if (checkOwner(request) && service.deleteWaitingLot(lotId)) {
 				response.sendRedirect(SUCCESSFUL_PAGE + (String)request.getSession().getAttribute(USER_LOGIN));
 			}

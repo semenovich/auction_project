@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.21, for Linux (i686)
 --
--- Host: localhost    Database: test
+-- Host: localhost    Database: auction
 -- ------------------------------------------------------
 -- Server version	5.7.21-0ubuntu0.16.04.1
 
@@ -37,7 +37,7 @@ CREATE TABLE `auctions` (
   KEY `fk_auctions_1_idx` (`auctions_type_at_id`),
   CONSTRAINT `fk_auction_lots1` FOREIGN KEY (`l_id`) REFERENCES `lots` (`l_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_auctions_auctions_type1` FOREIGN KEY (`auctions_type_at_id`) REFERENCES `auctions_type` (`at_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,6 +46,7 @@ CREATE TABLE `auctions` (
 
 LOCK TABLES `auctions` WRITE;
 /*!40000 ALTER TABLE `auctions` DISABLE KEYS */;
+INSERT INTO `auctions` VALUES (1,3,'2018-04-10 23:55:51',NULL,'ACTIVE',12.00,2),(2,4,'2018-04-10 23:55:51','2018-04-10 23:55:51','COMPLETED',12.00,2),(3,5,'2018-04-10 23:55:51','2018-04-10 23:55:51','ACTIVE',12.00,2),(4,6,'2018-04-10 23:55:51',NULL,'ACTIVE',12.00,2),(5,7,'2018-04-10 23:55:51','2018-04-22 02:20:40','PENDING_PAYMENT',12.00,2),(6,15,'2018-04-10 23:55:51','2018-04-10 23:55:51','COMPLETED',12.00,2),(7,16,'2018-04-10 23:55:51','2018-04-10 23:55:51','COMPLETED',12.00,2),(8,12,'2018-04-10 23:55:51','2018-04-10 23:55:51','ACTIVE',12.00,2);
 /*!40000 ALTER TABLE `auctions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -97,7 +98,7 @@ CREATE TABLE `lots` (
   UNIQUE KEY `l_id_UNIQUE` (`l_id`),
   KEY `fk_lots_site_users1_idx` (`su_owner_login`),
   CONSTRAINT `fk_lots_site_users1` FOREIGN KEY (`su_owner_login`) REFERENCES `site_users` (`su_login`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -106,7 +107,7 @@ CREATE TABLE `lots` (
 
 LOCK TABLES `lots` WRITE;
 /*!40000 ALTER TABLE `lots` DISABLE KEYS */;
-INSERT INTO `lots` VALUES (1,'BlockLot','q',2,'q','Admin','2018-04-09 03:10:38','ACTIVE','CAR','ru'),(2,'UnblockLot','q',1,'qqwwwq','Admin','2018-04-10 23:55:51','BLOCKED','CAR','en');
+INSERT INTO `lots` VALUES (1,'BlockLot','q',2,'q','Admin','2018-04-09 03:10:38','CONFIRMING','CAR','ru'),(2,'UnblockLot','q',1,'qqwwwq','Admin','2018-04-10 23:55:51','BLOCKED','CAR','en'),(3,'AuctionLot','q',1,'q','Admin','2018-04-10 23:55:51','ACTIVE','CAR','en'),(4,'AuctionPendingLot','q',1,'q','Admin','2018-04-10 23:55:51','ACTIVE','CAR','en'),(5,'AuctionCurrentBet','q',1,'q','Admin','2018-04-10 23:55:51','ACTIVE','CAR','en'),(6,'ActiveAuctionLot','q',1,'q','Admin','2018-04-10 23:55:51','ACTIVE','CAR','en'),(7,'CompleteAuctionLot','q',1,'q','Admin','2018-04-10 23:55:51','ACTIVE','CAR','en'),(8,'InfoLot','InfoLot',1,'q','Admin','2018-04-10 23:55:51','READY','CAR','en'),(9,'Delete','q',1,'q','Admin','2018-04-10 23:55:51','READY','CAR','en'),(10,'EditLot','EditLot',2,'q','Admin','2018-04-10 23:55:51','READY','CAR','en'),(11,'ListLot','q',1,'q','Admin','2018-04-10 23:55:51','READY','CAR','en'),(12,'SearchLot','q',1,'q','Admin','2018-04-10 23:55:51','READY','CAR','en'),(13,'TypeLot','q',1,'q','Admin','2018-04-10 23:55:51','READY','CAR','en'),(14,'WaitingLot','q',1,'q','Admin','2018-04-10 23:55:51','READY','CAR','en'),(15,'UserWinLot','q',1,'q','Admin','2018-04-10 23:55:51','READY','CAR','en'),(16,'InfoAuction','q',1,'q','Admin','2018-04-10 23:55:51','READY','CAR','en');
 /*!40000 ALTER TABLE `lots` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -145,7 +146,7 @@ CREATE TABLE `site_users` (
 
 LOCK TABLES `site_users` WRITE;
 /*!40000 ALTER TABLE `site_users` DISABLE KEYS */;
-INSERT INTO `site_users` VALUES ('Admin','Admin','Admin','e3afed0047b08059d0fada10f400c1e5','Admin@admin.com','1234567899','Admin','Admin',1,0,0,'images/a_082c3b7b_1.jpg'),('BlockUser','BlockUser','BlockUser','6bdcbb606161c47eab0615ff6e13313f','eqw@w.wq','1234567899','eqw','eqw',1,1,0,'images/a_082c3b7b_1.jpg'),('UnblockUser','UnblockUser','UnblockUser','6bdcbb606161c47eab0615ff6e13313f','qw@eqw.eq','1234567899','ewq','eqw',1,1,1,'images/no-img.jpg');
+INSERT INTO `site_users` VALUES ('Admin','Admin','Admin','e3afed0047b08059d0fada10f400c1e5','Admin@admin.com','1234567899','Admin','Admin',1,0,0,'images/a_082c3b7b_1.jpg'),('BlockedUser','BlockedUser','BlockedUser','6bdcbb606161c47eab0615ff6e13313f','q@q.q','1234567899','q','q',1,1,1,'images/no-img.jpg'),('BlockUser','BlockUser','BlockUser','6bdcbb606161c47eab0615ff6e13313f','eqw@w.wq','1234567899','eqw','eqw',1,1,0,'images/a_082c3b7b_1.jpg'),('EditUser','EditUser','EditUser','EditUser','EditUser','EditUser','EditUser','EditUser',1,1,0,'images/no-img.jpg'),('InfoUser','InfoUser','InfoUser','6bdcbb606161c47eab0615ff6e13313f','InfoUser@InfoUser.InfoUser','InfoUser','InfoUser','InfoUser',1,1,0,'images/no-img.jpg'),('LoginUser','LoginUser','LoginUser','e3afed0047b08059d0fada10f400c1e5','qw@eqw.eq','1234567899','ewq','eqw',1,1,0,'images/no-img.jpg'),('SearchUser1','SearchUser1','SearchUser1','SearchUser','SearchUser@SearchUser.SearchUser','1234567899','SearchUser','SearchUser',1,1,0,'images/no-img.jpg'),('SearchUser2','SearchUser2','SearchUser2','SearchUser','SearchUser@SearchUser.SearchUser','1234567899','SearchUser','SearchUser',1,1,0,'images/no-img.jpg'),('UnblockUser','UnblockUser','UnblockUser','6bdcbb606161c47eab0615ff6e13313f','qw@eqw.eq','1234567899','ewq','eqw',1,1,1,'images/no-img.jpg');
 /*!40000 ALTER TABLE `site_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -202,6 +203,7 @@ CREATE TABLE `user_participation_in_bidding` (
 
 LOCK TABLES `user_participation_in_bidding` WRITE;
 /*!40000 ALTER TABLE `user_participation_in_bidding` DISABLE KEYS */;
+INSERT INTO `user_participation_in_bidding` VALUES ('Admin',3,'ACTIVE',20.00,'2018-04-10 23:55:51'),('Admin',5,'ACTIVE',20.00,'2018-04-10 23:55:51'),('Admin',6,'WON',20.00,'2018-04-10 23:55:51'),('Admin',7,'WON',20.00,'2018-04-10 23:55:51');
 /*!40000 ALTER TABLE `user_participation_in_bidding` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -240,4 +242,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-21  1:19:09
+-- Dump completed on 2018-04-22 13:30:47

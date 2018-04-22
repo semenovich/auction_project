@@ -32,9 +32,9 @@ public class UsersServiceImpl implements UsersService {
 	}
 
 	@Override
-	public UsersInfo getUsersByNameSearch(String searchLine, int page) throws ServiceException {
+	public UsersInfo getUsersBySearching(String searchLine, int page) throws ServiceException {
 		try {
-			ArrayList<User> users = usersDAO.getUsersByNameSearching(searchLine);
+			ArrayList<User> users = usersDAO.getUsersBySearching(searchLine);
 			return portionGetter.getUsersPortion(users, page);
 		} catch (DAOException e) {
 			throw new ServiceException(e.getMessage(), e.getCause());

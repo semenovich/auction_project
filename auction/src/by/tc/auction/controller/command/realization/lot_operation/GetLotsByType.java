@@ -49,13 +49,16 @@ public class GetLotsByType implements ServletCommand {
 				response.sendRedirect(ACCESS_DENIED_PAGE);
 				return;
 			}
+			
 			int page = Integer.valueOf((String)request.getParameter(CHOOSEN_LOTS_PAGE_NUMBER));
 			LotType lotType = LotType.valueOf(request.getParameter(LOT_TYPE));
 			LotsInfo lotsInfo = service.getLotsByType(lotType, 
 					Locale.valueOf((String) request.getSession().getAttribute(LOCALE)), page);
+			
 			request.setAttribute(LOTS_INFO, lotsInfo);
 			request.setAttribute(LIST_TYPE, SEARCHING_BY_TYPE);
 			request.setAttribute(LOT_TYPE, lotType);
+			
 			request.getRequestDispatcher(CURRENT_PAGE).forward(request, response);
 		} catch (ServiceException e) {
 			logger.error("Error in GetLotsByType", e);

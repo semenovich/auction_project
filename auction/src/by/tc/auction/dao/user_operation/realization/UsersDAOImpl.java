@@ -32,7 +32,7 @@ public class UsersDAOImpl implements UsersDAO {
 	}
 
 	@Override
-	public ArrayList<User> getUsersByNameSearching(String searchLine) throws DAOException {
+	public ArrayList<User> getUsersBySearching(String searchLine) throws DAOException {
 		try(Connection connection = ConnectionPool.getInstance().getConnection()){
 			return userInfoGetter.getUsersBySearching(connection, searchLine);
 		} catch (SQLException | ConnectionPoolException e) {

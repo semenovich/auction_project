@@ -8,7 +8,7 @@ import by.tc.auction.entity.Lot;
 import by.tc.auction.entity.LotType;
 
 public interface LotOperationDAO {
-	boolean offerLot(Lot lot) throws DAOException;
+	boolean createLot(Lot lot) throws DAOException;
 	Lot getLotInfo(Integer lotId) throws DAOException;
 	boolean deleteWaitingLot(Integer lotId) throws DAOException;
 	boolean editWaitingLot(Lot lot) throws DAOException;

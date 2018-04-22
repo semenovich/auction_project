@@ -28,12 +28,12 @@ public class LotOperationServiceImpl implements LotOperationService {
 	}
 
 	@Override
-	public boolean offerLot(Lot lot) throws ServiceException, LotInfoException {
+	public boolean createLot(Lot lot) throws ServiceException, LotInfoException {
 		if (!LotInfoValidator.validate(lot)) {
 			throw new LotInfoException(ERROR_MESSAGE);
 		}
 		try {
-			return lotOperationDAO.offerLot(lot);
+			return lotOperationDAO.createLot(lot);
 		} catch (DAOException e) {
 			throw new ServiceException(e.getMessage(), e.getCause());
 		}

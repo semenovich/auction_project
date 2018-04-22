@@ -28,7 +28,7 @@ public class LotOperationDAOImpl implements LotOperationDAO {
 	private static final Logger logger = Logger.getLogger(AuthDAOImpl.class);
 	
 	@Override
-	public boolean offerLot(Lot lot) throws DAOException {
+	public boolean createLot(Lot lot) throws DAOException {
 		try(Connection connection = ConnectionPool.getInstance().getConnection()){
 			return lotProcessor.createLot(connection, lot);
 		} catch (SQLException | ConnectionPoolException e) {
