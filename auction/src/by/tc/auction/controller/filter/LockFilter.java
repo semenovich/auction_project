@@ -11,19 +11,19 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import by.tc.auction.service.exception.ServiceException;
-import by.tc.auction.service.user_check_block_filter.UserBlockCheckerService;
-import by.tc.auction.service.user_check_block_filter.realization.UserBlockCheckerServiceImpl;
+import by.tc.auction.service.user_check_lock_filter.UserLockCheckerService;
+import by.tc.auction.service.user_check_lock_filter.realization.UserLockCheckerServiceImpl;
 
-public class BlockFilter implements Filter {
+public class LockFilter implements Filter {
 
 	private static final String USER_LOGIN = "userLogin";
 	private static final String USER_ROLE = "userRole";
 	private static final String BLOCKED_PAGE = "blocked.jsp";
 	private static final String ERROR_PAGE = "error.jsp";
 	
-	private UserBlockCheckerService service = new UserBlockCheckerServiceImpl();
+	private UserLockCheckerService service = new UserLockCheckerServiceImpl();
 	
-    public BlockFilter() {}
+    public LockFilter() {}
 
 	public void destroy() {}
 

@@ -29,6 +29,12 @@ import org.apache.log4j.Logger;
 
 import by.tc.auction.dao.exception.ConnectionPoolException;
 
+/**
+ * A class is used to create pull of connections to a database and get connection to a database.
+ * @author semenovich
+ *
+ */
+
 public class ConnectionPool {
 
     private static final Logger logger = Logger.getLogger(ConnectionPool.class);
@@ -70,7 +76,11 @@ public class ConnectionPool {
             logger.fatal("ConnectionPool exception into ConnectionPool", e);
         }
     }
-
+    
+    /**
+     * Returns the instance of the ConnectionPool.
+     * @return instance of the ConnectionPool.
+     */
     public static ConnectionPool getInstance() {
         if(!isInitialized.get()){
             lock.lock();
@@ -87,6 +97,11 @@ public class ConnectionPool {
         return instance;
     }
 
+    /**
+     * Returns a connection for working with database. 
+     * @return connection for working with database.
+     * @throws ConnectionPoolException - if an error occurred with connecting to database.
+     */
     public Connection getConnection() throws ConnectionPoolException {
         Connection connection;
         try {

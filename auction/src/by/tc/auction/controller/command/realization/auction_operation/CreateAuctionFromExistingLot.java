@@ -55,7 +55,7 @@ public class CreateAuctionFromExistingLot implements ServletCommand {
 				return;
 			}
 			Auction auction = parseAuction(request);
-			if (service.createAuctionFromExistingLot(auction, lotId)) {
+			if (service.createAuctionWithExistingLot(auction, lotId)) {
 				response.sendRedirect(SUCCESSFUL_PAGE);
 			}
 			else {

@@ -41,9 +41,9 @@ public class AuctionOperationServiceImpl implements AuctionOperationService {
 	}
 
 	@Override
-	public boolean createAuctionFromExistingLot(Auction auction, Integer lotId) throws ServiceException {
+	public boolean createAuctionWithExistingLot(Auction auction, Integer lotId) throws ServiceException {
 		try {
-			return auctionOperationDAO.createAuctionFromExistingLot(auction, lotId);
+			return auctionOperationDAO.createAuctionWithExistingLot(auction, lotId);
 		} catch (DAOException e) {
 			throw new ServiceException(e.getMessage(), e.getCause());
 		}

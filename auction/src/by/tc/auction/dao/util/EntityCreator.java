@@ -17,6 +17,11 @@ import by.tc.auction.entity.LotType;
 import by.tc.auction.entity.User;
 import by.tc.auction.entity.UserRole;
 
+/**
+ * EntityCreator is used for create Users, Lots, Auctions from ResultSet.
+ * @author semenovich
+ * 
+ */
 public class EntityCreator {
 
 	private static final String USER_LOGIN = "userLogin";
@@ -58,10 +63,20 @@ public class EntityCreator {
 	
 	private EntityCreator() {};
 	
+	/**
+	 * Returns the instance of the EntityCreator.
+	 * @return instance of the EntityCreator.
+	 */
 	public static EntityCreator getInstance() {
 		return instance;
 	}
 	
+	/**
+	 * Creates a lot from ResultSet.
+	 * @param result - ResultSet which contains a lot ("lotId", "lotName", "lotDescription", "lotQuantity", "lotStatus", "lotType", "lotDateAdded", "lotOwner", "lotPicture", "lotLocale" columns).
+	 * @return Lot if a lot exists, null if a lot doesn't exist.
+	 * @throws SQLException - if a database access occurs; this method called on a closed result set or the result. 
+	 */
 	public Lot createLot(ResultSet result) throws SQLException {
 		try{
 			Lot lot = null;
@@ -84,7 +99,6 @@ public class EntityCreator {
 			throw e;
 		}
 	}
-	
 	private Lot createAuctionLot(ResultSet result) throws SQLException {
 		try {
 			Lot lot = new Lot();
@@ -105,6 +119,12 @@ public class EntityCreator {
 		}
 	}
 	
+	/**
+	 * Creates lots from ResultSet.
+	 * @param result - ResultSet which contains lots ("lotId", "lotName", "lotDescription", "lotQuantity", "lotStatus", "lotType", "lotDateAdded", "lotOwner", "lotPicture", "lotLocale" columns).
+	 * @return ArrayList of lots if they exist. Empty ArrayList if they don't exist.
+	 * @throws SQLException - if a database access occurs; this method called on a closed result set or the result. 
+	 */
 	public ArrayList<Lot> createLots(ResultSet result) throws SQLException{
 		try {
 			ArrayList<Lot> lots = new ArrayList<>();
@@ -130,6 +150,12 @@ public class EntityCreator {
 		}
 	}
 	
+	/**
+	 * Creates auctions from ResultSet.
+	 * @param result - ResultSet which contains auctions ("auctionId", "auctionType", "auctionStartTime", "auctionEndTime", "auctionMinimumPrice", "auctionCurrentPrice", "auctionLastBetLogin", "auctionStatus", "auctionLastBetTime", "lotId", "lotName", "lotDescription", "lotQuantity", "lotStatus", "lotType", "lotDateAdded", "lotOwner", "lotPicture", "lotLocale" columns).
+	 * @return ArrayList of auctions if auctions exist. Empty ArrayList if auctions don't exist.
+	 * @throws SQLException - if a database access occurs; this method called on a closed result set or the result. 
+	 */
 	public ArrayList<Auction> createAuctions(ResultSet result) throws SQLException {
 		try {
 			ArrayList<Auction> auctions = new ArrayList<>();
@@ -159,6 +185,12 @@ public class EntityCreator {
 		}
 	}
 	
+	/**
+	 * Creates an auction from ResultSet.
+	 * @param result - ResultSet which contains an auction ("auctionId", "auctionType", "auctionStartTime", "auctionEndTime", "auctionMinimumPrice", "auctionCurrentPrice", "auctionLastBetLogin", "auctionStatus", "auctionLastBetTime", "lotId", "lotName", "lotDescription", "lotQuantity", "lotStatus", "lotType", "lotDateAdded", "lotOwner", "lotPicture", "lotLocale" columns).
+	 * @return Auction if an auction exists, null if an auction doesn't exist.
+	 * @throws SQLException - if a database access occurs; this method called on a closed result set or the result. 
+	 */
 	public Auction createAuction(ResultSet result) throws SQLException {
 		try {
 			Auction auction = null;
@@ -186,6 +218,12 @@ public class EntityCreator {
 		}
 	}
 	
+	/**
+	 * Creates a user from ResultSet.
+	 * @param result - ResultSet which contains a user ("userLogin", "userRole", "userSurname", "userName", "userEmail", "userPhone", "userCountry", "userPassportId", "userPassportIssuedBy", "userPicture", "isBlocked" columns).
+	 * @return User if a user exists, null if a user doesn't exist.
+	 * @throws SQLException - if a database access occurs; this method called on a closed result set or the result. 
+	 */
 	public User createUser(ResultSet result) throws SQLException {
 		try {
 			User user = null;
@@ -210,6 +248,12 @@ public class EntityCreator {
 		}
 	}
 	
+	/**
+	 * Creates users from ResultSet.
+	 * @param result - ResultSet which contains users ("userLogin", "userRole", "userSurname", "userName", "userEmail", "userPhone", "userCountry", "userPassportId", "userPassportIssuedBy", "userPicture", "isBlocked" columns)..
+	 * @return Users if users exist, null if users don't exist.
+	 * @throws SQLException - if a database access occurs; this method called on a closed result set or the result. 
+	 */
 	public ArrayList<User> createUsers(ResultSet result) throws SQLException {
 		try {
 			ArrayList<User> users = new ArrayList<>();

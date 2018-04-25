@@ -1,5 +1,10 @@
 package by.tc.auction.dao.connection_pool;
 
+/**
+ * A list of connection pool parameters.
+ * @author semenovich
+ *
+ */
 public final class DBParameterList {
 	
 	private DBParameterList(){}

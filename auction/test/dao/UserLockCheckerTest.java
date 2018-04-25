@@ -4,14 +4,14 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import by.tc.auction.dao.exception.DAOException;
-import by.tc.auction.dao.user_check_block_filter.UserBlockCheckerDAO;
-import by.tc.auction.dao.user_check_block_filter.realization.UserBlockCheckerDAOImpl;
+import by.tc.auction.dao.user_check_lock_filter.UserLockCheckerDAO;
+import by.tc.auction.dao.user_check_lock_filter.realization.UserLockCheckerDAOImpl;
 
-public class UserBlockCheckerTest {
+public class UserLockCheckerTest {
 
 	@Test
 	public void testIsBlocked() {
-		UserBlockCheckerDAO userBlockChecker = new UserBlockCheckerDAOImpl();
+		UserLockCheckerDAO userBlockChecker = new UserLockCheckerDAOImpl();
 		
 		String blockedLogin = "BlockedUser";
 		

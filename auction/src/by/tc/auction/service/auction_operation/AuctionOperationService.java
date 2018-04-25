@@ -10,7 +10,7 @@ import by.tc.auction.service.exception.ServiceException;
 
 public interface AuctionOperationService {
 	boolean createAuctionWithLot(Auction auction, Lot lot) throws ServiceException, LotInfoException;
-	boolean createAuctionFromExistingLot(Auction auction, Integer lotId) throws ServiceException;
+	boolean createAuctionWithExistingLot(Auction auction, Integer lotId) throws ServiceException;
 	Auction getAuctionInfo(Integer auctionId) throws ServiceException;
 	AuctionsInfo getAuctions(Locale locale, int page) throws ServiceException;
 	AuctionsInfo getAuctionsBySearching(String searchLine, Locale locale, int page) throws ServiceException;

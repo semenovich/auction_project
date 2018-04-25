@@ -220,7 +220,7 @@
 								</div>
 							</c:if>
 							<c:if test="${requestScope.listType == 'searchingBySearchLine' }">
-								<div class="lots_list_navigation">
+								<div class="lots_list_navigation text-center">
 									<c:if test="${lots.currentPage > 1 }">
 										<div class="previous">
 											<form action="FrontController" method="GET">
@@ -247,7 +247,7 @@
 								</div>
 							</c:if>
 							<c:if test="${requestScope.listType == 'searchingByType' }">
-								<div class="lots_list_navigation">
+								<div class="lots_list_navigation text-center">
 									<c:if test="${lots.currentPage > 1 }">
 										<div class="previous">
 											<form action="FrontController" method="GET">
@@ -274,7 +274,7 @@
 								</div>
 							</c:if>
 							<c:if test="${requestScope.listType == 'waitingList' }">
-								<div class="lots_list_navigation">
+								<div class="lots_list_navigation text-center">
 									<c:if test="${lots.currentPage > 1 }">
 										<div class="previous">
 											<form action="FrontController" method="GET">
