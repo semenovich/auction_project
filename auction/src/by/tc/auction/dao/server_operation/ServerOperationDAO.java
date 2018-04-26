@@ -6,7 +6,7 @@ import by.tc.auction.dao.exception.DAOException;
 import by.tc.auction.entity.Auction;
 
 /**
- * An interface of server operations. An interface which provides methods for server working.
+ * An interface of server operations. An interface which provides methods for server working in an application source.
  * @author semenovich
  *
  */

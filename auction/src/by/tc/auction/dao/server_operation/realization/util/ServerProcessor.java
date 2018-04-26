@@ -47,6 +47,7 @@ public class ServerProcessor {
 
 	/**
 	 * Creates and executes query to a database to complete auctions.
+	 * After that method setLoserParticipations() and setWinParticipations() must be used.
 	 * @param connection - a connection to a database.
 	 * @param auctions - a list of auctions which will be completed in a database. Only the ID and the end time fields must be filled in.
 	 * @return {@code true}.
@@ -70,6 +71,7 @@ public class ServerProcessor {
 	
 	/**
 	 * Creates and executes query to a database to set users loser participations.
+	 * Must be used after completeAuctions() method.
 	 * @param connection - a connection to a database.
 	 * @param auctions - a list of auctions which participants will be set. Only the ID and the last bet user fields must be filled in.
 	 * @return {@code true}.
@@ -92,6 +94,7 @@ public class ServerProcessor {
 	
 	/**
 	 * Creates and executes query to a database to set users win participations.
+	 * Must be used after completeAuctions() method.
 	 * @param connection - a connection to a database.
 	 * @param auctions - a list of auctions which participants will be set. Only the ID and the last bet user fields must be filled in.
 	 * @return {@code true}.

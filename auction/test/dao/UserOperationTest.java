@@ -76,7 +76,7 @@ public class UserOperationTest {
 		
 		try {
 			Assert.assertEquals(true, userOperationDAO.getAuctionCurrentBet(auction)
-					.equals(auctionOperationDAO.getAuctionInfo(auction.getId()).getLastBet().getValue()));
+					.equals(auctionOperationDAO.getAuctionInfo(auction.getId()).getLastBet()));
 		} catch (DAOException e) {
 			e.printStackTrace();
 		}

@@ -8,6 +8,11 @@ import org.apache.log4j.Logger;
 
 import by.tc.auction.entity.User;
 
+/**
+ * A class is used to create and execute a query to a database to process users in a database. 
+ * @author semenovich
+ *
+ */
 public final class UserProcessor {
 
 	private static final String EDIT_USER_INFO_SQL_STATEMENT = "UPDATE auction.site_users SET su_surname=?, su_name=?, su_password=MD5(?), su_email=?, su_phone=?, su_passport_id=?, su_passport_issued_by=? WHERE su_login=?";
@@ -16,6 +21,13 @@ public final class UserProcessor {
 	
 	private static final Logger logger = Logger.getLogger(UserProcessor.class);
 
+	/**
+	 * Creates and executes query to a database to update user info.
+	 * @param connection - a connection to a database.
+	 * @param user - user update info. Only surname, name, phone, email, passport ID, passport issued by, login fields must be filled in.
+	 * @return {@code true}.
+	 * @throws SQLException - if a database access error or other errors occurred.
+	 */
 	public boolean edit(Connection connection, User user) throws SQLException {
 		try {
 			if (user.getPassword().isEmpty()) {
@@ -37,6 +49,14 @@ public final class UserProcessor {
 		}
 	}
 	
+	/**
+	 * Creates and executes query to a database to an upload user image.
+	 * @param connection - a connection to a database.
+	 * @param userLogin - a user login.
+	 * @param imagePath - an image path.
+	 * @return {@code true}.
+	 * @throws SQLException - if a database access error or other errors occurred.
+	 */
 	public boolean uploadUserImage(Connection connection, String userLogin, String imagePath) throws SQLException {
 		try (PreparedStatement preparedStatement = connection.prepareStatement(UPLOAD_USER_IMAGE_SQL_STATEMENT)) {
 			preparedStatement.setString(1, imagePath);

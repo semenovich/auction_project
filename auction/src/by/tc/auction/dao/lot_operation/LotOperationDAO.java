@@ -8,7 +8,7 @@ import by.tc.auction.entity.Lot;
 import by.tc.auction.entity.LotType;
 
 /**
- * An interface of operations with lots. An interface which provides methods for working with lots.
+ * An interface of operations with lots. An interface which provides methods for working with lots in an application source.
  * @author semenovich
  *
  */

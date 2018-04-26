@@ -11,6 +11,11 @@ import org.apache.log4j.Logger;
 import by.tc.auction.entity.Auction;
 import by.tc.auction.entity.Bet;
 
+/**
+ * A class is used to create and execute a query to a database to process payments in a database. 
+ * @author semenovich
+ *
+ */
 public class PaymentProcessor {
 
 	private static final String PLACE_BET_SQL_STATEMENT = "UPDATE auction.user_participation_in_bidding SET upib_bet=?, upib_last_bet_time=? WHERE su_login=? AND a_id=?";
@@ -22,6 +27,17 @@ public class PaymentProcessor {
 	
 	private static final Logger logger = Logger.getLogger(PaymentProcessor.class);
 
+	/**
+	 * Creates and executes a query to a database to place a bet.
+	 * Must be used if a participation has been created (by method createParticipation()).
+	 * @param connection - a connection to a database.
+	 * @param auction - an auction ID. Only ID field must be filled in.
+	 * @param userLogin - a user login.
+	 * @param bet - a bet.
+	 * @param betTime - time when a bet has been placed.
+	 * @return {@code true}.
+	 * @throws SQLException - if a database access error or other errors occurred.
+	 */
 	public boolean placeBet(Connection connection, Auction auction, String userLogin, Bet bet, Timestamp betTime) throws SQLException {
 		try{
 			if (isAuctionExist(connection, auction.getId()) && isAuctionActive(connection, auction.getId())) {
@@ -41,6 +57,14 @@ public class PaymentProcessor {
 		}
 	}
 	
+	/**
+	 * Creates and executes a query to a database to create a user participation in an auction.
+	 * @param connection - a connection to a database.
+	 * @param auction - an auction. Only ID field must be filled in.
+	 * @param userLogin - a user login.
+	 * @return {@code true}.
+	 * @throws SQLException - if a database access error or other errors occurred.
+	 */
 	public boolean createParticipation(Connection connection, Auction auction, String userLogin) throws SQLException {
 		try(PreparedStatement preparedStatement = connection.prepareStatement(CREATE_PARTICIPATION_SQL_STATEMENT)) {
 			preparedStatement.setString(1, userLogin);
@@ -53,6 +77,14 @@ public class PaymentProcessor {
 		}
 	}
 	
+	/**
+	 * Creates and executes a query to a database to pay for a lot.
+	 * @param connection - a connection to a database.
+	 * @param auctionId - an auction ID.
+	 * @param lotId - a lot ID.
+	 * @return {@code true}.
+	 * @throws SQLException - if a database access error or other errors occurred.
+	 */
 	public boolean payForLot(Connection connection, Integer auctionId, Integer lotId) throws SQLException {
 		try {
 			connection.setAutoCommit(false);

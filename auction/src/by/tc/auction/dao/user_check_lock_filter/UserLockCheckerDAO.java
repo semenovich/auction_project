@@ -3,7 +3,7 @@ package by.tc.auction.dao.user_check_lock_filter;
 import by.tc.auction.dao.exception.DAOException;
 
 /**
- * An interface of user lock checking operations. An interface which provides methods for user lock checker.
+ * An interface of user lock checking operations. An interface which provides methods for user lock checker in an application source.
  * @author semenovich
  *
  */

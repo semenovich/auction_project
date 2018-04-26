@@ -28,8 +28,7 @@ public class UserOperationServiceImpl implements UserOperationService {
 	@Override
 	public boolean placeBet(Auction auction, String userLogin, Bet bet, Timestamp betTime) throws ServiceException, BetException {
 		try {
-			Bet auctionCurrentBet = new Bet();
-			auctionCurrentBet.setValue(userOperationDAO.getAuctionCurrentBet(auction));
+			Bet auctionCurrentBet = userOperationDAO.getAuctionCurrentBet(auction);
 			auction.setLastBet(auctionCurrentBet);
 			if (!UserBetValidator.validate(auction, bet, MIN_BET_DIFFERENCE)) {
 				throw new BetException(ERROR_MESSAGE);

@@ -3,7 +3,7 @@ package by.tc.auction.dao.admin_operation;
 import by.tc.auction.dao.exception.DAOException;
 
 /**
- * An interface of administrator operations. An interface provides methods for an administrator working.
+ * An interface of administrator operations. An interface provides methods for an administrator working in an application source.
  * @author semenovich
  *
  */

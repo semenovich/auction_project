@@ -4,7 +4,7 @@ import by.tc.auction.dao.exception.DAOException;
 import by.tc.auction.entity.User;
 
 /**
- * An interface of authentication operations. An interface provides methods for an authentication.
+ * An interface of authentication operations. An interface provides methods for an authentication in an application source.
  * @author semenovich
  *
  */
