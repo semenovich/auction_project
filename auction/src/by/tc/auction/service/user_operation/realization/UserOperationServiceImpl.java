@@ -12,6 +12,11 @@ import by.tc.auction.service.exception.ServiceException;
 import by.tc.auction.service.user_operation.UserOperationService;
 import by.tc.auction.service.user_operation.realization.validation.UserBetValidator;
 
+/**
+ * A class is used to provide methods for users operations on an application logic level and in a database.
+ * @author semenovich
+ *
+ */
 public class UserOperationServiceImpl implements UserOperationService {
 
 	private static final String ERROR_MESSAGE = "Invalid bet";
@@ -20,11 +25,25 @@ public class UserOperationServiceImpl implements UserOperationService {
 	
 	private UserOperationDAO userOperationDAO; 
 	
+	/**
+	 * Default constructor.
+	 */
 	public UserOperationServiceImpl() {
 		DAOFactory factory = DAOFactory.getInstance();
 		userOperationDAO = factory.getUserOperationDAO();
 	}
 
+	/**
+	 * Places a bet in a database if a bet is correct.
+	 * A bet must be greater than MIN bet (and than a current auction bet by 5$).
+	 * @param auction - an auction in which bet will be placed.
+	 * @param userLogin - a login of user which has placed bet.
+	 * @param bet - a bet.
+	 * @param betTime - time when bet was placed.
+	 * @return {@code true} - if a bet has been placed. {@code false} - if a bet hasn't been placed.
+	 * @throws ServiceException - if an error occurred during operation in a database.
+	 * @throws BetException - if a bet is incorrect.
+	 */
 	@Override
 	public boolean placeBet(Auction auction, String userLogin, Bet bet, Timestamp betTime) throws ServiceException, BetException {
 		try {
@@ -39,6 +58,13 @@ public class UserOperationServiceImpl implements UserOperationService {
 		}
 	}
 
+	/**
+	 * Pays for a lot in a database.
+	 * @param auctionId - an ID of an auction for which lot a user pays.
+	 * @param lotId - an ID of lot for which a user pays.
+	 * @return {@code true} - if successful. {@code false} - if not successful.
+	 * @throws ServiceException - if an error occurred during operation in a database.
+	 */
 	@Override
 	public boolean payForLot(Integer auctionId, Integer lotId) throws ServiceException {
 		try {

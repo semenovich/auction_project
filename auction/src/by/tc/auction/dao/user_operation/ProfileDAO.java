@@ -48,7 +48,7 @@ public interface ProfileDAO {
 	
 	/**
 	 * Edits user profile info.
-	 * @param user - user update info.
+	 * @param user - user updated info.
 	 * @return {@code true} if user profile info has been edited. {@code false} if user profile info hasn't been edited.
 	 * @throws DAOException - if an error occurred during operation.
 	 */

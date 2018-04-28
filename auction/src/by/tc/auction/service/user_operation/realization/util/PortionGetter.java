@@ -9,6 +9,11 @@ import by.tc.auction.entity.LotsInfo;
 import by.tc.auction.entity.User;
 import by.tc.auction.entity.UsersInfo;
 
+/**
+ * A class is used to get a list of lots portion from a list of users, user lots and user auctions.
+ * @author semenovich
+ *
+ */
 public class PortionGetter {
 	
 	private static final int LOT_PORTION_QUANTITY = 10;
@@ -17,12 +22,25 @@ public class PortionGetter {
 	
 	private static final PortionGetter instance = new PortionGetter();
 	
+	/**
+	 * Default constructor.
+	 */
 	private PortionGetter() {}
 	
+	/**
+	 * Returns the instance of the PortionGetter.
+	 * @return the instance of the PortionGetter.
+	 */
 	public static PortionGetter getInstance() {
 		return instance;
 	}
 	
+	/**
+	 * Returns a list of 10(<= if users in portion are less than 10) users from a list of users.
+	 * @param users - a list of users.
+	 * @param page - a page of portion.
+	 * @return A list of 10(<= if users in portion are less than 10) users. {@code null} if a users list is null.
+	 */
 	public UsersInfo getUsersPortion(ArrayList<User> users, int page){
 		if (users == null) {
 			return null;
@@ -38,6 +56,12 @@ public class PortionGetter {
 		return usersInfo;
 	}
 	
+	/**
+	 * Returns a list of 10(<= if lots in portion are less than 10) lots from a list of lots.
+	 * @param userLots - a list of lots.
+	 * @param page - a page of portion.
+	 * @return A list of 10(<= if lots in portion are less than 10) lots. {@code null} if a lots list is null.
+	 */
 	public LotsInfo getLotsPortion(ArrayList<Lot> userLots, int page){
 		if (userLots == null) {
 			return null;
@@ -53,6 +77,12 @@ public class PortionGetter {
 		return lotsInfo;
 	}
 	
+	/**
+	 * Returns a list of 10(<= if auctions in portion are less than 10) auctions from a list of auctions.
+	 * @param userAuctionParticipations - a list of auctions.
+	 * @param page - a page of portion.
+	 * @return A list of 10(<= if auctions in portion are less than 10) auctions. {@code null} if an auctions list is null.
+	 */
 	public AuctionsInfo getAuctionParcticipationsPortion(ArrayList<Auction> userAuctionParticipations, int page){
 		if (userAuctionParticipations == null) {
 			return null;

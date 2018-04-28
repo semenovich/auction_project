@@ -2,27 +2,57 @@ package by.tc.auction.entity;
 
 import java.io.Serializable;
 
+/**
+ * A class is used for working with a bet object.
+ * A bet has $ currency by default.
+ * @author semenovich
+ *
+ */
 public final class Bet implements Serializable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -7890281583651283379L;
 	
 	private Double value;
-	String currency = "$";
+	private String currency = "$";
 	
+	/**
+	 * @return the value
+	 */
 	public Double getValue() {
 		return value;
 	}
 	
+	/**
+	 * @param value the value to set
+	 */
 	public void setValue(Double value) {
 		this.value = value;
 	}
 	
+	/**
+	 * @return the currency
+	 */
 	public String getCurrency() {
 		return currency;
 	}
-
+	
+	/**
+	 * @param currency the currency to set
+	 */
+	public void setCurrency(String currency) {
+		this.currency = currency;
+	}
+	
+	/**
+	 * @return the serialversionuid
+	 */
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -31,7 +61,10 @@ public final class Bet implements Serializable {
 		result = prime * result + ((value == null) ? 0 : value.hashCode());
 		return result;
 	}
-
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -53,9 +86,12 @@ public final class Bet implements Serializable {
 			return false;
 		return true;
 	}
-
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
-		return "Price [value=" + value + ", currency=" + currency + "]";
+		return "Bet [value=" + value + ", currency=" + currency + "]";
 	}
 }

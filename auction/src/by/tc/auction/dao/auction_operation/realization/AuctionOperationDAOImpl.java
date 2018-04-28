@@ -73,7 +73,7 @@ public class AuctionOperationDAOImpl implements AuctionOperationDAO {
 	}
 
 	/**
-	 * Returns an info of an auction from a database.
+	 * Returns info of an auction from a database.
 	 * @param auctionId - an ID of an auction.
 	 * @return Auction - if an auction is exist in a database. {@code null} - if an auction doesn't exist.
 	 * @throws DAOException - if an error occurred during operation with (in) a database.

@@ -15,6 +15,11 @@ import by.tc.auction.dao.server_operation.ServerOperationDAO;
 import by.tc.auction.entity.Auction;
 import by.tc.auction.entity.AuctionType;
 
+/**
+ * A class is used to provide methods for a server working on an application logic level and in a database..
+ * @author semenovich
+ *
+ */
 public class ServerOperationJobService implements Job {
 
 	private static final Logger logger = Logger.getLogger(ServerOperationJobService.class);
@@ -22,11 +27,19 @@ public class ServerOperationJobService implements Job {
 	
 	private ServerOperationDAO serverOperationDAO;
 	
+	/**
+	 * Default constructor.
+	 */
 	public ServerOperationJobService() {
 		DAOFactory factory = DAOFactory.getInstance();
 		serverOperationDAO = factory.getServerOperationDAO();
 	}
 	
+	/**
+	 * Executes a complete auctions server operation.
+	 * An auction - is complete when time of auction ended (for an ONLINE type acution) 
+	 * or when waiting time ended (10 min, for an ENGLISH type auction).
+	 */
 	@Override
 	public void execute(JobExecutionContext arg0) throws JobExecutionException {
 		try {

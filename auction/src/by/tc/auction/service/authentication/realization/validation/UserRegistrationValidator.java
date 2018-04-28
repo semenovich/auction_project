@@ -2,10 +2,28 @@ package by.tc.auction.service.authentication.realization.validation;
 
 import by.tc.auction.entity.User;
 
+/**
+ * A class is used to validate registration user info.
+ * @author semenovich
+ *
+ */
 public final class UserRegistrationValidator {
 	
+	/**
+	 * Default constructor.
+	 */
 	private UserRegistrationValidator() {};
 	
+	/**
+	 * Validates user registration info.
+	 * <br> A login must be "A-z, 0-9" and without spaces.
+	 * <br> A password must be not empty.
+	 * <br> An email must be "example@adress.com".
+	 * <br> Phone must be like "1234567890".
+	 * <br> All fields must be not empty.
+	 * @param user - user info.
+	 * @return {@code true} - if user info is correct. {@code false} - if user info is incorrect.
+	 */
 	public static boolean validate(User user) {
 		if (user == null) {
 			return false;

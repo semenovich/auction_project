@@ -5,7 +5,7 @@ package by.tc.auction.dao.connection_pool;
  * @author semenovich
  *
  */
-public final class DBParameterList {
+final class DBParameterList {
 	
 	private DBParameterList(){}
 

@@ -3,10 +3,13 @@ package by.tc.auction.entity;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+/**
+ * A class is used for provide working with a lot object.
+ * @author semenovich
+ *
+ */
 public class Lot implements Serializable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -1791979464762745693L;
 	
 	private Integer id;
@@ -20,86 +23,155 @@ public class Lot implements Serializable {
 	private String owner;
 	private Locale locale;
 	
+	/**
+	 * @return the id
+	 */
 	public Integer getId() {
 		return id;
 	}
-	
+	/**
+	 * @param id the id to set
+	 */
 	public void setId(Integer id) {
 		this.id = id;
 	}
 	
+	/**
+	 * @return the picture
+	 */
 	public String getPicture() {
 		return picture;
 	}
 	
+	/**
+	 * @param picture the picture to set
+	 */
 	public void setPicture(String picture) {
 		this.picture = picture;
 	}
 	
+	/**
+	 * @return the name
+	 */
 	public String getName() {
 		return name;
 	}
 	
+	/**
+	 * @param name the name to set
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 	
+	/**
+	 * @return the description
+	 */
 	public String getDescription() {
 		return description;
 	}
 	
+	/**
+	 * @param description the description to set
+	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
 	
+	/**
+	 * @return the quantity
+	 */
 	public Integer getQuantity() {
 		return quantity;
 	}
 	
+	/**
+	 * @param quantity the quantity to set
+	 */
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
 	
+	/**
+	 * @return the added
+	 */
 	public Timestamp getAdded() {
 		return added;
 	}
 	
+	/**
+	 * @param added the added to set
+	 */
 	public void setAdded(Timestamp added) {
 		this.added = added;
 	}
 	
+	/**
+	 * @return the status
+	 */
 	public LotStatus getStatus() {
 		return status;
 	}
 	
+	/**
+	 * @param status the status to set
+	 */
 	public void setStatus(LotStatus status) {
 		this.status = status;
 	}
 	
+	/**
+	 * @return the type
+	 */
 	public LotType getType() {
 		return type;
 	}
 	
+	/**
+	 * @param type the type to set
+	 */
 	public void setType(LotType type) {
 		this.type = type;
 	}
 	
+	/**
+	 * @return the owner
+	 */
 	public String getOwner() {
 		return owner;
 	}
 	
+	/**
+	 * @param owner the owner to set
+	 */
 	public void setOwner(String owner) {
 		this.owner = owner;
 	}
-
+	
+	/**
+	 * @return the locale
+	 */
 	public Locale getLocale() {
 		return locale;
 	}
-
+	
+	/**
+	 * @param locale the locale to set
+	 */
 	public void setLocale(Locale locale) {
 		this.locale = locale;
 	}
-
+	
+	/**
+	 * @return the serialversionuid
+	 */
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -116,7 +188,10 @@ public class Lot implements Serializable {
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		return result;
 	}
-
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -169,7 +244,10 @@ public class Lot implements Serializable {
 			return false;
 		return true;
 	}
-
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "Lot [id=" + id + ", picture=" + picture + ", name=" + name + ", description=" + description

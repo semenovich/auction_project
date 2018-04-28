@@ -2,10 +2,13 @@ package by.tc.auction.entity;
 
 import java.io.Serializable;
 
+/**
+ * A class is used for provide working with a user object.
+ * @author semenovich
+ *
+ */
 public class User implements Serializable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 4306970080206320268L;
 	
 	private String picture;
@@ -21,117 +24,183 @@ public class User implements Serializable {
 	private UserRole role;
 	private boolean blocked;
 	
-	public void clean() {
-		picture = null;
-		login = null;
-		password = null;
-		surname = null;
-		name = null;
-		email = null;
-		phone = null;
-		passportId = null;
-		passportIssuedBy = null;
-		country = null;
-		role = null;
-		blocked = false;
-	}
-	
+	/**
+	 * @return the picture
+	 */
 	public String getPicture() {
 		return picture;
 	}
 	
+	/**
+	 * @param picture the picture to set
+	 */
 	public void setPicture(String picture) {
 		this.picture = picture;
 	}
 	
+	/**
+	 * @return the login
+	 */
 	public String getLogin() {
 		return login;
 	}
 	
+	/**
+	 * @param login the login to set
+	 */
 	public void setLogin(String login) {
 		this.login = login;
 	}
 	
+	/**
+	 * @return the password
+	 */
 	public String getPassword() {
 		return password;
 	}
 	
+	/**
+	 * @param password the password to set
+	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
 	
+	/**
+	 * @return the surname
+	 */
 	public String getSurname() {
 		return surname;
 	}
 	
+	/**
+	 * @param surname the surname to set
+	 */
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
 	
+	/**
+	 * @return the name
+	 */
 	public String getName() {
 		return name;
 	}
 	
+	/**
+	 * @param name the name to set
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 	
+	/**
+	 * @return the email
+	 */
 	public String getEmail() {
 		return email;
 	}
 	
+	/**
+	 * @param email the email to set
+	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
 	
+	/**
+	 * @return the phone
+	 */
 	public String getPhone() {
 		return phone;
 	}
 	
+	/**
+	 * @param phone the phone to set
+	 */
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 	
+	/**
+	 * @return the passportId
+	 */
 	public String getPassportId() {
 		return passportId;
 	}
 	
+	/**
+	 * @param passportId the passportId to set
+	 */
 	public void setPassportId(String passportId) {
 		this.passportId = passportId;
 	}
 	
+	/**
+	 * @return the passportIssuedBy
+	 */
 	public String getPassportIssuedBy() {
 		return passportIssuedBy;
 	}
 	
+	/**
+	 * @param passportIssuedBy the passportIssuedBy to set
+	 */
 	public void setPassportIssuedBy(String passportIssuedBy) {
 		this.passportIssuedBy = passportIssuedBy;
 	}
 	
+	/**
+	 * @return the country
+	 */
 	public String getCountry() {
 		return country;
 	}
 	
+	/**
+	 * @param country the country to set
+	 */
 	public void setCountry(String country) {
 		this.country = country;
 	}
 	
+	/**
+	 * @return the role
+	 */
 	public UserRole getRole() {
 		return role;
 	}
 	
+	/**
+	 * @param role the role to set
+	 */
 	public void setRole(UserRole role) {
 		this.role = role;
 	}
 	
+	/**
+	 * @return the blocked
+	 */
 	public boolean isBlocked() {
 		return blocked;
 	}
 	
+	/**
+	 * @param blocked the blocked to set
+	 */
 	public void setBlocked(boolean blocked) {
 		this.blocked = blocked;
 	}
 	
+	/**
+	 * @return the serialversionuid
+	 */
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -151,6 +220,9 @@ public class User implements Serializable {
 		return result;
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -217,10 +289,14 @@ public class User implements Serializable {
 		return true;
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
-		return "User [picture=" + picture + ", login=" + login + ", password=" + password + ", surname="
-				+ surname + ", name=" + name + ", email=" + email + ", phone=" + phone + ", passportId=" + passportId
-				+ ", passportIssuedBy=" + passportIssuedBy + ", country=" + country + ", role=" + role + ", blocked=" + blocked + "]";
+		return "User [picture=" + picture + ", login=" + login + ", password=" + password + ", surname=" + surname
+				+ ", name=" + name + ", email=" + email + ", phone=" + phone + ", passportId=" + passportId
+				+ ", passportIssuedBy=" + passportIssuedBy + ", country=" + country + ", role=" + role + ", blocked="
+				+ blocked + "]";
 	}
 }

@@ -2,10 +2,23 @@ package by.tc.auction.service.user_operation.realization.validation;
 
 import by.tc.auction.entity.User;
 
+/**
+ * A class is used to validate edited user info.
+ * @author semenovich
+ *
+ */
 public class UserEditingValidator {
 	
 	private UserEditingValidator() {}
 	
+	/**
+	 * Validates edited user info.
+	 * <br> An email must be "example@adress.com".
+	 * <br> Phone must be like "1234567890".
+	 * <br> All fields (surname, name, phone, email, passport ID, passport issued by, login) must be not empty.
+	 * @param user - user info. Only surname, name, phone, email, passport ID, passport issued by, login fields must be filled in.
+	 * @return {@code true} - if user info is correct. {@code false} - if user info is incorrect.
+	 */
 	public static boolean validate(User user) {
 		if (user == null) {
 			return false;

@@ -40,7 +40,7 @@ public interface LotOperationDAO {
 	
 	/**
 	 * Edits a waiting lot.
-	 * @param lot - an update lot info.
+	 * @param lot -  updated lot info.
 	 * @return {@code true} - if a lot has been edited. {@code false} - if a lot hasn't been edited.
 	 * @throws DAOException - if an error occurred during operation.
 	 */
@@ -56,7 +56,7 @@ public interface LotOperationDAO {
 	boolean uploadLotImage(Integer lotId, String imagePath) throws DAOException;
 	
 	/**
-	 * Returns a lot list.
+	 * Returns a lots list.
 	 * @param locale - a locale of lots.
 	 * @return A list of lots if lots exist. Empty list if lots don't exist.
 	 * @throws DAOException - if an error occurred during operation.

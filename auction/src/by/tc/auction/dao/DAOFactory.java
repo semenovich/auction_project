@@ -47,64 +47,64 @@ public final class DAOFactory {
 	}
 	
 	/**
-	 * Returns DAO an object for working with an authentication.
-	 * @return DAO an object for working with an authentication.
+	 * Returns a DAO object for working with an authentication.
+	 * @return a DAO object for working with an authentication.
 	 */
 	public AuthDAO getAuthDAO() {
 		return authDAOImpl;
 	}
 	
 	/**
-	 * Returns DAO an object for working with a profile.
-	 * @return DAO an object for working with a profile.
+	 * Returns a DAO object for working with a profile.
+	 * @return a DAO object for working with a profile.
 	 */
 	public ProfileDAO getProfileDAO() {
 		return profileDAOImpl;
 	}
 	
 	/**
-	 * Returns DAO an object for working with a lot.
-	 * @return DAO an object for working with a lot.
+	 * Returns a DAO object for working with a lot.
+	 * @return a DAO object for working with a lot.
 	 */
 	public LotOperationDAO getLotOperationDAO() {
 		return lotOperationDAOImpl;
 	}
 	
 	/**
-	 * Returns DAO an object for working with users.
-	 * @return DAO an object for working with users.
+	 * Returns a DAO object for working with users.
+	 * @return a DAO object for working with users.
 	 */
 	public UsersDAO getUsersDAO() {
 		return usersDAOImpl;
 	}
 	
 	/**
-	 * Returns DAO an object for working with an auction.
-	 * @return DAO an object for working with an auction.
+	 * Returns a DAO object for working with an auction.
+	 * @return a DAO object for working with an auction.
 	 */
 	public AuctionOperationDAO getAuctionOperationDAO() {
 		return auctionOperationDAOImpl;
 	}
 	
 	/**
-	 * Returns DAO an object for an administrator working.
-	 * @return DAO an object for an administrator working.
+	 * Returns a DAO object for an administrator working.
+	 * @return a DAO object for an administrator working.
 	 */
 	public AdminOperationDAO getAdminOperationDAO() {
 		return adminOperationDAOImpl;
 	}
 	
 	/**
-	 * Returns DAO an object for working with a user.
-	 * @return DAO an object for working with a user.
+	 * Returns a DAO object for working with a user.
+	 * @return a DAO object for working with a user.
 	 */
 	public UserOperationDAO getUserOperationDAO() {
 		return userOperationDAOImpl;
 	}
 	
 	/**
-	 * Returns DAO an object for a server working.
-	 * @return DAO an object for a working.
+	 * Returns a DAO object for a server working.
+	 * @return a DAO object for a working.
 	 */
 	public ServerOperationDAO getServerOperationDAO() {
 		return serverOperationDAOImpl;
