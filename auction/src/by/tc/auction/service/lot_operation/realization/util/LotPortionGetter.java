@@ -30,10 +30,10 @@ public class LotPortionGetter {
 	}
 	
 	/**
-	 * Returns a list of 10(<= if lots in portion are less than 10) lots from a list of lots.
+	 * Returns a list of 10(&le; if lots in portion are less than 10) lots from a list of lots.
 	 * @param lots - a list of lots.
 	 * @param page - a page of portion.
-	 * @return A list of 10(<= if lots in portion are less than 10) lots. {@code null} if a lots list is null.
+	 * @return A list of 10(&le; if lots in portion are less than 10) lots. {@code null} if a lots list is null.
 	 */
 	public LotsInfo getLotsPortion(ArrayList<Lot> lots, int page){
 		if (lots == null) {

@@ -14,6 +14,11 @@ import by.tc.auction.service.ServiceFactory;
 import by.tc.auction.service.admin_operation.AdminOperationService;
 import by.tc.auction.service.exception.ServiceException;
 
+/**
+ * A class is used to provide the block a lot method to a controller.
+ * @author semenovich
+ *
+ */
 public class BlockLot implements ServletCommand {
 	
 	private static final Logger logger = Logger.getLogger(BlockLot.class);
@@ -28,11 +33,21 @@ public class BlockLot implements ServletCommand {
 	
 	private AdminOperationService service;
 	
+	/**
+	 * Default constructor. 
+	 */
 	public BlockLot() {
 		ServiceFactory factory = ServiceFactory.getInstance();
 		service = factory.getAdminOperationService();
 	}
 
+	/**
+	 * Blocks a lot in an application.
+	 * <br> The method expects "lotId" and "userRole" parameters with the values.
+	 * <br> 
+	 * <br> In the event of an error, a redirect to the error page occurs.
+	 * <br> If a user doesn't have administrator privileges, a redirect to the access denied page occurs.
+	 */
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {

@@ -16,6 +16,11 @@ import by.tc.auction.service.authentication.AuthService;
 import by.tc.auction.service.exception.ServiceException;
 import by.tc.auction.service.exception.UserInfoException;
 
+/**
+ * A class is used to provide the user registration method to a controller.
+ * @author semenovich
+ *
+ */
 public class Register implements ServletCommand{
 
 	private static final Logger logger = Logger.getLogger(Register.class);
@@ -40,11 +45,31 @@ public class Register implements ServletCommand{
 	
 	private AuthService service;
 	
+	/**
+	 * Default constructor.
+	 */
 	public Register() {
 		ServiceFactory serviceFactory = ServiceFactory.getInstance();
 		service = serviceFactory.getAuthService(); 
 	}
 	
+	/**
+	 * Registers a user in an application.
+	 * <br> The method expects the following parameters with values: 
+	 * <br> 1. "userLogin".
+	 * <br> 2. "userPassword".
+	 * <br> 3. "userSurname".
+	 * <br> 4. "userName".
+	 * <br> 5. "userCountry".
+	 * <br> 6. "userEmail".
+	 * <br> 7. "userPhone".
+	 * <br> 8. "userPassportId".
+	 * <br> 9. "userPassportIssuedBy".
+	 * <br>
+	 * <br> In the event of an error, a redirect to the error page occurs.
+	 * <br> If a user with the same login exists, the "isUserExists = true" attribute will be sent.
+	 * <br> If a user data is incorrect, the "isUserDataInvalid = true" attribute will be sent.
+	 */
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {

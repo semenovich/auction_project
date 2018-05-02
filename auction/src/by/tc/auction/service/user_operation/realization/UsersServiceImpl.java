@@ -32,7 +32,7 @@ public class UsersServiceImpl implements UsersService {
 	/**
 	 * Returns a list of all users portion from a database.
 	 * @param page - a page of a users list.
-	 * @return A list of all users 10(<= if users in portion are less than 10). Empty list if users don't exist.
+	 * @return A list of all users 10(&le; if users in portion are less than 10). Empty list if users don't exist.
 	 * @throws ServiceException - if an error occurred during operation in a database.
 	 */
 	@Override
@@ -49,7 +49,7 @@ public class UsersServiceImpl implements UsersService {
 	 * Returns a list of users portion by matching a login of users from a database.
 	 * @param searchLine - a search line which will be matched with a user name.
 	 * @param page - a page of a users portion list.
-	 * @return A list of such users 10(<= if users in portion are less than 10). Empty list if such users don't exist.
+	 * @return A list of such users 10(&le; if users in portion are less than 10). Empty list if such users don't exist.
 	 * @throws ServiceException - if an error occurred during operation in a database.
 	 */
 	@Override

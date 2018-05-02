@@ -9,7 +9,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
 /**
- * Servlet Filter implementation class CharacterEncodingFilter
+ * A class is used to set a request and a response encoding, when a user does a request to a server.  
  */
 public class CharacterEncodingFilter implements Filter {
     
@@ -17,11 +17,17 @@ public class CharacterEncodingFilter implements Filter {
 
     private String encoding;
 
+    /**
+     * Initializes the encoding parameter value from the configuration.
+     */
     @Override
     public void init(FilterConfig config){
         encoding = config.getInitParameter(PARAMETER_ENCODING);
     }
 
+    /**
+     * Sets a request and a response encoding.
+     */
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
         request.setCharacterEncoding(encoding);

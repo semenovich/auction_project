@@ -16,6 +16,11 @@ import by.tc.auction.service.exception.ServiceException;
 import by.tc.auction.service.exception.UserInfoException;
 import by.tc.auction.service.user_operation.ProfileService;
 
+/**
+ * A class is used to provide the user profile editing method to a controller.
+ * @author semenovich
+ *
+ */
 public class EditUserInfo implements ServletCommand{
 
 	private static final Logger logger = Logger.getLogger(EditUserInfo.class);
@@ -32,17 +37,38 @@ public class EditUserInfo implements ServletCommand{
     private static final String USER_DATA_INVALID = "isUserDataInvalid";
 	
     private static final String SUCCESSFUL_PAGE = "FrontController?command=GET_USER_INFO&userLogin=";
+    private static final String NOT_FOUND_PAGE = "404.jsp";
     private static final String INVALID_DATA_PAGE = "FrontController?command=GET_USER_INFO&userLogin=";
     private static final String ACCESS_DENIED_PAGE = "access_denied,jsp";
 	private static final String ERROR_PAGE = "error.jsp";
 	
 	private ProfileService service;
 	
+	/**
+	 * Default constructor.
+	 */
 	public EditUserInfo() {
 		ServiceFactory factory = ServiceFactory.getInstance();
 		service = factory.getProfileService();
 	}
 
+	/**
+	 * Edits an application user profile.
+	 * <br> The method expects the following parameters with values:
+	 * <br> 1. "userLogin" - a user login (doesn't change).
+	 * <br> 2. "userPassword" - a user password.
+	 * <br> 3. "userSurname" - a user surname.
+	 * <br> 4. "userName" - a user name.
+	 * <br> 5. "userEmail" - a user email.
+	 * <br> 6. "userPhone" - a user phone.
+	 * <br> 7. "userPassportId" - a passport ID.
+	 * <br> 8. "userPassportIssuedBy" - a passport issued by.
+	 * <br> 
+	 * <br> In the event of an error, a redirect to the error page occurs.
+	 * <br> If a user doesn't have enough privileges, a redirect to the access denied page occurs.
+	 * <br> If a user doesn't exist, a redirect to the 404 page occurs.
+	 * <br> If lot data is incorrect, the attribute "isUserDataInvalid = true" will be sent back.
+	 */
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
@@ -57,6 +83,9 @@ public class EditUserInfo implements ServletCommand{
 			}
 			else {
 				if (service.getUserInfo(user.getLogin()) == null){
+					response.sendRedirect(NOT_FOUND_PAGE);
+				}
+				else {
 					response.sendRedirect(ERROR_PAGE);
 				}
 			}

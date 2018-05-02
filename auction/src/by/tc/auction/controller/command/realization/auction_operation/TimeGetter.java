@@ -3,7 +3,7 @@ package by.tc.auction.controller.command.realization.auction_operation;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TimeGetter {
+class TimeGetter {
 
 	private static final Long TEN_MINUTES_MILLISECONDS = 600000L;
 	private static final Long HOUR_MILLISECONDS = 3600000L;
@@ -13,7 +13,6 @@ public class TimeGetter {
 	private Map<Time, Long> time;
 	
 	private static TimeGetter instance = new TimeGetter();
-	
 	
 	private TimeGetter() {
 		time = new HashMap<>();

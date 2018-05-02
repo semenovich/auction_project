@@ -17,15 +17,24 @@ import org.quartz.impl.StdSchedulerFactory;
 
 import by.tc.auction.service.server_operation.realization.ServerOperationJobService;
 
+/**
+ * A class is used to execute a server operation (ending auctions).
+ * @author semenovich
+ *
+ */
 public class QuartzJobListener implements ServletContextListener {
 
 	private static final int FIVE_MINUTES = 5;
+	
 	private static final String JOB_IDENTITY = "serverOperationJobService";
 	private static final String TRIGGER_IDENTITY = "serverOperationJobServiceTrigger";
 	private static final String GROUP = "group1";
 	
 	private static final Logger logger = Logger.getLogger(QuartzJobListener.class);
 
+	/**
+	 * Executes a server operation (ending auctions).
+	 */
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
 		  try{
@@ -51,7 +60,4 @@ public class QuartzJobListener implements ServletContextListener {
     		  logger.error("Error in QuartzJobListener", e);
     	  }
 	}
-	
-	
-
 }

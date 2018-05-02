@@ -21,6 +21,11 @@ import by.tc.auction.service.exception.LotInfoException;
 import by.tc.auction.service.exception.ServiceException;
 import by.tc.auction.service.lot_operation.LotOperationService;
 
+/**
+ * A class is used to provide the lot creating method to a controller.
+ * @author semenovich
+ *
+ */
 public class CreateLot implements ServletCommand {
 
 	private static final Logger logger = Logger.getLogger(CreateLot.class);
@@ -33,7 +38,6 @@ public class CreateLot implements ServletCommand {
 	private static final String LOT_DESCRIPTION = "lotDescription";
 	private static final String LOT_QUANTITY = "lotQuantity";
 	private static final String LOT_TYPE = "lotType";
-	private static final String LOT_PICTURE = "lotPicture";
 	private static final LotStatus LOT_STATUS = LotStatus.READY;
 	
 	private static final String LOT_DATA_INVALID = "isLotDataInvalid";
@@ -44,11 +48,27 @@ public class CreateLot implements ServletCommand {
 		
 	private LotOperationService service;
 
+	/**
+	 * Default constructor.
+	 */
 	public CreateLot() {
 		ServiceFactory factory = ServiceFactory.getInstance();
 		service = factory.getLotOpeationService();
 	}
 
+	/**
+	 * Creates a lot.
+	 * <br> The method expects the following parameters with values:
+	 * <br> 1. "lotName" - a lot name.
+	 * <br> 2. "lotDescription" - a lot description.
+	 * <br> 3. "lotQuantity" - a lot quantity.
+	 * <br> 4. "lotType" - a lot type.
+	 * <br> 5. "userLogin" - an owner login (from a session).
+	 * <br> 6. "locale" - a locale (from a session).
+	 * <br>
+	 * <br> In the event of an error, a redirect to the error page occurs.
+	 * <br> If lot data is incorrect, the attribute "isLotDataInvalid = true" will be sent back.
+	 */
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
@@ -79,7 +99,6 @@ public class CreateLot implements ServletCommand {
 		lot.setType(LotType.valueOf(request.getParameter(LOT_TYPE)));
 		lot.setAdded(new Timestamp(Calendar.getInstance().getTimeInMillis()));
 		lot.setStatus(LOT_STATUS);
-		lot.setPicture(request.getParameter(LOT_PICTURE));
 		lot.setLocale(locale);
 		return lot;
 	}

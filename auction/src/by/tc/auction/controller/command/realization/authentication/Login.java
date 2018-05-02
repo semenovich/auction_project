@@ -16,26 +16,50 @@ import by.tc.auction.service.authentication.AuthService;
 import by.tc.auction.service.exception.ServiceException;
 import by.tc.auction.service.exception.UserInfoException;
 
+/**
+ * A class is used to provide the user login method to a controller.
+ * @author semenovich
+ *
+ */
 public class Login implements ServletCommand {
 	
 	private static final Logger logger = Logger.getLogger(Login.class);
 	
     private static final String USER_LOGIN = "userLogin";
     private static final String USER_PASSWORD = "userPassword";
+    
     private static final String USER_ROLE = "userRole";
-    private static final String MAIN_PAGE = "index.jsp";
-    private static final String CURRENT_PAGE = "login.jsp";
+    
     private static final String USER_DATA_INVALID = "isUserDataInvalid";
     private static final String USER_NOT_EXIST = "isUserNotExist";
-	private static final String ERROR_PAGE = "error.jsp";
+    
+    private static final String MAIN_PAGE = "index.jsp";
+    private static final String CURRENT_PAGE = "login.jsp";
+    private static final String ERROR_PAGE = "error.jsp";
 	
     private AuthService service;
     
+    /**
+     * Default constructor.
+     */
     public Login() {
 		ServiceFactory serviceFactory = ServiceFactory.getInstance();
 		service = serviceFactory.getAuthService(); 
     }
     
+    /**
+     * Logins a user to an application (and sets a user role).
+     * <br> The method expects the following parameters with values:
+     * <br> 1. "userLogin".
+     * <br> 2. "userPassword".
+     * <br>
+     * <br> The method puts the following attributes with values to a session:
+     * <br> 1. "userLogin".
+     * <br> 2. "userRole".
+     * <br>
+     * <br> In the event of an error, a redirect to the error page occurs.
+     * <br> If data is incorrect, "isUserNotExist" or "isUserDataInvalid" attributes will be sent.
+     */
     @Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {

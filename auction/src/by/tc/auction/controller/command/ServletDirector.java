@@ -9,6 +9,11 @@ import org.apache.log4j.Logger;
 
 import by.tc.auction.controller.command.util.CommandParser;
 
+/**
+ * A class is used to get commands to controller from "/auction/src/resources/commands/commands.xml"   
+ * @author semenovich
+ *
+ */
 public final class ServletDirector {
 
 	private static final Logger logger = Logger.getLogger(ServletDirector.class);
@@ -35,6 +40,10 @@ public final class ServletDirector {
 		}
 	}
 
+	/**
+	 * Returns the instance of the ServletDirector.
+	 * @return the instance of the ServletDirector.
+	 */
 	public static ServletDirector getInstance(){
 		if(!isInitialized.get()){
             lock.lock();
@@ -50,6 +59,11 @@ public final class ServletDirector {
 		return instance;
 	}
 	
+	/**
+	 * Returns the command.
+	 * @param command - a command name in "/auction/src/resources/commands/commands.xml".
+	 * @return the command.
+	 */
 	public ServletCommand getCommand(String command) {
 		return commands.get(command);
 	}

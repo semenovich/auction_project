@@ -17,6 +17,11 @@ import by.tc.auction.service.exception.ServiceException;
 import by.tc.auction.service.lot_operation.LotOperationService;
 import by.tc.auction.service.lot_operation.realization.LotOperationServiceImpl;
 
+/**
+ * A class is used to provide the waiting lot editing method to a controller.
+ * @author semenovich
+ *
+ */
 public class EditWaitingLot implements ServletCommand {
 
 	private static final Logger logger = Logger.getLogger(EditWaitingLot.class);
@@ -34,15 +39,34 @@ public class EditWaitingLot implements ServletCommand {
 	private static final String SUCCESSFUL_PAGE = "FrontController?command=GET_LOT_INFO&lotId=";
 	private static final String INVAID_DATA_PAGE = "FrontController?command=GET_LOT_INFO&lotId=";
 	private static final String ACCESS_DENIED_PAGE = "access_denied,jsp";
+	private static final String NOT_FOUND_PAGE = "404.jsp";
 	private static final String ERROR_PAGE = "error.jsp";
 
 	private LotOperationService service = new LotOperationServiceImpl();
 
+	/**
+	 * Default constructor.
+	 */
 	public EditWaitingLot() {
 		ServiceFactory factory = ServiceFactory.getInstance();
 		service = factory.getLotOpeationService();
 	}
 
+	/**
+	 * Edits a waiting lot in an application.
+	 * <br> The method expects the following parameters with values:
+	 * <br> 1. "lotId" - a lot ID.
+	 * <br> 2. "lotName" - a lot name.
+	 * <br> 3. "lotDescription" - a lot description.
+	 * <br> 4. "lotQuantity" - a lot quantity.
+	 * <br> 5. "lotOwner" - a lot owner.
+	 * <br> 6. "userLogin" - a user login (from a session).
+	 * <br>
+	 * <br> In the event of an error, a redirect to the error page occurs.
+	 * <br> If a user doesn't have enough privileges, a redirect to the access denied page occurs.
+	 * <br> If a lot doesn't exist, a redirect to the 404 page occurs.
+	 * <br> If lot data is incorrect, the attribute "isLotDataInvalid = true" will be sent back.
+	 */
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Lot lot = parseLot(request);
@@ -52,7 +76,7 @@ public class EditWaitingLot implements ServletCommand {
 			}
 			else {
 				if (service.getLotInfo(lot.getId()) == null) {
-					response.sendRedirect(ERROR_PAGE);
+					response.sendRedirect(NOT_FOUND_PAGE);
 				}
 				else{
 					response.sendRedirect(ACCESS_DENIED_PAGE);

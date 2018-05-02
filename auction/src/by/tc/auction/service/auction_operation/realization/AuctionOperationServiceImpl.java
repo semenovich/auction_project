@@ -91,7 +91,7 @@ public class AuctionOperationServiceImpl implements AuctionOperationService {
 	 * Returns a list of auctions portion from a database.
 	 * @param locale - a locale of auctions.
 	 * @param page - a page of an auctions list.
-	 * @return Auctions list of 10(<= if auctions in portion are less than 10) auctions if auctions exist. Empty list if auctions don't exist.
+	 * @return Auctions list of 10(&le; if auctions in portion are less than 10) auctions if auctions exist. Empty list if auctions don't exist.
 	 * @throws ServiceException - if an error occurred during operation in a database. 
 	 */
 	@Override
@@ -109,7 +109,7 @@ public class AuctionOperationServiceImpl implements AuctionOperationService {
 	 * @param searchLine - a search line which will be matched with a lot name.
 	 * @param locale - a locale of auctions.
 	 * @param page - a page of an auctions list.
-	 * @return Auctions list of 10(<= if auctions in portion are less than 10) auctions if such auctions exist. Empty list if such auctions don't exist.
+	 * @return Auctions list of 10(&le; if auctions in portion are less than 10) auctions if such auctions exist. Empty list if such auctions don't exist.
 	 * @throws ServiceException - if an error occurred during operation in a database. 
 	 */
 	@Override
@@ -127,7 +127,7 @@ public class AuctionOperationServiceImpl implements AuctionOperationService {
 	 * @param lotType - a type of lot.
 	 * @param locale - a locale of auctions.
 	 * @param page - a page of an auctions list.
-	 * @return Auctions list of 10(<= if auctions in portion are less than 10) auctions if such auctions exist. Empty list if such auctions don't exist.
+	 * @return Auctions list of 10(&le; if auctions in portion are less than 10) auctions if such auctions exist. Empty list if such auctions don't exist.
 	 * @throws ServiceException - if an error occurred during operation in a database.
 	 */
 	@Override

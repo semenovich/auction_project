@@ -13,6 +13,11 @@ import by.tc.auction.service.ServiceFactory;
 import by.tc.auction.service.exception.ServiceException;
 import by.tc.auction.service.user_operation.UserOperationService;
 
+/**
+ * A class is used to provide the paying for a lot method to a controller.
+ * @author semenovich
+ *
+ */
 public class PayForLot implements ServletCommand {
 
 	private static final Logger logger = Logger.getLogger(PayForLot.class);
@@ -28,11 +33,20 @@ public class PayForLot implements ServletCommand {
 	
 	private UserOperationService service;
 	
+	/**
+	 * Default constructor.
+	 */
 	public PayForLot() {
 		ServiceFactory factory = ServiceFactory.getInstance();
 		service = factory.getUserOperationService();
 	}
 
+	/**
+	 * Pays for a lot.
+	 * <br> The method expects the "auctionId", "lotId" and "userLogin"(from a session) parameters with values.
+	 * <br>
+	 * <br> In the event of an error, a redirect to the error page occurs.
+	 */
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {

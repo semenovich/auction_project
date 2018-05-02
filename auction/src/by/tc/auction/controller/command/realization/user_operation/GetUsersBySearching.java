@@ -15,6 +15,11 @@ import by.tc.auction.service.ServiceFactory;
 import by.tc.auction.service.exception.ServiceException;
 import by.tc.auction.service.user_operation.UsersService;
 
+/**
+ * A class is used to provide the getting users list by searching method to a controller.
+ * @author semenovich
+ *
+ */
 public class GetUsersBySearching implements ServletCommand {
 
 	private static final Logger logger = Logger.getLogger(GetUsersBySearching.class);
@@ -33,11 +38,29 @@ public class GetUsersBySearching implements ServletCommand {
 	
 	private UsersService service;
 	
+	/**
+	 * Default constructor.
+	 */
 	public GetUsersBySearching() {
 		ServiceFactory factory = ServiceFactory.getInstance();
 		service = factory.getUsersService();
 	}
 
+	/**
+	 * Gets a users list by searching.
+	 * <br> The method expects the following parameters:
+	 * <br> 1. "searchLine" - a search line.
+	 * <br> 2. "usersPageNumber" - a chosen page.
+	 * <br> 3. "userRole" - a user role.
+	 * <br>
+	 * <br> The method puts the following attributes:
+	 * <br> 1. "usersInfo" (a users list).
+	 * <br> 2. "listType" ("searchingBySearchLine").
+	 * <br> 3. "searchLine" (with the chosen value).
+	 * <br>
+	 * <br> In the event of an error, a redirect to the error page occurs.
+	 * <br> If a user doesn't have enough privileges, a redirect to the access denied page occurs.
+	 */
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {

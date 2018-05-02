@@ -114,7 +114,7 @@ public class LotOperationServiceImpl implements LotOperationService {
 	 * Returns lots portion list from a database.
 	 * @param locale - a locale of lots.
 	 * @param page - a page of a lots list.
-	 * @return A list of lots 10(<= if lots in portion are less than 10) if lots exist. Empty list if lots don't exist.
+	 * @return A list of lots 10(&le; if lots in portion are less than 10) if lots exist. Empty list if lots don't exist.
 	 * @throws ServiceException - if an error occurred during operation in a database.
 	 */
 	@Override
@@ -132,7 +132,7 @@ public class LotOperationServiceImpl implements LotOperationService {
 	 * @param searchLine - a search line which will be matched with a lots name.
 	 * @param locale - a locale of lots.
 	 * @param page - a page of a lots list.
-	 * @return A list of lots 10(<= if lots in portion are less than 10) if such lots exist. Empty list if such lots don't exist.
+	 * @return A list of lots 10(&le; if lots in portion are less than 10) if such lots exist. Empty list if such lots don't exist.
 	 * @throws ServiceException - if an error occurred during operation in a database.
 	 */
 	@Override
@@ -150,7 +150,7 @@ public class LotOperationServiceImpl implements LotOperationService {
 	 * @param lotType - a lot type.
 	 * @param locale - a locale of lots.
 	 * @param page - a page of a lots list.
-	 * @return A list of lots 10(<= if lots in portion are less than 10) if such lots exist. Empty list if such lots don't exist.
+	 * @return A list of lots 10(&le; if lots in portion are less than 10) if such lots exist. Empty list if such lots don't exist.
 	 * @throws ServiceException - if an error occurred during operation in a database.
 	 */
 	@Override
@@ -167,7 +167,7 @@ public class LotOperationServiceImpl implements LotOperationService {
 	 * Returns a list of waiting lots portion from a database.
 	 * @param locale - a locale of lots.
 	 * @param page - a page of a lots list.
-	 * @return A list of lots 10(<= if lots in portion are less than 10) if such lots exist. Empty list if such lots don't exist.
+	 * @return A list of lots 10(&le; if lots in portion are less than 10) if such lots exist. Empty list if such lots don't exist.
 	 * @throws ServiceException - if an error occurred during operation in a database.
 	 */
 	@Override

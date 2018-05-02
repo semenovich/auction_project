@@ -16,6 +16,11 @@ import by.tc.auction.service.ServiceFactory;
 import by.tc.auction.service.exception.ServiceException;
 import by.tc.auction.service.lot_operation.LotOperationService;
 
+/**
+ * A class is used to provide the getting lots list method to a controller.
+ * @author semenovich
+ *
+ */
 public class GetLotsList implements ServletCommand {
 
 	private static final Logger logger = Logger.getLogger(GetLotsList.class);
@@ -35,11 +40,28 @@ public class GetLotsList implements ServletCommand {
 	
 	private LotOperationService service;
 	
+	/**
+	 * Default constructor.
+	 */
 	public GetLotsList() {
 		ServiceFactory factory = ServiceFactory.getInstance();
 		service = factory.getLotOpeationService();
 	}
 
+	/**
+	 * Gets a lots list.
+	 * <br> The method expects the following parameters:
+	 * <br> 1. "locale" - a user locale (in a session).
+	 * <br> 2. "lotsPageNumber" - a chosen page.
+	 * <br> 3. "userRole" - a user role.
+	 * <br>
+	 * <br> The method puts the following attributes:
+	 * <br> 1. "lotsInfo" (a lots list).
+	 * <br> 2. "listType" ("list").
+	 * <br>
+	 * <br> In the event of an error, a redirect to the error page occurs.
+	 * <br> If a user doesn't have enough privileges, a redirect to the access denied page occurs.
+	 */
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {

@@ -12,14 +12,23 @@ import javax.servlet.http.HttpSession;
 
 import by.tc.auction.entity.UserRole;
 
+/**
+ * A class is used to check if the user has the administrator role.
+ * @author semenovich
+ *
+ */
 public class AdminFilter implements Filter {
 
 	private static final String USER_ROLE = "userRole";
 	
 	private static final String ACCESS_DENIED_PAGE = "access_denied,jsp";
 	
-    public AdminFilter() {}
-
+	/**
+	 * Check if the user has the administrator role.
+	 * <br> The method expects a "userRole" parameter (from a session) with a value.
+	 * <br>
+	 * <br> If the user hasn't the administrator role, a redirect to the access denied page occurs. 
+	 */
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
     	HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpSession session = httpRequest.getSession();
@@ -29,6 +38,4 @@ public class AdminFilter implements Filter {
 	    }		
 		chain.doFilter(request, response);
 	}
-
-
 }

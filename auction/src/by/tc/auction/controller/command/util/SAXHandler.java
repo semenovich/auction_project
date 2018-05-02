@@ -10,7 +10,7 @@ import org.apache.log4j.Logger;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 
-public class SAXHandler extends DefaultHandler {
+class SAXHandler extends DefaultHandler {
     
 	private static final String OPEN_TAG = "<";
 	

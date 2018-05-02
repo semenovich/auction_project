@@ -36,10 +36,10 @@ public class PortionGetter {
 	}
 	
 	/**
-	 * Returns a list of 10(<= if users in portion are less than 10) users from a list of users.
+	 * Returns a list of 10(&le; if users in portion are less than 10) users from a list of users.
 	 * @param users - a list of users.
 	 * @param page - a page of portion.
-	 * @return A list of 10(<= if users in portion are less than 10) users. {@code null} if a users list is null.
+	 * @return A list of 10(&le; if users in portion are less than 10) users. {@code null} if a users list is null.
 	 */
 	public UsersInfo getUsersPortion(ArrayList<User> users, int page){
 		if (users == null) {
@@ -57,10 +57,10 @@ public class PortionGetter {
 	}
 	
 	/**
-	 * Returns a list of 10(<= if lots in portion are less than 10) lots from a list of lots.
+	 * Returns a list of 10(&le; if lots in portion are less than 10) lots from a list of lots.
 	 * @param userLots - a list of lots.
 	 * @param page - a page of portion.
-	 * @return A list of 10(<= if lots in portion are less than 10) lots. {@code null} if a lots list is null.
+	 * @return A list of 10(&le; if lots in portion are less than 10) lots. {@code null} if a lots list is null.
 	 */
 	public LotsInfo getLotsPortion(ArrayList<Lot> userLots, int page){
 		if (userLots == null) {
@@ -78,10 +78,10 @@ public class PortionGetter {
 	}
 	
 	/**
-	 * Returns a list of 10(<= if auctions in portion are less than 10) auctions from a list of auctions.
+	 * Returns a list of 10(&le; if auctions in portion are less than 10) auctions from a list of auctions.
 	 * @param userAuctionParticipations - a list of auctions.
 	 * @param page - a page of portion.
-	 * @return A list of 10(<= if auctions in portion are less than 10) auctions. {@code null} if an auctions list is null.
+	 * @return A list of 10(&le; if auctions in portion are less than 10) auctions. {@code null} if an auctions list is null.
 	 */
 	public AuctionsInfo getAuctionParcticipationsPortion(ArrayList<Auction> userAuctionParticipations, int page){
 		if (userAuctionParticipations == null) {

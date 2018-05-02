@@ -13,6 +13,11 @@ import org.apache.log4j.Logger;
 import by.tc.auction.controller.command.ServletCommand;
 import by.tc.auction.controller.command.ServletDirector;
 
+/**
+ * A class is used to provide a way for an application to communicate with a user. 
+ * @author semenovich
+ *
+ */
 public class FrontController extends HttpServlet {
 
 	private static final long serialVersionUID = 7976819909277626395L;
@@ -28,11 +33,22 @@ public class FrontController extends HttpServlet {
 	
 	private ServletDirector servletDirector;
 	
+	/**
+	 * Default constructor.
+	 */
     public FrontController() {
         super();
         servletDirector = ServletDirector.getInstance();
     }
 
+    /**
+     * Executes the specified command. 
+     * <br> Also sets language (with parameter "locale"). See /auction/src/resources/locales.
+     * <br> Commands are sent in the request with the parameter "command".
+     * Commands are specified in "/auction/src/resources/commands/commands.xml"
+     * <br>
+     * <br> In the event of an error, a redirect to the error page occurs.
+     */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try{   
 			HttpSession session = request.getSession(true);
@@ -47,6 +63,9 @@ public class FrontController extends HttpServlet {
 	    }
 	}
 
+	/**
+	 * Methods functionality of the doPost() and doGet() are the same.
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
@@ -60,5 +79,4 @@ public class FrontController extends HttpServlet {
 	    }
 	    command.execute(request, response);
     }
-
 }

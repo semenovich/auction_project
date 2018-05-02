@@ -13,6 +13,11 @@ import org.xml.sax.SAXException;
 
 import by.tc.auction.controller.command.ServletCommand;
 
+/**
+ * A class is used to parse a XML file with commands ("/auction/src/resources/commands/commands.xml").
+ * @author semenovich
+ *
+ */
 public class CommandParser {
 	
 	private static final String SOURCE_PATH = "/home/semenovich/eclipse/JavaEE/auction/" + 
@@ -30,7 +35,12 @@ public class CommandParser {
 		return instance;
 	}
 	
-	public HashMap<String, ServletCommand> parse() throws Exception{
+	/**
+	 * Parses a XML file ("/auction/src/resources/commands/commands.xml") with commands.
+	 * @return A map with commands. Keys of commands according to names of commands in "/auction/src/resources/commands/commands.xml". 
+	 * @throws Exception - error with the parser. 
+	 */
+	public HashMap<String, ServletCommand> parse() throws Exception {
 		SAXParserFactory parserFactory = SAXParserFactory.newInstance();
 		SAXHandler saxHandler = new SAXHandler();
 		try {
@@ -42,5 +52,4 @@ public class CommandParser {
 			throw e;
 		}
 	}
-	
 }

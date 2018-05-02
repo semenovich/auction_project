@@ -14,6 +14,11 @@ import by.tc.auction.service.ServiceFactory;
 import by.tc.auction.service.exception.ServiceException;
 import by.tc.auction.service.user_operation.ProfileService;
 
+/**
+ * A class is used to provide the user lots method to a controller.
+ * @author semenovich
+ *
+ */
 public class GetUserLots implements ServletCommand {
 
 	private static final Logger logger = Logger.getLogger(GetUserLots.class);
@@ -30,11 +35,26 @@ public class GetUserLots implements ServletCommand {
 	
 	private ProfileService service;
 	
+	/**
+	 * Default constructor.
+	 */
 	public GetUserLots() {
 		ServiceFactory factory = ServiceFactory.getInstance();
 		service = factory.getProfileService();
 	}
 	
+	/**
+	 * Gets a user lots.
+	 * <br> The method expects a "userLogin" (from a request and a session) and "choosenLotsPageNumber" parameters with values.
+	 * <br>
+	 * <br> The method puts the following attributes:
+	 * <br> 1. "userLotsInfo" - a lots list.
+	 * <br> 2. "choosenLotsPageNumber" - a chosen page.
+	 * <br>
+	 * <br> In the event of an error, a redirect to the error page occurs.
+	 * <br> If a user doesn't have enough privileges, a redirect to the access denied page occurs.
+	 * <br> If a user doesn't exist, a redirect to the 404 page occurs.
+	 */
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {

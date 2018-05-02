@@ -18,6 +18,11 @@ import by.tc.auction.service.exception.BetException;
 import by.tc.auction.service.exception.ServiceException;
 import by.tc.auction.service.user_operation.UserOperationService;
 
+/**
+ * A class is used to provide the placing bet method to a controller.
+ * @author semenovich
+ *
+ */
 public class PlaceBet implements ServletCommand {
 
 	private static final Logger logger = Logger.getLogger(PlaceBet.class);
@@ -36,11 +41,25 @@ public class PlaceBet implements ServletCommand {
 	
 	private UserOperationService service;
 	
+	/**
+	 * Default constructor.
+	 */
 	public PlaceBet() {
 		ServiceFactory factory = ServiceFactory.getInstance();
 		service = factory.getUserOperationService();
 	}
 
+	/**
+	 * Places a bet in an auction.
+	 * <br> The methods expects the following parameters:
+	 * <br> 1. "userLogin" - a user login (from a session). 
+	 * <br> 2. "userBet" - a user bet (a number).
+	 * <br> 3. "auctionId" - an auction ID.
+	 * <br> 4. "auctionMinimumPrice"  - an auction MIN bet.
+	 * <br>
+	 * <br> In the event of an error, a redirect to the error page occurs.
+	 * <br> If bet data is incorrect, the attribute "isBetInvalid = true" will be sent back.
+	 */
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Auction auction = null;

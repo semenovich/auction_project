@@ -21,6 +21,11 @@ import by.tc.auction.service.exception.LotInfoException;
 import by.tc.auction.service.exception.ServiceException;
 import by.tc.auction.service.lot_operation.LotOperationService;
 
+/**
+ * A class is used to provide the lot offering method to a controller.
+ * @author semenovich
+ *
+ */
 public class OfferLot implements ServletCommand {
 
 	private static final Logger logger = Logger.getLogger(OfferLot.class);
@@ -44,11 +49,27 @@ public class OfferLot implements ServletCommand {
 	
 	private LotOperationService service;
 	
+	/**
+	 * Default constructor.
+	 */
 	public OfferLot() {
 		ServiceFactory factory = ServiceFactory.getInstance();
 		service = factory.getLotOpeationService();
 	}
 
+	/**
+	 * Offers a lot.
+	 * <br> The method expects the following parameters with values:
+	 * <br> 1. "lotName" - a lot name.
+	 * <br> 2. "lotDescription" - a lot description.
+	 * <br> 3. "lotQuantity" - a lot quantity.
+	 * <br> 4. "lotType" - a lot type.
+	 * <br> 5. "userLogin" - an owner login (from a session).
+	 * <br> 6. "locale" - a locale (from a session).
+	 * <br>
+	 * <br> In the event of an error, a redirect to the error page occurs.
+	 * <br> If lot data is incorrect, the attribute "isLotDataInvalid = true" will be sent back.
+	 */
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {

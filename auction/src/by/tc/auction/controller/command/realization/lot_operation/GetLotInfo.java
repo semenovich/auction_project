@@ -14,6 +14,11 @@ import by.tc.auction.service.ServiceFactory;
 import by.tc.auction.service.exception.ServiceException;
 import by.tc.auction.service.lot_operation.LotOperationService;
 
+/**
+ * A class is used to provide the lot info getting method to a controller.
+ * @author semenovich
+ *
+ */
 public class GetLotInfo implements ServletCommand {	
 	
 	private static final Logger logger = Logger.getLogger(GetLotInfo.class);
@@ -28,11 +33,22 @@ public class GetLotInfo implements ServletCommand {
 	
 	private LotOperationService service;
 	
+	/**
+	 * Default constructor.
+	 */
 	public GetLotInfo() {
 		ServiceFactory factory = ServiceFactory.getInstance();
 		service = factory.getLotOpeationService();
 	}
 
+	/**
+	 * Gets lot info.
+	 * <br> The method expects "lotId" parameter with a value.
+	 * <br> The method puts a lot object to "lot" attribute.
+	 * <br>
+	 * <br> In the event of an error, a redirect to the error page occurs.
+	 * <br> If a lot hasn't been found, a redirect to the 404 page occurs.
+	 */
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
@@ -55,5 +71,4 @@ public class GetLotInfo implements ServletCommand {
 			response.sendRedirect(ERROR_PAGE);
 		}
 	}
-
 }

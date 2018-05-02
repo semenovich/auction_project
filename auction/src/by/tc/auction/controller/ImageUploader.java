@@ -19,7 +19,14 @@ import by.tc.auction.service.ServiceFactory;
 import by.tc.auction.service.lot_operation.LotOperationService;
 import by.tc.auction.service.user_operation.ProfileService;
 
+/**
+ * A class used to provide enable the user to change a lot or a profile image in an application.
+ * Send request only to the POST method.
+ * @author semenovich
+ *
+ */
 public class ImageUploader extends HttpServlet {
+	
 	private static final long serialVersionUID = -1004377321372393848L;
 
 	private static final Logger logger = Logger.getLogger(ImageUploader.class);
@@ -44,6 +51,9 @@ public class ImageUploader extends HttpServlet {
     private ProfileService profileService;
     private LotOperationService lotOperationService;
     
+    /**
+     * Default constructor.
+     */
     public ImageUploader() {
     	super();
     	ServiceFactory factory = ServiceFactory.getInstance();
@@ -51,10 +61,24 @@ public class ImageUploader extends HttpServlet {
     	lotOperationService = factory.getLotOpeationService();
     }
 
+    /**
+     * Redirects to an error page.
+     * <br> Send request only to the POST method.
+     */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.sendRedirect(ERROR_PAGE);
 	}
 
+	/**
+	 * Change a user or a lot image.
+	 * Images are located in "/auction/WebContent/images".
+	 * <br> The method expects the following parameters:
+	 * <br> 1. "command" with the value a "lot" or a "user" (to whom we change the image).
+	 * <br> 2. image file.
+	 * <br> 3. A lot ID or a user login (to whom we change the image).
+	 * <br>
+	 * <br> In the event of an error, a redirect to the error page occurs.
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			if (ServletFileUpload.isMultipartContent(request)) {
@@ -100,6 +124,4 @@ public class ImageUploader extends HttpServlet {
 			response.sendRedirect(ERROR_PAGE);
 		}
 	}
-
-
 }

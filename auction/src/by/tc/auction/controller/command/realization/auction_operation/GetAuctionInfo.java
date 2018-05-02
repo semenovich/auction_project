@@ -14,6 +14,11 @@ import by.tc.auction.service.ServiceFactory;
 import by.tc.auction.service.auction_operation.AuctionOperationService;
 import by.tc.auction.service.exception.ServiceException;
 
+/**
+ * A class is used to provide the getting auction info method to a controller.
+ * @author semenovich
+ *
+ */
 public class GetAuctionInfo implements ServletCommand {
 	
 	private static final Logger logger = Logger.getLogger(GetAuctionInfo.class);
@@ -33,6 +38,14 @@ public class GetAuctionInfo implements ServletCommand {
 		service = factory.getAuctionOperationService();
 	}
 
+	/**
+	 * Gets auction info.
+	 * <br> The method expects "auctionId" parameter with a value.
+	 * <br> The method puts an auction object to "auction" attribute.
+	 * <br>
+	 * <br> In the event of an error, a redirect to the error page occurs.
+	 * <br> If an auction hasn't been found, a redirect to the 404 page occurs.
+	 */
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
@@ -53,5 +66,4 @@ public class GetAuctionInfo implements ServletCommand {
 			response.sendRedirect(ERROR_PAGE);
 		}
 	}
-
 }

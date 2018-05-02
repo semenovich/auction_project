@@ -27,10 +27,10 @@ public class AuctionPortionGetter {
 	}
 	
 	/**
-	 * Returns a list of 10(<= if auctions in portion are less than 10) auctions from a list of auctions.
+	 * Returns a list of 10(&le; if auctions in portion are less than 10) auctions from a list of auctions.
 	 * @param auctions - a list of auctions.
 	 * @param page - a page of portion.
-	 * @return A list of 10(<= if auctions in portion are less than 10) auctions. {@code null} if an auctions list is null
+	 * @return A list of 10(&le; if auctions in portion are less than 10) auctions. {@code null} if an auctions list is null
 	 */
 	public AuctionsInfo getAuctionPortion(ArrayList<Auction> auctions, int page){
 		if (auctions == null) {

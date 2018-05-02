@@ -18,6 +18,11 @@ import by.tc.auction.service.ServiceFactory;
 import by.tc.auction.service.auction_operation.AuctionOperationService;
 import by.tc.auction.service.exception.ServiceException;
 
+/**
+ * A class is used to provide the creating an auction from an existing lot method to a controller.
+ * @author semenovich
+ *
+ */
 public class CreateAuctionFromExistingLot implements ServletCommand {
 
 	private static final Logger logger = Logger.getLogger(CreateAuctionFromExistingLot.class);
@@ -37,11 +42,25 @@ public class CreateAuctionFromExistingLot implements ServletCommand {
 	
 	private AuctionOperationService service;
 	
+	/**
+	 * Default constructor.
+	 */
 	public CreateAuctionFromExistingLot() {
 		ServiceFactory factory = ServiceFactory.getInstance();
 		service = factory.getAuctionOperationService();
 	}
 
+	/**
+	 * Creates an auction from an existing lot.
+	 * <br> The method expects the following parameters with values:
+	 * <br> 1. "lotId" - a lot ID.
+	 * <br> 2. "auctionType" - an auction type.
+	 * <br> 3. "auctionEndTime" - auction end time (only for ONLINE type; only "TEN_MINUTES", "HOUR", "DAY", "WEEK" values must be).
+	 * <br> 4. "auctionMinimumPrice" - an auction MIN bet.
+	 * <br>
+	 * <br> In the event of an error, a redirect to the error page occurs.
+	 * <br> If the minimum bet is incorrect, the attribute "isBetInvalid = true" will be sent back.
+	 */
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {

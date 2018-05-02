@@ -55,7 +55,7 @@ public class ProfileServiceImpl implements ProfileService {
 	 * Returns a list of user lots portion from a database.
 	 * @param login - a user login.
 	 * @param page - a page of a lots list.
-	 * @return A list of user lots 10(<= if lots in portion are less than 10). Empty list if such lots don't exist. {@code null} if a user doesn't exist.
+	 * @return A list of user lots 10(&le; if lots in portion are less than 10). Empty list if such lots don't exist. {@code null} if a user doesn't exist.
 	 * @throws ServiceException - if an error occurred during operation in a database.
 	 */
 	@Override
@@ -72,7 +72,7 @@ public class ProfileServiceImpl implements ProfileService {
 	 * Returns a list of user win lots portion from a database.
 	 * @param login - a user login.
 	 * @param page - a page of a lots list.
-	 * @return A list of user win lots 10(<= if lots in portion are less than 10). Empty list if such lots don't exist. {@code null} if a user doesn't exist. 
+	 * @return A list of user win lots 10(&le; if lots in portion are less than 10). Empty list if such lots don't exist. {@code null} if a user doesn't exist. 
 	 * @throws ServiceException - if an error occurred during operation in a database.
 	 */
 	@Override
@@ -89,7 +89,7 @@ public class ProfileServiceImpl implements ProfileService {
 	 * Returns a list of user auction participations portion from a database.
 	 * @param login - a user login.
 	 * @param page - a page of an auctions list.
-	 * @return A list of user auction participations 10(<= if auctions in portion are less than 10). Empty list if such auctions don't exist. {@code null} if a user doesn't exist. 
+	 * @return A list of user auction participations 10(&le; if auctions in portion are less than 10). Empty list if such auctions don't exist. {@code null} if a user doesn't exist. 
 	 * @throws ServiceException - if an error occurred during operation in a database.
 	 */
 	@Override
