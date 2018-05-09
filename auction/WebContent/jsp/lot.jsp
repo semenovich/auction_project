@@ -80,34 +80,6 @@
 						</div>
 						<div class="col-md-7 col-md-offset-1 text-left lot_name">
 							<p class="col-md-12">${lot.name }</p>
-							<c:if test="${sessionScope.userRole == 'ADMIN' && lot.status == 'CONFIRMING'}">
-								<form action="FrontController" method="POST">
-									<input type="hidden" name="command" value="BLOCK_LOT"/>
-									<input type="hidden" name="lotId" value="${lot.id}"/>
-									<div class="col-md-4">
-										<button class="btn btn-md btn-primary btn-block" type="submit"><fmt:message bundle="${current_locale}" key="locale.admin.block"/></button>            
-							    	</div>
-								</form>
-							</c:if>
-							<c:if test="${sessionScope.userRole == 'ADMIN' && lot.status == 'BLOCKED'}">
-								<form action="FrontController" method="POST">
-									<input type="hidden" name="command" value="UNBLOCK_LOT"/>
-									<input type="hidden" name="lotId" value="${lot.id}"/>
-									<div class="col-md-4">
-										<button class="btn btn-md btn-primary btn-block" type="submit"><fmt:message bundle="${current_locale}" key="locale.admin.unblock"/></button>            
-							    	</div>
-								</form> 
-							</c:if>
-							<c:if test="${lot.owner == sessionScope.userLogin && (lot.status == 'CONFIRMING' || lot.status == 'READY')}">
-								<form action="FrontController" method="POST">
-									<input type="hidden" name="command" value="DELETE_WAITING_LOT"/>
-									<input type="hidden" name="lotId" value="${lot.id}"/>
-									<input type="hidden" name="lotOwner" value="${lot.owner }">
-									<div class="col-md-4">
-										<button class="btn btn-md btn-danger btn-block" type="submit"><fmt:message bundle="${current_locale}" key="locale.lot.delete"/></button>            
-							    	</div>
-								</form>
-							</c:if>
 						</div>
 						<div class="col-md-7 col-md-offset-1 text-left lot_type">
 							<span class="lot_info_text"><fmt:message bundle="${current_locale}" key="locale.lot.type"/>:</span>
@@ -153,13 +125,45 @@
 							<span class="lot_info_text"><fmt:message bundle="${current_locale}" key="locale.lot.description"/>:</span>
 							<span>${lot.description }</span>
 						</div>
-						<div class="col-md-7 col-md-offset-1 text-left lot_owner">
-							<form action="FrontController" method="GET">
-								<input type="hidden" name="command" value="GET_USER_INFO"/>
-								<input type="hidden" name="userLogin" value="${lot.owner}"/>
-								<span class="lot_info_text span2"><fmt:message bundle="${current_locale}" key="locale.lot.owner"/>:</span>
-								<button type="submit" class="btn"><a>${lot.owner }</a></button>
-							</form>
+						<c:if test="${lot.status != 'SOLED'}">
+							<div class="col-md-7 col-md-offset-1 text-left lot_owner">
+								<form action="FrontController" method="GET">
+									<input type="hidden" name="command" value="GET_USER_INFO"/>
+									<input type="hidden" name="userLogin" value="${lot.owner}"/>
+									<span class="lot_info_text span2"><fmt:message bundle="${current_locale}" key="locale.lot.owner"/>:</span>
+									<button type="submit" class="btn"><a>${lot.owner }</a></button>
+								</form>
+							</div>
+						</c:if>
+						<div class="col-md-7 col-md-offset-1 text-left lot_operations">
+							<c:if test="${sessionScope.userRole == 'ADMIN' && lot.status == 'CONFIRMING'}">
+								<form action="FrontController" method="POST">
+									<input type="hidden" name="command" value="BLOCK_LOT"/>
+									<input type="hidden" name="lotId" value="${lot.id}"/>
+									<div class="col-md-4">
+										<button class="btn btn-md btn-primary btn-block" type="submit"><fmt:message bundle="${current_locale}" key="locale.admin.block"/></button>            
+							    	</div>
+								</form>
+							</c:if>
+							<c:if test="${sessionScope.userRole == 'ADMIN' && lot.status == 'BLOCKED'}">
+								<form action="FrontController" method="POST">
+									<input type="hidden" name="command" value="UNBLOCK_LOT"/>
+									<input type="hidden" name="lotId" value="${lot.id}"/>
+									<div class="col-md-4">
+										<button class="btn btn-md btn-primary btn-block" type="submit"><fmt:message bundle="${current_locale}" key="locale.admin.unblock"/></button>            
+							    	</div>
+								</form> 
+							</c:if>
+							<c:if test="${lot.owner == sessionScope.userLogin && (lot.status == 'CONFIRMING' || lot.status == 'READY')}">
+								<form action="FrontController" method="POST">
+									<input type="hidden" name="command" value="DELETE_WAITING_LOT"/>
+									<input type="hidden" name="lotId" value="${lot.id}"/>
+									<input type="hidden" name="lotOwner" value="${lot.owner }">
+									<div class="col-md-4">
+										<button class="btn btn-md btn-danger btn-block" type="submit"><fmt:message bundle="${current_locale}" key="locale.lot.delete"/></button>            
+							    	</div>
+								</form>
+							</c:if>
 						</div>
 					</div>
 					<c:if test="${lot.owner == sessionScope.userLogin && (lot.status == 'CONFIRMING' || lot.status == 'READY')}">

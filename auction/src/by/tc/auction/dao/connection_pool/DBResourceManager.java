@@ -8,7 +8,8 @@ import java.util.ResourceBundle;
  *
  */
 public class DBResourceManager {
-    private static final String CONFIG_SQL_FILE = "resources/database/config";
+    
+	private static final String CONFIG_SQL_FILE = "resources/database/config";
 
     private static final DBResourceManager instance = new DBResourceManager();
 

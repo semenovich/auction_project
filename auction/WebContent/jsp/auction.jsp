@@ -67,19 +67,19 @@
 							</div>
 							<div class="text-left auction_lot_type">
 								<span class="auction_info_text"><fmt:message bundle="${current_locale}" key="locale.lot.type"/>:</span>
-									<c:if test="${auction.lot.type == 'CAR'}">
+								<c:if test="${auction.lot.type == 'CAR'}">
 									<span><fmt:message bundle="${current_locale}" key="locale.lot.type.car"/></span>
 								</c:if>
-								<c:if test="${lot.type == 'JET'}">
+								<c:if test="${auction.lot.type == 'JET'}">
 									<span><fmt:message bundle="${current_locale}" key="locale.lot.type.jet"/></span>
 								</c:if>
-								<c:if test="${lot.type == 'ART'}">
+								<c:if test="${auction.lot.type == 'ART'}">
 									<span><fmt:message bundle="${current_locale}" key="locale.lot.type.art"/></span>
 								</c:if>
-								<c:if test="${lot.type == 'REALTY'}">
+								<c:if test="${auction.lot.type == 'REALTY'}">
 									<span><fmt:message bundle="${current_locale}" key="locale.lot.type.realty"/></span>
 								</c:if>
-								<c:if test="${lot.type == 'SPORT'}">
+								<c:if test="${auction.lot.type == 'SPORT'}">
 									<span><fmt:message bundle="${current_locale}" key="locale.lot.type.sport"/></span>
 								</c:if>
 							</div>

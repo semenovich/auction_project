@@ -36,7 +36,7 @@ private static final Logger logger = Logger.getLogger(GetLotsList.class);
 	
 	private static final String ERROR_PAGE = "error.jsp";
 	private static final String CURRENT_PAGE = "lot-list.jsp";
-	private static final String ACCESS_DENIED_PAGE = "access_dinied.jsp";
+	private static final String ACCESS_DENIED_PAGE = "access-denied.jsp";
 	
 	private LotOperationService service;
 	

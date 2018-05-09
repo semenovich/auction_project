@@ -67,5 +67,4 @@ public class BlockLot implements ServletCommand {
 			response.sendRedirect(ERROR_PAGE);
 		}
 	}
-
 }

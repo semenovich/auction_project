@@ -21,7 +21,7 @@ public class AdminFilter implements Filter {
 
 	private static final String USER_ROLE = "userRole";
 	
-	private static final String ACCESS_DENIED_PAGE = "access_denied,jsp";
+	private static final String ACCESS_DENIED_PAGE = "access-denied,jsp";
 	
 	/**
 	 * Check if the user has the administrator role.

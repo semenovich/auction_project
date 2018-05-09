@@ -84,7 +84,7 @@
 								<form class="user_upload_image" action="ImageUploader" method="post" enctype="multipart/form-data" >
 						            <input type="hidden" name="command" value="user"/>
 						            <div class="form-group">
-						                <input type="file" accept=".jpg,.jpeg" class="form-control-file" id="choose" name="image"/>
+						                <input type="file" accept=".jpg,.jpeg,.png" class="form-control-file" id="choose" name="image"/>
 						                <div class="col-md-4">
 											<button class="btn-md" type="submit"><fmt:message bundle="${current_locale}" key="locale.change"/></button>            
 							    		</div>
@@ -97,26 +97,6 @@
 							<div class="text-left user_login">
 								<div class="row">
 									<p class="col-md-8">${user.login}</p>
-									<c:if test="${sessionScope.userRole == 'ADMIN' && user.role != 'ADMIN'}">
-										<c:if test="${!user.blocked}">
-											<form action="FrontController" method="POST">
-												<input type="hidden" name="command" value="BLOCK_USER"/>
-										    	<input type="hidden" name="userLogin" value="${user.login}"/>
-										    	<div class="col-md-4">
-													<button class="btn btn-md btn-primary btn-block" type="submit"><fmt:message bundle="${current_locale}" key="locale.admin.block"/></button>            
-										    	</div>
-										    </form>
-										</c:if>
-										<c:if test="${user.blocked}">
-											<form action="FrontController" method="POST">
-												<input type="hidden" name="command" value="UNBLOCK_USER"/>
-										    	<input type="hidden" name="userLogin" value="${user.login}"/>
-										    	<div>
-													<button class="btn btn-md btn-primary btn-block" type="submit"><fmt:message bundle="${current_locale}" key="locale.admin.unblock"/></button>            
-										    	</div>	
-											</form>
-										</c:if>
-									</c:if>
 								</div>
 							</div>
 							<div class="text-left user_surname">
@@ -155,6 +135,28 @@
 								<c:if test="${user.country == 'USA'}">
 									<span><fmt:message bundle="${current_locale}" key="locale.usa"/></span>
 								</c:if>	
+							</div>
+							<div class="text-left user_admin_operation">
+								<c:if test="${sessionScope.userRole == 'ADMIN' && user.role != 'ADMIN'}">
+									<c:if test="${!user.blocked}">
+										<form action="FrontController" method="POST">
+											<input type="hidden" name="command" value="BLOCK_USER"/>
+									    	<input type="hidden" name="userLogin" value="${user.login}"/>
+									    	<div class="col-md-4">
+												<button class="btn btn-md btn-primary btn-block" type="submit"><fmt:message bundle="${current_locale}" key="locale.admin.block"/></button>            
+									    	</div>
+									    </form>
+									</c:if>
+									<c:if test="${user.blocked}">
+										<form action="FrontController" method="POST">
+											<input type="hidden" name="command" value="UNBLOCK_USER"/>
+									    	<input type="hidden" name="userLogin" value="${user.login}"/>
+									    	<div>
+												<button class="btn btn-md btn-primary btn-block" type="submit"><fmt:message bundle="${current_locale}" key="locale.admin.unblock"/></button>            
+									    	</div>	
+										</form>
+									</c:if>
+								</c:if>
 							</div>
 						</div>
 					</div>
@@ -380,7 +382,7 @@
 						<c:if test="${lots.currentPage > 1 }">
 							<div class="previous">
 								<form action="FrontController" method="GET">
-									<input type="hidden" name="command" value="GET_USER_LOTS"/>
+									<input type="hidden" name="command" value="GET_USER_WIN_LOTS"/>
 									<input type="hidden" name="userLogin" value="${requestScope.userLogin}"/>
 									<input type="hidden" name="choosenLotsPageNumber" value="${lots.currentPage - 1 }"/>
 									<button type="submit" class="btn"><fmt:message bundle="${current_locale}" key="locale.previous.button"/></button>
@@ -393,7 +395,7 @@
 						<c:if test="${lots.currentPage < lots.pages}">
 							<div class="next">
 								<form action="FrontController" method="GET">
-									<input type="hidden" name="command" value="GET_USER_LOTS"/>
+									<input type="hidden" name="command" value="GET_USER_WIN_LOTS"/>
 									<input type="hidden" name="userLogin" value="${requestScope.userLogin}"/>
 									<input type="hidden" name="choosenLotsPageNumber" value="${lots.currentPage + 1 }"/>
 									<button type="submit" class="btn"><fmt:message bundle="${current_locale}" key="locale.next.button"/></button>
@@ -496,9 +498,9 @@
 							<c:if test="${auctions.currentPage > 1 }">
 								<div class="previous">
 									<form action="FrontController" method="GET">
-										<input type="hidden" name="command" value="GET_USER_LOTS"/>
+										<input type="hidden" name="command" value="GET_USER_AUCTION_PARTICIPATIONS"/>
 										<input type="hidden" name="userLogin" value="${requestScope.userLogin}"/>
-										<input type="hidden" name="choosenLotsPageNumber" value="${lots.currentPage - 1 }"/>
+										<input type="hidden" name="choosenAuctionsPageNumber" value="${auctions.currentPage - 1 }"/>
 										<button type="submit" class="btn"><fmt:message bundle="${current_locale}" key="locale.previous.button"/></button>
 									</form>
 								</div>
@@ -509,9 +511,9 @@
 							<c:if test="${auctions.currentPage < auctions.pages}">
 								<div class="next">
 									<form action="FrontController" method="GET">
-										<input type="hidden" name="command" value="GET_USER_LOTS"/>
+										<input type="hidden" name="command" value="GET_USER_AUCTION_PARTICIPATIONS"/>
 										<input type="hidden" name="userLogin" value="${requestScope.userLogin}"/>
-										<input type="hidden" name="choosenLotsPageNumber" value="${lots.currentPage + 1 }"/>
+										<input type="hidden" name="choosenAuctionsPageNumber" value="${auctions.currentPage + 1 }"/>
 										<button type="submit" class="btn"><fmt:message bundle="${current_locale}" key="locale.next.button"/></button>
 									</form>
 								</div>

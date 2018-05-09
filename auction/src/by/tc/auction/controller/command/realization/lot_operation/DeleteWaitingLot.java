@@ -29,7 +29,7 @@ public class DeleteWaitingLot implements ServletCommand {
 	private static final String LOT_OWNER = "lotOwner";
 	
 	private static final String SUCCESSFUL_PAGE = "FrontController?command=GET_USER_LOTS&choosenLotsPageNumber=1&userLogin=";
-	private static final String ACCESS_DENIED_PAGE = "access_denied,jsp";
+	private static final String ACCESS_DENIED_PAGE = "access-denied,jsp";
 	private static final String NOT_FOUND_PAGE = "404.jsp";
 	private static final String ERROR_PAGE = "error.jsp";
 	

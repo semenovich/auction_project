@@ -76,6 +76,5 @@ class SAXHandler extends DefaultHandler {
 		} catch (ClassNotFoundException e) {
 			logger.fatal("ClassNotFoundException in SAXHandler", e);
 		}
-
 	}
 }

@@ -39,7 +39,7 @@ public class ConnectionPool {
 
     private static final Logger logger = Logger.getLogger(ConnectionPool.class);
     
-	private static ConnectionPool instance = new ConnectionPool();
+	private static ConnectionPool instance;
 
     private static final int DEFAULT_POOL_SIZE = 5;
 
@@ -89,11 +89,11 @@ public class ConnectionPool {
                     instance = new ConnectionPool();
                     isInitialized.set(true);
                 }
-            }finally {
+            } finally {
                 lock.unlock();
             }
         }
-
+ 
         return instance;
     }
 
@@ -108,8 +108,7 @@ public class ConnectionPool {
             connection = freeConnectionQueue.take();
             busyConnectionQueue.add(connection);
         } catch (InterruptedException e) {
-            throw new ConnectionPoolException(
-                    "Error connecting to the data source.", e);
+            throw new ConnectionPoolException("Error connecting to the data source.", e);
         }
         return connection;
     }
