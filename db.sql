@@ -28,7 +28,7 @@ CREATE TABLE `auctions` (
   `a_start_time` datetime NOT NULL,
   `a_end_time` datetime DEFAULT NULL,
   `a_status` enum('PENDING_PAYMENT','COMPLETED','ACTIVE') NOT NULL DEFAULT 'ACTIVE',
-  `a_minimum_price` decimal(19,2) NOT NULL,
+  `a_minimum_price` decimal(60,2) NOT NULL,
   `auctions_type_at_id` int(11) NOT NULL,
   PRIMARY KEY (`a_id`),
   UNIQUE KEY `a_id_UNIQUE` (`a_id`),
@@ -88,8 +88,8 @@ CREATE TABLE `lots` (
   `l_name` longtext NOT NULL,
   `l_description` longtext NOT NULL,
   `l_quantity` int(11) NOT NULL,
-  `l_picture` varchar(45) DEFAULT 'images/no-img.jpg',
-  `su_owner_login` varchar(45) NOT NULL,
+  `l_picture` varchar(255) DEFAULT 'images/no-img.jpg',
+  `su_owner_login` varchar(255) NOT NULL,
   `l_date_added` datetime NOT NULL,
   `l_status` enum('BLOCKED','SOLED','ACTIVE','CONFIRMING','READY') NOT NULL DEFAULT 'CONFIRMING',
   `l_type` enum('CAR','JET','ART','SPORT','REALTY') NOT NULL,
@@ -119,7 +119,7 @@ DROP TABLE IF EXISTS `site_users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `site_users` (
-  `su_login` varchar(45) NOT NULL,
+  `su_login` varchar(255) NOT NULL,
   `su_surname` longtext NOT NULL,
   `su_name` longtext NOT NULL,
   `su_password` longtext NOT NULL,
@@ -130,7 +130,7 @@ CREATE TABLE `site_users` (
   `uc_id` int(11) NOT NULL,
   `sur_id` int(11) NOT NULL DEFAULT '1',
   `su_blocked` tinyint(1) NOT NULL DEFAULT '0',
-  `su_picture` varchar(45) DEFAULT 'images/no-img.jpg',
+  `su_picture` varchar(255) DEFAULT 'images/no-img.jpg',
   PRIMARY KEY (`su_login`),
   UNIQUE KEY `su_login_UNIQUE` (`su_login`),
   KEY `fk_site_users_users_countries_idx` (`uc_id`),
@@ -159,7 +159,7 @@ DROP TABLE IF EXISTS `site_users_role`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `site_users_role` (
   `sur_id` int(11) NOT NULL,
-  `sur_role_name` varchar(45) NOT NULL,
+  `sur_role_name` varchar(255) NOT NULL,
   PRIMARY KEY (`sur_id`),
   UNIQUE KEY `sur_role_name_UNIQUE` (`sur_role_name`),
   UNIQUE KEY `sur_id_UNIQUE` (`sur_id`)
@@ -184,10 +184,10 @@ DROP TABLE IF EXISTS `user_participation_in_bidding`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user_participation_in_bidding` (
-  `su_login` varchar(45) NOT NULL,
+  `su_login` varchar(255) NOT NULL,
   `a_id` int(11) NOT NULL,
   `upib_status` enum('WON','LOST','ACTIVE') NOT NULL,
-  `upib_bet` decimal(19,2) DEFAULT NULL,
+  `upib_bet` decimal(60,2) DEFAULT NULL,
   `upib_last_bet_time` datetime DEFAULT NULL,
   PRIMARY KEY (`su_login`,`a_id`),
   KEY `fk_user_participation_in_bidding_site_users1_idx` (`su_login`),
