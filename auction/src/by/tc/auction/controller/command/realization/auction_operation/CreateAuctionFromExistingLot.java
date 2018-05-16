@@ -89,13 +89,13 @@ public class CreateAuctionFromExistingLot implements ServletCommand {
 		}
 	}
 
-	private Auction parseAuction(HttpServletRequest request) throws NumberFormatException {
+	private Auction parseAuction(HttpServletRequest request)  {
 		Auction auction = new Auction();
 		Long currentTime = Calendar.getInstance().getTimeInMillis();
 		auction.setType(AuctionType.valueOf(request.getParameter(AUCTION_TYPE)));
 		auction.setStartTime(new Timestamp(currentTime));
 		Bet minBet = new Bet();
-		minBet.setValue(Double.valueOf(request.getParameter(AUCTION_MINIMUM_BET)));
+		minBet.setValue(Double.parseDouble(request.getParameter(AUCTION_MINIMUM_BET)));
 		auction.setMinBet(minBet);;
 		if (AuctionType.valueOf(request.getParameter(AUCTION_TYPE)) == AuctionType.ONLINE) {
 			Long remainTime = TimeGetter.getInstance().getMilliseconds(Time.valueOf(request.getParameter(AUCTION_END_TIME)));

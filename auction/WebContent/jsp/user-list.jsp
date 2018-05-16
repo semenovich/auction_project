@@ -31,7 +31,7 @@
 	            <form action="FrontController" method="GET">
 					<input type="hidden" name="command" value="GET_USERS_BY_SEARCHING"/>
 					<input type="hidden" name="usersPageNumber" value="1"/>
-					<input type="text" class="input-lg col-md-11" name="searchLine" placeholder=<fmt:message bundle="${current_locale}" key="locale.list.search"/> />
+					<input type="text" class="input-lg col-md-11" name="searchLine" maxlength="200" placeholder=<fmt:message bundle="${current_locale}" key="locale.list.search"/> />
 					<button class="btn btn-info btn-lg col-md-1" type="submit">
 	                   	<i class="glyphicon glyphicon-search"></i>
 	                </button>

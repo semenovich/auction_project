@@ -38,9 +38,17 @@ public class FrontController extends HttpServlet {
 	 */
     public FrontController() {
         super();
-        servletDirector = ServletDirector.getInstance();
     }
 
+    /**
+     * Initializes commands to the FrontController.
+     */
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        servletDirector = ServletDirector.getInstance();
+    }
+    
     /**
      * Executes the specified command. 
      * <br> Also sets language (with parameter "locale"). See /auction/src/resources/locales.

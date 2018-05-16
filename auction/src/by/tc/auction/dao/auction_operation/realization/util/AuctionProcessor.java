@@ -20,7 +20,7 @@ public class AuctionProcessor {
 	
 	private static final String CREATE_AUCTION_SQL_STATEMENT = "INSERT INTO auction.auctions (l_id, a_start_time, a_end_time, a_minimum_price, auctions_type_at_id) VALUES (?, ?, ?, ?, (SELECT at_id FROM auction.auctions_type WHERE at_type_name=?))";
 	private static final String SET_LOT_STATUS_SQL_STATEMENT = "UPDATE auction.lots SET l_status=? WHERE l_id=?";
-	private static final String CREATE_LOT_SQL_STATEMENT = "INSERT INTO auction.lots (l_name, l_description, l_quantity, l_picture, su_owner_login, l_date_added, l_status, l_type, l_locale) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String CREATE_LOT_SQL_STATEMENT = "INSERT INTO auction.lots (l_name, l_description, l_quantity, su_owner_login, l_date_added, l_status, l_type, l_locale) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 	
 	private static final Logger logger = Logger.getLogger(AuctionProcessor.class);
 	
@@ -58,7 +58,7 @@ public class AuctionProcessor {
 	 * Creates and executes query to a database to create an auction with a lot in a database.
 	 * @param connection - a connection to a database.
 	 * @param auction - an auction which will be created in a database. Only the start time, the minimum bet, the type (and the end time for Online type) fields must be filled in.
-	 * @param lot - a lot which will be created and used in auction in a database. All fields except the status must be filled in.
+	 * @param lot - a lot which will be created and used in auction in a database. All fields except the status and picture must be filled in.
 	 * @return {@code true}.
 	 * @throws SQLException - if a database access error or other errors occurred.
 	 */
@@ -101,11 +101,10 @@ public class AuctionProcessor {
 		preparedStatement.setString(1, lot.getName());
 		preparedStatement.setString(2, lot.getDescription());
 		preparedStatement.setInt(3, lot.getQuantity());
-		preparedStatement.setString(4, lot.getPicture());
-		preparedStatement.setString(5, lot.getOwner());
-		preparedStatement.setTimestamp(6, lot.getAdded());
-		preparedStatement.setString(7, LotStatus.ACTIVE.toString());
-		preparedStatement.setString(8, lot.getType().toString());
-		preparedStatement.setString(9, lot.getLocale().toString());
+		preparedStatement.setString(4, lot.getOwner());
+		preparedStatement.setTimestamp(5, lot.getAdded());
+		preparedStatement.setString(6, LotStatus.ACTIVE.toString());
+		preparedStatement.setString(7, lot.getType().toString());
+		preparedStatement.setString(8, lot.getLocale().toString());
 	}
 }

@@ -48,9 +48,9 @@
 				<input type="hidden" name="command" value="LOGIN"/>
 		        <p class="login_form_heading"><fmt:message bundle="${current_locale}" key="locale.login.text"/></p>
 		        <label for="userLogin" class="sr-only"><fmt:message bundle="${current_locale}" key="locale.login.login"/></label>
-		        <input type="text" id="userLogin" class="form-control" name='userLogin' placeholder=<fmt:message bundle="${current_locale}" key="locale.login.login"/> required autofocus>
+		        <input type="text" id="userLogin" class="form-control" name='userLogin' maxlength="200" placeholder=<fmt:message bundle="${current_locale}" key="locale.login.login"/> required autofocus>
 		        <label for="userPassword" class="sr-only"><fmt:message bundle="${current_locale}" key="locale.login.password"/></label>
-		        <input type="password" id="userPassword" class="form-control" name='userPassword' placeholder=<fmt:message bundle="${current_locale}" key="locale.login.password"/> required>
+		        <input type="password" id="userPassword" class="form-control" name='userPassword' maxlength="200" placeholder=<fmt:message bundle="${current_locale}" key="locale.login.password"/> required>
 				<div class="row">
 					<div class="col-md-6 col-md-offset-3">
 			        	<button class="btn btn-lg btn-primary btn-block" type="submit"><fmt:message bundle="${current_locale}" key="locale.login.login.button"/></button>

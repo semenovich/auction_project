@@ -166,7 +166,7 @@
 					    			</p>
 					    		</div>
 					    		<div class="col-md-4 col-md-offset-4">
-									<input type='text' class="form-control" id='placeBet' name='userBet' placeholder=<fmt:message bundle="${current_locale}" key="locale.place.bet.value"/> required autofocus />
+									<input type='text' class="form-control" id='placeBet' name='userBet' maxlength="20" placeholder=<fmt:message bundle="${current_locale}" key="locale.place.bet.value"/> required autofocus />
 					  			</div>
 					  			<div class="col-md-4 col-md-offset-4">
 									<button class="btn btn-lg btn-primary btn-block" type="submit"><fmt:message bundle="${current_locale}" key="locale.place.bet"/></button>            

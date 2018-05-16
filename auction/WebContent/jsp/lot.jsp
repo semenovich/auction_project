@@ -65,7 +65,7 @@
 					<div id="lot_info" class="tab-pane fade in active">
 						<div class="col-md-4 lot_picture">
 							<img src="${lot.picture }"/>
-							<c:if test="${lot.owner == sessionScope.userLogin && (lot.status == 'CONFIRMING' || lot.status == 'READY')}">
+							<c:if test="${lot.owner == sessionScope.userLogin && lot.status != 'BLOCKED' && lot.status != 'SOLED'}">
 								<form class="lot_upload_image" action="ImageUploader" method="post" enctype="multipart/form-data" >
 							    	<input type="hidden" name="command" value="lot"/>
 							        <div class="form-group">
@@ -178,7 +178,7 @@
 										<label for='lotDescription'><fmt:message bundle="${current_locale}" key="locale.lot.description"/>:</label>
 							    	</div>
 							    	<div class="col-md-9">
-										<textarea id='lotDescription' class="form-control" name='lotDescription' rows="5" placeholder=<fmt:message bundle="${current_locale}" key="locale.lot.description"/> required>${lot.description }</textarea>	
+										<textarea id='lotDescription' class="form-control" name='lotDescription' rows="5" maxlength="2000" placeholder=<fmt:message bundle="${current_locale}" key="locale.lot.description"/> required>${lot.description }</textarea>	
 									</div>
 									<div class="row">
 										<div class="col-md-4 col-md-offset-5">
@@ -226,7 +226,7 @@
 											<label for='lot_auction_minimum_price'><fmt:message bundle="${current_locale}" key="locale.auction.min.bet"/>:</label>
 								    	</div>
 								    	<div class="col-md-5">
-											<input type='text' id='auction_minimum_price' class="form-control" name='auctionMinimumPrice' placeholder=<fmt:message bundle="${current_locale}" key="locale.auction.min.bet"/> />			
+											<input type='text' id='auction_minimum_price' class="form-control" name='auctionMinimumPrice' maxlength="20" placeholder=<fmt:message bundle="${current_locale}" key="locale.auction.min.bet"/> />			
 										</div>
 									</div>
 									<div class="row">
@@ -244,6 +244,6 @@
 	</div>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<script src="js/checkAuctionType.js"></script>
-	<script src="js/validateBet.js"></script>
+	<script src="js/validateMinimumBet.js"></script>
 </body>
 </html>

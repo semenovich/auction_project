@@ -51,7 +51,7 @@
 							<label for='lotName'><fmt:message bundle="${current_locale}" key="locale.lot.name"/>:</label>
 		 				</div>
 						<div class="col-md-9">
-							<input type='text' id='lotName' class="form-control" name='lotName' placeholder=<fmt:message bundle="${current_locale}" key="locale.lot.name"/> required />			
+							<input type='text' id='lotName' class="form-control" name='lotName' maxlength="50" placeholder=<fmt:message bundle="${current_locale}" key="locale.lot.name"/> required />			
 						</div>
 						<div class="col-md-12">
 							<label class="col-md-3 select_label text-right" for="lot_type_select"><fmt:message bundle="${current_locale}" key="locale.lot.type"/>:</label>
@@ -86,7 +86,7 @@
 							<label for='lotDescription'><fmt:message bundle="${current_locale}" key="locale.lot.description"/>:</label>
 						</div>
 						<div class="col-md-9">
-							<textarea id='lotDescription' class="form-control" name='lotDescription' rows="5" placeholder=<fmt:message bundle="${current_locale}" key="locale.lot.description"/> required></textarea>				</div>
+							<textarea id='lotDescription' class="form-control" name='lotDescription' rows="5" maxlength="2000" placeholder=<fmt:message bundle="${current_locale}" key="locale.lot.description"/> required></textarea>				</div>
 						<div class="auction_type col-md-12">
 							<div class="form-group">
 								<div class="col-md-12">
@@ -117,8 +117,8 @@
 							<div class="col-md-5 text-right ">
 								<label for='auction_minimum_price'><fmt:message bundle="${current_locale}" key="locale.auction.min.bet"/>:</label>
 						   	</div>
-						   	<div class="col-md-5">
-								<input type='text' id='auction_minimum_price' class="form-control" name='auctionMinimumPrice' placeholder=<fmt:message bundle="${current_locale}" key="locale.auction.min.bet"/> />			
+						   	<div class="col-md-5"> 
+								<input type='text' id='auction_minimum_price' class="form-control" name='auctionMinimumPrice' maxlength="20" placeholder=<fmt:message bundle="${current_locale}" key="locale.auction.min.bet"/> />			
 							</div>
 						</div>
 						<div class="row">

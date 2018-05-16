@@ -171,43 +171,43 @@
 										<label for='userPassword'><fmt:message bundle="${current_locale}" key="locale.user.password"/>:</label>
 						    		</div>
 						    		<div class="col-md-8">
-										<input type='password' class="form-control" id='userPassword' name='userPassword' value="${user.password}" placeholder=<fmt:message bundle="${current_locale}" key="locale.user.password"/> />	
+										<input type='password' class="form-control" id='userPassword' name='userPassword' maxlength="200" value="${user.password}" placeholder=<fmt:message bundle="${current_locale}" key="locale.user.password"/> />	
 									</div>
 									<div class="col-md-4 text-right">
 										<label for='userSurname'><fmt:message bundle="${current_locale}" key="locale.user.surname"/>: </label>
 						    		</div>
 						    		<div class="col-md-8">
-										<input type='text' id='userSurname' class="form-control" name='userSurname' value="${user.surname}" placeholder=<fmt:message bundle="${current_locale}" key="locale.user.surname"/> required />
+										<input type='text' id='userSurname' class="form-control" name='userSurname' maxlength="200" value="${user.surname}" placeholder=<fmt:message bundle="${current_locale}" key="locale.user.surname"/> required />
 									</div>
 									<div class="col-md-4 text-right">
 										<label for='userName'><fmt:message bundle="${current_locale}" key="locale.user.name"/>: </label>
 						    		</div>
 						    		<div class="col-md-8">
-										<input type='text' id='userName' class="form-control" name='userName' value="${user.name}" placeholder=<fmt:message bundle="${current_locale}" key="locale.user.name"/> required />
+										<input type='text' id='userName' class="form-control" name='userName' maxlength="200" value="${user.name}" placeholder=<fmt:message bundle="${current_locale}" key="locale.user.name"/> required />
 									</div>
 									<div class="col-md-4 text-right">
 										<label for='userEmail'><fmt:message bundle="${current_locale}" key="locale.user.email"/>:</label>
 						    		</div>
 						    		<div class="col-md-8">
-										<input type='text' id='userEmail' class="form-control" name='userEmail' value="${user.email}" placeholder=<fmt:message bundle="${current_locale}" key="locale.user.email"/> required />			
+										<input type='text' id='userEmail' class="form-control" name='userEmail' maxlength="200" value="${user.email}" placeholder=<fmt:message bundle="${current_locale}" key="locale.user.email"/> required />			
 									</div>
 									<div class="col-md-4 text-right">
 										<label for='userPhone'><fmt:message bundle="${current_locale}" key="locale.user.phone"/>: </label>
 						    		</div>
 						    		<div class="col-md-8">
-										<input type='text' id='userPhone' class="form-control" name='userPhone' value="${user.phone}" placeholder=<fmt:message bundle="${current_locale}" key="locale.user.phone"/> required />
+										<input type='text' id='userPhone' class="form-control" name='userPhone' maxlength="10" value="${user.phone}" placeholder=<fmt:message bundle="${current_locale}" key="locale.user.phone"/> required />
 									</div>
 									<div class="col-md-4 text-right">
 										<label for='userPassportId'><fmt:message bundle="${current_locale}" key="locale.user.passport.id"/>: </label>
 							    	</div>
 							    	<div class="col-md-8">
-										<input type='text' id='userPassportId' class="form-control" name='userPassportId' value="${user.passportId}" placeholder=<fmt:message bundle="${current_locale}" key="locale.user.passport.id"/> required />
+										<input type='text' id='userPassportId' class="form-control" name='userPassportId' maxlength="200" value="${user.passportId}" placeholder=<fmt:message bundle="${current_locale}" key="locale.user.passport.id"/> required />
 									</div>
 									<div class="col-md-4 text-right">
 										<label for='userIssuedBy'><fmt:message bundle="${current_locale}" key="locale.user.passport.issued.by"/>: </label>
 						    		</div>
 						    		<div class="col-md-8">
-										<input type='text' id='userIssuedBy' class="form-control" name='userPassportIssuedBy' value="${user.passportIssuedBy}" placeholder=<fmt:message bundle="${current_locale}" key="locale.user.passport.issued.by"/> required />
+										<input type='text' id='userIssuedBy' class="form-control" name='userPassportIssuedBy' maxlength="200" value="${user.passportIssuedBy}" placeholder=<fmt:message bundle="${current_locale}" key="locale.user.passport.issued.by"/> required />
 									</div>
 									<div class="row">
 										<div class="col-md-4 col-md-offset-5">

@@ -41,7 +41,7 @@
 							<label for='lotName'><fmt:message bundle="${current_locale}" key="locale.lot.name"/>:</label>
 						</div>
 						<div class="col-md-9">
-							<input type='text' id='lotName' class="form-control" name='lotName' placeholder=<fmt:message bundle="${current_locale}" key="locale.lot.name"/> required />			
+							<input type='text' id='lotName' class="form-control" name='lotName' maxlength="50" placeholder=<fmt:message bundle="${current_locale}" key="locale.lot.name"/> required />			
 						</div>
 						<div class="col-md-12">
 							<label class="col-md-3 select_label text-right" for="lot_type_select"><fmt:message bundle="${current_locale}" key="locale.lot.type"/>:</label>
@@ -76,7 +76,7 @@
 							<label for='lotDescription'><fmt:message bundle="${current_locale}" key="locale.lot.description"/>:</label>
 						</div>
 						<div class="col-md-9">
-							<textarea id='lotDescription' class="form-control" name='lotDescription' rows="5" placeholder=<fmt:message bundle="${current_locale}" key="locale.lot.description"/> required></textarea>	
+							<textarea id='lotDescription' class="form-control" name='lotDescription' rows="5" maxlength="2000" placeholder=<fmt:message bundle="${current_locale}" key="locale.lot.description"/> required></textarea>	
 						</div>
 						<div class="row">
 							<div class="col-md-4 col-md-offset-5">
