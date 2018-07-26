@@ -93,7 +93,7 @@ CREATE TABLE `lots` (
   `l_date_added` datetime NOT NULL,
   `l_status` enum('BLOCKED','SOLED','ACTIVE','CONFIRMING','READY') NOT NULL DEFAULT 'CONFIRMING',
   `l_type` enum('CAR','JET','ART','SPORT','REALTY') NOT NULL,
-  `l_locale` enum('en','ru') DEFAULT NULL,
+  `l_locale` enum('EN','RU') DEFAULT NULL,
   PRIMARY KEY (`l_id`),
   UNIQUE KEY `l_id_UNIQUE` (`l_id`),
   KEY `fk_lots_site_users1_idx` (`su_owner_login`),
